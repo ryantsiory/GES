@@ -10,6 +10,8 @@ class Personnel extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nom', 'poste_id'];
+
 
     public function poste()
     {

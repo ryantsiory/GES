@@ -37,13 +37,13 @@ class ClientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
 
-        
+
         $request->validate([
             'nom' =>  'required',
             'description' =>  'required|min:5'
-             //['required', 'email']   
+             //['required', 'email']
         ]);
 
 
@@ -71,7 +71,9 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
+        $client = Client::find($id);
+
+        return view('clients.show', compact('client'));
     }
 
     /**

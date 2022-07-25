@@ -7,30 +7,41 @@
       <h6 class="br-section-label">Add Personnal Member</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
-      <div class="row">
-        <div class="col-lg">
-          <input class="form-control" placeholder="Input box" type="text">
-        </div><!-- col -->
-        <div class="col-lg mg-t-10 mg-lg-t-0">
-          <input class="form-control" placeholder="Input box (readonly)" readonly="" type="text">
-        </div><!-- col -->
-        <div class="col-lg mg-t-10 mg-lg-t-0">
-          <input class="form-control" placeholder="Input box (disabled)" disabled="" type="text">
-        </div><!-- col -->
-      </div><!-- row -->
+      <form action="{{ route('personnels.store') }}" method="post">
+        @csrf
+        <div class="row">
+            <div class="col-lg-4">
+                <input class="form-control @error('nom') is-invalid @enderror"  name="nom" placeholder="Entrez le nom du personnel" type="text">
+                @error('nom')
+                    <div class="invalid-feedback">
+                        {{ $errors->first('nom') }}
+                    </div>
+                @enderror
 
-      <div class="row mg-t-20">
-        <div class="col-lg">
-          <textarea rows="3" class="form-control" placeholder="Textarea"></textarea>
-        </div><!-- col -->
-        <div class="col-lg mg-t-10 mg-lg-t-0">
-          <textarea rows="3" class="form-control" placeholder="Textarea (readonly)" readonly></textarea>
-        </div><!-- col -->
-        <div class="col-lg mg-t-10 mg-lg-t-0">
-          <textarea rows="3" class="form-control" placeholder="Texarea (disabled)" disabled></textarea>
-        </div><!-- col -->
-      </div><!-- row -->
-    </div>
+            </div><!-- col -->
+            <div class="col-lg-8">
+                <select class="form-control @error('poste') is-invalid @enderror" name="poste" >
+                    <option value="" default selected>--Choisir le poste--</option>
+
+                    @foreach ($postes as $poste)
+                    <option value="{{ $poste->id}}" >{{ $poste->nom}}</option>
+                  @endforeach
+
+
+                </select>
+
+                @error('poste')
+                    <div class="invalid-feedback">
+                        {{ $errors->first('poste') }}
+                    </div>
+                @enderror
+
+            </div><!-- col -->
+        </div><!-- row -->
+        <div class="row mt-2 mx-auto">
+            <button type="submit" class="btn btn-success">Ajouter un personnel</button>
+        </div>
+     </form>
 </div>
 
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personnel;
+use App\Models\Poste;
 use Illuminate\Http\Request;
 
 class PersonnelsController extends Controller
@@ -15,7 +16,8 @@ class PersonnelsController extends Controller
     public function index()
     {
 
-        $personnels = Personnel::all();
+        // $personnels = Personnel::all();
+        $personnels = Personnel::orderBy('id')->paginate(4);
 
 
         return view('personnels.index', compact('personnels'));
@@ -28,7 +30,10 @@ class PersonnelsController extends Controller
      */
     public function create()
     {
-        return view('personnels.create');
+
+        $postes = Poste::all();
+
+        return view('personnels.create', compact('postes'));
     }
 
     /**
@@ -39,7 +44,31 @@ class PersonnelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+
+        $request->validate([
+            'nom' =>  'required',
+            'poste' =>  'required'
+             //['required', 'email']
+        ]);
+
+
+        $nom =  $request->nom;
+        $poste =  $request->poste;
+
+
+        Personnel::create([
+            'nom' => $nom,
+            'poste_id' => $poste,
+        ]);
+
+
+        session()->flash('success');
+
+
+        return redirect()->route('personnels.index');
     }
 
     /**
@@ -50,7 +79,9 @@ class PersonnelsController extends Controller
      */
     public function show($id)
     {
-        //
+        $personnel = Personnel::find($id);
+
+        return view('personnels.show', compact('personnel'));
     }
 
     /**
@@ -61,7 +92,10 @@ class PersonnelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $personnel = Personnel::find($id);
+
+
+        return view('personnels.edit', compact('personnel'));
     }
 
     /**
@@ -73,7 +107,13 @@ class PersonnelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $personnel = Personnel::find($id);
+
+        $poste =  $request->poste;
+
+        $personnel->update(['poste' => $poste]);
+
+        return redirect()->route('personnels.index');
     }
 
     /**
@@ -84,6 +124,7 @@ class PersonnelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Personnel::find($id)->delete();
+        return redirect()->route('personels.index');
     }
 }
