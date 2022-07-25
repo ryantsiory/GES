@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\CongesController;
 use App\Http\Controllers\PersonnelsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PDFController;
 
 
 /*
@@ -57,6 +58,8 @@ Route::resource('dashboard', DashboardController::class);
 Route::get('mailbox', function () {
     return view('mailbox/mailbox');
 });
+
+Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
 
 
 
