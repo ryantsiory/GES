@@ -1,7 +1,7 @@
 @extends('blank')
 
-@section('page-title', 'Client information');
-@section('page-description', 'Gestion de client');
+@section('page-title', 'Poste information');
+@section('page-description', 'Gestion de poste');
 
 @section('main-content')
 
@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-lg-4">
-                Nom poste : <h4 class="text-uppercase">{{  $poste->nom }}</h4>
+                Nom poste : <h5 class="text-uppercase">{{  $poste->nom }}</h5>
 
             </div><!-- col -->
             <div class="col-lg-8">

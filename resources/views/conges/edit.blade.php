@@ -7,14 +7,8 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Basic Form Input</h6>
-      <p class="br-section-text">A basic form control with disabled and readonly mode.</p>
-
-
-
-
-
-
+      <h6 class="br-section-label">Modifier congés</h6>
+      {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
 
       <form action="{{ route('conges.update', $conge->id) }}" method="post">

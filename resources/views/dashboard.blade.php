@@ -10,7 +10,7 @@
           <div class="pd-x-20 pd-t-20 d-flex align-items-center">
             <i class="ion ion-earth tx-60 lh-0 tx-white op-7"></i>
             <div class="mg-l-20">
-              <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Nombre de client </p>
+              <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Nombre de clients </p>
               <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">{{ $client_count }}</p>
               <span class="tx-11 tx-roboto tx-white-8">24% higher yesterday</span>
             </div>

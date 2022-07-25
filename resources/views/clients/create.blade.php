@@ -7,8 +7,8 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Basic Form Input</h6>
-      <p class="br-section-text">A basic form control with disabled and readonly mode.</p>
+      <h6 class="br-section-label">Ajouter client</h6>
+      {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('clients.store') }}" method="post">
         @csrf
@@ -18,17 +18,17 @@
                 @error('nom')
                     <div class="invalid-feedback">
                         {{ $errors->first('nom') }}
-                    </div>    
+                    </div>
                 @enderror
-                
+
             </div><!-- col -->
             <div class="col-lg-8">
                 <input class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description du client" type="text">
-            
+
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $errors->first('description') }}
-                    </div>    
+                    </div>
                 @enderror
 
             </div><!-- col -->

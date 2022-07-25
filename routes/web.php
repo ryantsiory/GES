@@ -35,8 +35,12 @@ Route::resource('clients', ClientsController::class);
 Route::resource('personnels', PersonnelsController::class);
 
 Route::resource('postes', PostesController::class);
+Route::get('conges/validate', [CongesController::class, 'toValide'])->name('conges.validate');
+Route::post('conges/accept/{id}', [CongesController::class, 'toAccept'])->name('conges.accept');
+Route::post('conges/reject/{id}', [CongesController::class, 'toReject'])->name('conges.reject');
 
 Route::resource('conges', CongesController::class);
+
 
 
 Route::get('display-post', [PostsController::class, 'index'])->name('posts.index');

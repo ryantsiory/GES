@@ -7,7 +7,7 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Cleint Member Information</h6>
+      <h6 class="br-section-label">Client Member Information</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
         <div class="row">

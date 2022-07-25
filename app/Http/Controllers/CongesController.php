@@ -20,6 +20,21 @@ class CongesController extends Controller
         return view('conges.index', compact('conges'));
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toValide()
+    {
+
+        $conges = Conge::where('status',0)->orderBy('id')->paginate(4);
+
+
+        return view('conges.validate', compact('conges'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -126,6 +141,49 @@ class CongesController extends Controller
         return redirect()->route('conges.index');
     }
 
+
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function toAccept(Request $request, $id)
+    {
+        $conge = Conge::find($id);
+
+        $conge->update(['status' => 1, 'answered_at' =>now()]);
+
+        return redirect()->route('conges.index');
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function toReject(Request $request, $id)
+    {
+        $conge = Conge::find($id);
+
+        $conge->update(['status' => -1, 'answered_at' =>now()]);
+
+        return redirect()->route('conges.index');
+    }
+
+
+
+
+
+
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -135,6 +193,6 @@ class CongesController extends Controller
     public function destroy($id)
     {
         Conge::find($id)->delete();
-        return redirect()->route('personnels.index');
+        return redirect()->route('conges.index');
     }
 }

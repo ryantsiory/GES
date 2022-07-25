@@ -11,7 +11,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>CRM ENTREPRISE</title>
+    <title>GES</title>
 
     <!-- vendor css -->
     <link href="{{ asset('css/all.min.css')}}" rel="stylesheet">
@@ -19,35 +19,38 @@
 
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{ asset('css/bracket.css') }}">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{ asset('css/css/app.css') }}">
   </head>
 
   <body>
 
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="br-logo"><a href="#"><span>[</span>ERP <i>ENTREPRISE</i><span>]</span></a></div>
+    <div class="br-logo" style="padding-left:75px"><a href="#"><span>[</span>Ge<i>S</i><span>]</span></a></div>
     <div class="br-sideleft sideleft-scrollbar">
       <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
       <ul class="br-sideleft-menu">
         <li class="br-menu-item">
-          <a href="/dashboard" class="br-menu-link">
+          <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
             <span class="menu-item-label">TABLEAU DE BORD</span>
           </a><!-- br-menu-link -->
         </li><!-- br-menu-item -->
 
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+          <a href="#" class="br-menu-link with-sub   {{ (request()->is('personnels*')) ? 'active' : '' }} ">
+            <i class="menu-item-icon icon ion-ios-person-outline tx-20"></i>
             <span class="menu-item-label">PERSONNEL</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
-            <li class="sub-item"><a href="{{ route('personnels.create') }}" " class="sub-link">Nouveau personnel</a></li>
-            <li class="sub-item"><a href="{{ route('personnels.index') }}" " class="sub-link">Liste personnel</a></li>
+            <li class="sub-item"><a href="{{ route('personnels.create') }}" class="sub-link">Nouveau personnel</a></li>
+            <li class="sub-item"><a href="{{ route('personnels.index') }}" class="sub-link">Liste personnel</a></li>
           </ul>
         </li>
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+        <li class="br-menu-item" >
+          <a href="#" class="br-menu-link with-sub  {{ (request()->is('clients*')) ? 'active' : '' }}" >
+            <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
             <span class="menu-item-label">CLIENTS</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
@@ -56,8 +59,8 @@
           </ul>
         </li>
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+          <a href="#" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+            <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
             <span class="menu-item-label">POSTES</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
@@ -67,18 +70,18 @@
         </li>
 
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+          <a href="#" class="br-menu-link with-sub    {{ (request()->is('conges*')) ? 'active' : '' }}">
+            <i class="menu-item-icon icon ion-ios-redo-outline tx-20"></i>
             <span class="menu-item-label">CONGES</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             <li class="sub-item"><a href="{{ route('conges.create') }}" class="sub-link">Demander congé</a></li>
             <li class="sub-item"><a href="{{ route('conges.index') }}" class="sub-link">Liste congé</a></li>
-            {{-- <li class="sub-item"><a href="{{ route('conges.valide') }}" class="sub-link">Valider congé</a></li> --}}
+            <li class="sub-item"><a href="{{ route('conges.validate') }}" class="sub-link">Valider congé</a></li>
           </ul>
         </li>
         <li class="br-menu-item">
-          <a href="mailbox" class="br-menu-link">
+          <a href="mailbox" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
             <span class="menu-item-label">MESSAGES</span>
           </a><!-- br-menu-link -->
@@ -270,7 +273,7 @@
     <div class="br-mainpanel">
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
-          <a class="breadcrumb-item" href="index-2.html">ERP ENTREPRISE</a>
+          <a class="breadcrumb-item" href="index-2.html">GES</a>
           <span class="breadcrumb-item active">@yield('page-title')</span>
         </nav>
       </div><!-- br-pageheader -->
@@ -286,7 +289,7 @@
 
         @if(session()->has('success'))
           <div class="alert alert-success" role="alert">
-            Insertion OK
+            Insertion réussi
           </div>
         @endif
 

@@ -1,13 +1,13 @@
 @extends('blank')
 
 
-@section('page-title', 'Ajouter Congés')
+@section('page-title', 'Demander Congés')
 @section('page-description', 'Gestion des conges')
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Demander Conge</h6>
+      <h6 class="br-section-label">Demander Congé</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('conges.store') }}" method="post">

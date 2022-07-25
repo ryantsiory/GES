@@ -10,7 +10,7 @@
 <div class="br-pagebody">
     <div class="br-section-wrapper">
       <h6 class="br-section-label">TABLE Conges</h6>
-      <p class="br-section-text">Données concernant les congés de l'entreprise.</p>
+      <p class="br-section-text">Données concernant les congés de l'entreprise en attente.</p>
 
       <a href="{{ route('conges.create') }}" class="btn btn-info mb-2 float-right">Ajouter un conges</a>
       <div class="bd bd-gray-300 rounded table-responsive">
@@ -40,22 +40,21 @@
                 <td>{{ $conge->motif }}</td>
                         @if ($conge->status === 0)
                         <td class="text-info">En attente</td>
-                        @elseif ($conge->status === 1)
-                        <td class="text-success">Validée</td>
-                        @else
-                        <td class="text-danger">Refusée</td>
                         @endif
 
                 <td>{{  date('d-m-Y', strtotime($conge->depart_date )) }}</td>
                 <td>{{  date('d-m-Y', strtotime($conge->retour_date )) }}</td>
                 <td><a href="{{ route('conges.show',  $conge->id) }}"><x-far-eye style="height:21px"/></a></td>
                 <td class="d-flex">
-                    <a href="{{ route('conges.edit', $conge->id) }}" class="btn btn-warning btn-sm mr-2">Modifier</a>
 
-                    <form method="post" action="{{ route('conges.destroy', $conge->id) }}" >
+                    <form method="post" action="{{ route('conges.accept', $conge->id) }}" >
                         @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        <button type="submit" class="btn btn-success btn-sm mr-2">Accepter</button>
+                    </form>
+
+                    <form method="post" action="{{ route('conges.reject', $conge->id) }}" >
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
                     </form>
 
                 </td>
@@ -70,57 +69,6 @@
       </div><!-- bd -->
     </div>
 </div>
-
-
-{{--
-<form >
-{{-- <form action="{{ route('store.product') }}" method="POST"> --}}
-  {{-- @csrf
-  <label for="name">Nom du produit : </label>
-  <input type="text" name="name">
-
-  <label for="price">Prix du produit : </label>
-  <input type="number" name="price" step="0.01">
-
-  <label for="description">Description du produit : </label>
-  <textarea name="description">
-  </textarea>
-
-  <input type="submit" value="Envoyer">
-</form>
-
-@if ( $errors->has('title') )
-    <p class="error-message">{{ $errors->first('title') }}</p>
-@endif
-
-
-@error('description')
-    <p> {{  $message  }} </p>
-@enderror
-
-
-<form action="{{ route('file.upload.post') }}" method="POST" enctype="multipart/form-data">
-  @csrf
-  <div class="row">
-      <div class="col-md-6">
-          <input type="file" name="file" class="form-control">
-      </div>
-      <div class="col-md-6">
-          <button type="submit" class="btn btn-success">Upload</button>
-      </div>
-  </div>
-</form>
-
-<div class="container">
-  @foreach ($users as $user)
-      {{ $user->name }}
-  @endforeach
-</div>
-
-{{ $users->links() }} --}}
-
-
-
 
 
 @endsection
