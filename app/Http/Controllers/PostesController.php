@@ -14,13 +14,7 @@ class PostesController extends Controller
      */
     public function index()
     {
-
         $postes =  Poste::orderBy('id')->paginate(4);
-        // foreach($postes->personnels as $p) {
-        //     echo $p->nom .'<br>';
-        // }
-
-
 
         return view('postes.index', compact('postes'));
     }
@@ -102,9 +96,9 @@ class PostesController extends Controller
     {
         $poste = Poste::find($id);
 
-        $newPosteName =  $request->poste;
+        $newPosteName =  $request->nom;
 
-        $poste->update(['poste' => $newPosteName]);
+        $poste->update(['nom' => $newPosteName]);
 
         return redirect()->route('postes.index');
     }
@@ -117,6 +111,8 @@ class PostesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Poste::find($id)->delete();
+
+        return redirect()->route('postes.index');
     }
 }
