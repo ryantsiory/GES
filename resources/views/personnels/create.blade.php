@@ -21,7 +21,7 @@
             </div><!-- col -->
             <div class="col-lg-8">
                 <select class="form-control @error('poste') is-invalid @enderror" name="poste" >
-                    <option value="" default selected>--Choisir le poste--</option>
+                    <option value="" default selected disabled>--Choisir le poste--</option>
 
                     @foreach ($postes as $poste)
                     <option value="{{ $poste->id}}" >{{ $poste->nom}}</option>

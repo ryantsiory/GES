@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PostesController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\CongesController;
 use App\Http\Controllers\PersonnelsController;
 
 /*
@@ -30,12 +31,11 @@ Route::get('/', function () {
 
 Route::resource('clients', ClientsController::class);
 
-
 Route::resource('personnels', PersonnelsController::class);
 
-
-
 Route::resource('postes', PostesController::class);
+
+Route::resource('conges', CongesController::class);
 
 
 Route::get('display-post', [PostsController::class, 'index'])->name('posts.index');
