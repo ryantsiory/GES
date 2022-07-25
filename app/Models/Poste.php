@@ -10,8 +10,10 @@ class Poste extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nom'];
 
-    public function personnels() 
+
+    public function personnels()
     {
         return $this->hasMany(Personnel::class);
     }

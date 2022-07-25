@@ -2,7 +2,7 @@
 
 
 
-@section('page-title', 'Ajout personnel')
+@section('page-title', 'Personnels')
 @section('page-description', 'Gestion du personnel')
 
 @section('main-content')
@@ -10,7 +10,7 @@
 <div class="br-pagebody">
     <div class="br-section-wrapper">
       <h6 class="br-section-label">TABLE PERSONNEL</h6>
-      <p class="br-section-text">Information concernant les personnels.</p>
+      <p class="br-section-text">Données concernant les personnels.</p>
 
       <a href="{{ route('personnels.create') }}" class="btn btn-info mb-2 float-right">Ajouter un personnel</a>
       <div class="bd bd-gray-300 rounded table-responsive">

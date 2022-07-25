@@ -16,10 +16,18 @@
 
         <div class="row">
             <div class="col-lg-4">
-            {{-- <input class="form-control"  name="nom"  type="text" value="{{ $personnel->nom }}" > --}}
+            <input class="form-control"  name="nom"  type="text" value="{{ $personnel->nom }}" >
             </div><!-- col -->
             <div class="col-lg-8">
-                <input class="form-control" name="description"  type="text" value="{{ $personnel->poste->nom }}">
+                <select class="form-control @error('poste') is-invalid @enderror" name="poste" >
+                    <option value="{{ $personnel->poste->nom }}" default selected>{{ $personnel->poste->nom }}</option>
+
+                    @foreach ($postes as $poste)
+                    <option value="{{ $poste->id}}" >{{ $poste->nom}}</option>
+                  @endforeach
+
+
+                </select>
             </div><!-- col -->
         </div><!-- row -->
         <div class="row mt-2 mx-auto">

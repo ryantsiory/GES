@@ -1,6 +1,6 @@
 @extends('blank')
 
-@section('page-title', 'Ajout client')
+@section('page-title', 'Clients')
 @section('page-description', 'Gestion de client')
 
 @section('main-content')
@@ -21,6 +21,7 @@
               <th>ID</th>
               <th>Nom</th>
               <th>Description</th>
+              <th></th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -30,6 +31,7 @@
                     <th scope="row">{{ $client->id }}</th>
                     <td>{{ $client->nom }}</td>
                     <td>{{ $client->description }}</td>
+                    <td><a href="{{ route('clients.show',  $client->id) }}"><x-far-eye style="height:21px"/></a></td>
 
                     <td class="d-flex">
                         <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning btn-sm mr-2">Modifier</a>
@@ -39,7 +41,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                         </form>
-                        
+
 
                     </td>
 

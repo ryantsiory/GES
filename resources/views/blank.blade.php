@@ -61,8 +61,8 @@
             <span class="menu-item-label">POSTES</span>
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
-            <li class="sub-item"><a href="card-dashboard.html" class="sub-link">Nouveau poste</a></li>
-            <li class="sub-item"><a href="card-social.html" class="sub-link">Liste poste</a></li>
+            <li class="sub-item"><a href="{{ route('postes.create') }}" class="sub-link">Nouveau poste</a></li>
+            <li class="sub-item"><a href="{{ route('postes.index') }}"  class="sub-link">Liste poste</a></li>
           </ul>
         </li>
 

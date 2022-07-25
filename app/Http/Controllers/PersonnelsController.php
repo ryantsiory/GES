@@ -31,6 +31,7 @@ class PersonnelsController extends Controller
     public function create()
     {
 
+
         $postes = Poste::all();
 
         return view('personnels.create', compact('postes'));
@@ -44,9 +45,6 @@ class PersonnelsController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
 
         $request->validate([
             'nom' =>  'required',
@@ -93,9 +91,10 @@ class PersonnelsController extends Controller
     public function edit($id)
     {
         $personnel = Personnel::find($id);
+        $postes = Poste::all();
 
 
-        return view('personnels.edit', compact('personnel'));
+        return view('personnels.edit', compact('personnel', 'postes'));
     }
 
     /**
@@ -109,9 +108,10 @@ class PersonnelsController extends Controller
     {
         $personnel = Personnel::find($id);
 
+        $nom =  $request->nom;
         $poste =  $request->poste;
 
-        $personnel->update(['poste' => $poste]);
+        $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
 
         return redirect()->route('personnels.index');
     }
@@ -125,6 +125,6 @@ class PersonnelsController extends Controller
     public function destroy($id)
     {
         Personnel::find($id)->delete();
-        return redirect()->route('personels.index');
+        return redirect()->route('personnels.index');
     }
 }

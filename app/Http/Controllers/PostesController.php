@@ -15,14 +15,14 @@ class PostesController extends Controller
     public function index()
     {
 
-        $postes =  Poste::find(4);
-        foreach($postes->personnels as $p) {
-            echo $p->nom .'<br>'; 
-        }
+        $postes =  Poste::orderBy('id')->paginate(4);
+        // foreach($postes->personnels as $p) {
+        //     echo $p->nom .'<br>';
+        // }
 
 
 
-        //return view('postes.index');
+        return view('postes.index', compact('postes'));
     }
 
     /**
@@ -32,7 +32,7 @@ class PostesController extends Controller
      */
     public function create()
     {
-        //
+        return view('postes.create');
     }
 
     /**
@@ -43,7 +43,24 @@ class PostesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' =>  'required|min:5'
+        ]);
+
+
+        $nom =  $request->nom;
+        $poste =  $request->poste;
+
+
+        Poste::create([
+            'nom' => $nom,
+        ]);
+
+
+        session()->flash('success');
+
+
+        return redirect()->route('postes.index');
     }
 
     /**
@@ -54,7 +71,10 @@ class PostesController extends Controller
      */
     public function show($id)
     {
-        //
+        // $poste = Poste::find($id);
+
+        // return view('postes.show', compact('poste'));
+
     }
 
     /**
@@ -65,7 +85,10 @@ class PostesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $poste = Poste::find($id);
+
+
+        return view('postes.edit', compact('poste'));
     }
 
     /**
@@ -77,7 +100,13 @@ class PostesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $poste = Poste::find($id);
+
+        $newPosteName =  $request->poste;
+
+        $poste->update(['poste' => $newPosteName]);
+
+        return redirect()->route('postes.index');
     }
 
     /**

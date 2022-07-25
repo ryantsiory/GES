@@ -32,7 +32,7 @@ Route::resource('clients', ClientsController::class);
 
 
 Route::resource('personnels', PersonnelsController::class);
-Route::get('personnels-create', [PersonnelsController::class, 'create'])->name('personnels.create');
+
 
 
 Route::resource('postes', PostesController::class);
