@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Poste;
+use App\Models\Personnel;
 use Illuminate\Http\Request;
 
 class PostesController extends Controller
@@ -41,18 +42,13 @@ class PostesController extends Controller
             'nom' =>  'required|min:5'
         ]);
 
-
         $nom =  $request->nom;
-        $poste =  $request->poste;
-
 
         Poste::create([
             'nom' => $nom,
         ]);
 
-
         session()->flash('success');
-
 
         return redirect()->route('postes.index');
     }
@@ -65,10 +61,11 @@ class PostesController extends Controller
      */
     public function show($id)
     {
-        // $poste = Poste::find($id);
+        $poste = Poste::find($id);
 
-        // return view('postes.show', compact('poste'));
+        $personnels = Personnel::where('poste_id', $id)->get();
 
+        return view('postes.show', compact('poste', 'personnels'));
     }
 
     /**
@@ -80,7 +77,6 @@ class PostesController extends Controller
     public function edit($id)
     {
         $poste = Poste::find($id);
-
 
         return view('postes.edit', compact('poste'));
     }

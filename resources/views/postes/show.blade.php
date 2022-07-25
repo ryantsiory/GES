@@ -7,16 +7,21 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Cleint Member Information</h6>
+      <h6 class="br-section-label">Poste Member Information</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
         <div class="row">
             <div class="col-lg-4">
-                Nom : {{  $client->nom }}
+                Nom poste : <h4 class="text-uppercase">{{  $poste->nom }}</h4>
 
             </div><!-- col -->
             <div class="col-lg-8">
-                Description : {{ $client->description }}
+                Personnel :
+                <ul>
+                    @foreach ($personnels as $personnel)
+                    <li>{{ $personnel->nom }}</li>
+                    @endforeach
+                </ul>
 
             </div><!-- col -->
         </div><!-- row -->

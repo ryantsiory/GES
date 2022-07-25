@@ -15,10 +15,7 @@ class PersonnelsController extends Controller
      */
     public function index()
     {
-
-        // $personnels = Personnel::all();
         $personnels = Personnel::orderBy('id')->paginate(4);
-
 
         return view('personnels.index', compact('personnels'));
     }
@@ -30,8 +27,6 @@ class PersonnelsController extends Controller
      */
     public function create()
     {
-
-
         $postes = Poste::all();
 
         return view('personnels.create', compact('postes'));
@@ -52,7 +47,6 @@ class PersonnelsController extends Controller
              //['required', 'email']
         ]);
 
-
         $nom =  $request->nom;
         $poste =  $request->poste;
 
@@ -62,9 +56,7 @@ class PersonnelsController extends Controller
             'poste_id' => $poste,
         ]);
 
-
         session()->flash('success');
-
 
         return redirect()->route('personnels.index');
     }
@@ -92,7 +84,6 @@ class PersonnelsController extends Controller
     {
         $personnel = Personnel::find($id);
         $postes = Poste::all();
-
 
         return view('personnels.edit', compact('personnel', 'postes'));
     }

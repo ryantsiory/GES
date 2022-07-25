@@ -14,7 +14,6 @@ class ClientsController extends Controller
      */
     public function index()
     {
-
         $clients = Client::orderBy('id')->paginate(4);
 
         return view('clients.index', compact('clients'));
@@ -38,18 +37,14 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $request->validate([
             'nom' =>  'required',
             'description' =>  'required|min:5'
              //['required', 'email']
         ]);
 
-
         $nom =  $request->nom;
         $description =  $request->description;
-
 
         Client::create([
             'nom' => $nom,
@@ -58,7 +53,6 @@ class ClientsController extends Controller
 
 
         session()->flash('success');
-
 
         return redirect()->route('clients.index');
     }
@@ -84,9 +78,7 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-
         $client = Client::find($id);
-
 
         return view('clients.edit', compact('client'));
     }
@@ -108,8 +100,6 @@ class ClientsController extends Controller
         $client->update(['nom' => $nom, 'description' => $description]);
 
         return redirect()->route('clients.index');
-
-
     }
 
     /**

@@ -20,6 +20,7 @@
             <tr>
               <th>ID</th>
               <th>Nom</th>
+              <th></th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -28,6 +29,7 @@
                 <tr>
                     <th scope="row">{{ $poste->id }}</th>
                     <td>{{ $poste->nom }}</td>
+                    <td><a href="{{ route('postes.show',  $poste->id) }}"><x-far-eye style="height:21px"/></a></td>
                     <td class="d-flex">
                         <a href="{{ route('postes.edit', $poste->id) }}" class="btn btn-warning btn-sm mr-2">Modifier</a>
 
