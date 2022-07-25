@@ -33,7 +33,7 @@
                 <th scope="row">{{ $personnel->id }}</th>
                 <td>{{ $personnel->nom }}</td>
                 <td>{{ $personnel->poste->nom }}</td>
-                <td><a href="{{ route('personnels.show',  $personnel->id) }}"><i class="fa-solid fa-eye"></i></a></td>
+                <td><a href="{{ route('personnels.show',  $personnel->id) }}"><x-far-eye /></a></td>
                 <td class="d-flex">
                     <a href="{{ route('personnels.edit', $personnel->id) }}" class="btn btn-warning btn-sm mr-2">Modifier</a>
 
