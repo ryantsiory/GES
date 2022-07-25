@@ -20,18 +20,6 @@ class CongesController extends Controller
         return view('conges.index', compact('conges'));
     }
 
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function toValide()
-    {
-        $conges = Conge::where('status', 0)->orderBy('id')->paginate(4);
-
-        return view('conges.validate', compact('conges'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -90,13 +78,13 @@ class CongesController extends Controller
      */
     public function show($id)
     {
-        // $conge = Conge::find($id);
+        $conge = Conge::find($id);
 
-        // $personnel_id = $conge->personnel_id;
+        $personnel_id = $conge->personnel_id;
 
-        // $personnel = Personnel::find($personnel_id);
+        $personnel = Personnel::find($personnel_id);
 
-        // return view('conges.show', compact('conge', 'personnel'));
+        return view('conges.show', compact('conge', 'personnel'));
     }
 
     /**
@@ -107,10 +95,9 @@ class CongesController extends Controller
      */
     public function edit($id)
     {
-        $personnel = Conge::find($id);
-        $postes = Conge::all();
+        $conge = Conge::find($id);
 
-        return view('personnels.edit', compact('personnel', 'postes'));
+        return view('conges.edit', compact('conge'));
     }
 
     /**
@@ -122,14 +109,21 @@ class CongesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $personnel = Conge::find($id);
+        $conge = Conge::find($id);
 
         $nom =  $request->nom;
-        $poste =  $request->poste;
+        $motif =  $request->motif;
+        $depart_date =  $request->depart_date;
+        $retour_date =  $request->retour_date;
 
-        $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
+        $conge->update([
+            'nom' => $nom,
+            'motif' => $motif,
+            'depart_date' => $depart_date,
+            'retour_date' => $retour_date,
+        ]);
 
-        return redirect()->route('personnels.index');
+        return redirect()->route('conges.index');
     }
 
     /**

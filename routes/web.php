@@ -2,11 +2,12 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PostesController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\CongesController;
 use App\Http\Controllers\PersonnelsController;
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +47,7 @@ Route::post('save-post', [PostsController::class, 'save'])->name('posts.save');
 
 
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-});
+Route::resource('dashboard', DashboardController::class);
 
 
 Route::get('mailbox', function () {
