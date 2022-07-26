@@ -20,6 +20,16 @@
 
             </div><!-- col -->
         </div><!-- row -->
+        <div class="row">
+            <div class="col-lg-4">
+                Téléphone : {{  $client->telephone }}
+
+            </div><!-- col -->
+            <div class="col-lg-8">
+                Adresse : {{ $client->adresse }}
+
+            </div><!-- col -->
+        </div><!-- row -->
 </div>
 
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Personnel;
 use App\Models\Poste;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class PersonnelsController extends Controller
@@ -70,8 +71,9 @@ class PersonnelsController extends Controller
     public function show($id)
     {
         $personnel = Personnel::find($id);
+        $info = Information::where('user_id', $id);
 
-        return view('personnels.show', compact('personnel'));
+        return view('personnels.show', compact('personnel', 'info'));
     }
 
     /**

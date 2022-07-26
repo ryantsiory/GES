@@ -4,7 +4,7 @@
 <!-- Mirrored from themepixels.me/demo/bracketplus1.4/app/template/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Sep 2021 12:46:55 GMT -->
 <head>
     <link rel="icon" href="{{ url('css/css/faviconGes.png') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/style^m.css') }}">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

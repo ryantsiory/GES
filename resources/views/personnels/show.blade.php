@@ -12,11 +12,25 @@
 
         <div class="row">
             <div class="col-lg-4">
-                Nom : {{  $personnel->nom }}
+                Nom : <b>{{  $personnel->nom }}</b>
 
             </div><!-- col -->
             <div class="col-lg-8">
-                Poste : {{  $personnel->poste->nom }}
+                Poste : <b>{{  $personnel->poste->nom }}</b>
+
+            </div><!-- col -->
+        </div><!-- row -->
+        <div class="row">
+            <div class="col-lg-4">
+                Date de naissance : <b>{{  $personnel->info->date_de_naissance }}</b>
+
+            </div><!-- col -->
+            <div class="col-lg-4">
+                Telephone : <b>{{  $personnel->info->telephone }}</b>
+
+            </div><!-- col -->
+            <div class="col-lg-4">
+                Adresse : <b>{{ $personnel->info->adresse }}</b>
 
             </div><!-- col -->
         </div><!-- row -->

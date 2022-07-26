@@ -15,13 +15,13 @@
 
             </div><!-- col -->
             <div class="col-lg-8 h5 text-center">
-                Status :
+                <span>Status :
                 @if ($conge->status === 0)
                 <span class="text-info">En attente</span>
                 @elseif ($conge->status === 1)
-                <span class="text-success">Validée</span>
+                <span class="text-success">Validée</span> @if ($conge->answered_at) <span style="font-size: 14px"> le {{  $conge->answered_at }}</span>@endif
                 @else
-               <span class="text-danger">Refusée</span>
+               <span class="text-danger">Refusée</span> @if ($conge->answered_at) <span style="font-size: 14px"> le {{  $conge->answered_at }}</span>@endif
                 @endif
             </div><!-- col -->
 
