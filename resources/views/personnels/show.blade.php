@@ -20,6 +20,7 @@
 
             </div><!-- col -->
         </div><!-- row -->
+        @if($personnel->info)
         <div class="row">
             <div class="col-lg-4">
                 Date de naissance : <b>{{  $personnel->info->date_de_naissance }}</b>
@@ -34,6 +35,7 @@
 
             </div><!-- col -->
         </div><!-- row -->
+        @endif
 </div>
 
 @endsection
