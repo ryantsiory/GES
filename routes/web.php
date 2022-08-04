@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostesController;
 use App\Http\Controllers\ClientsController;
@@ -27,7 +28,7 @@ Route::get('/login', function () {
 
 
 Route::get('/', function () {
-    return view('blank');
+    return view('/auth/login');
 });
 
 Route::resource('clients', ClientsController::class);
@@ -43,11 +44,11 @@ Route::resource('conges', CongesController::class);
 
 
 
-Route::get('display-post', [PostsController::class, 'index'])->name('posts.index');
-
-Route::get('create-post', [PostsController::class, 'create'])->name('posts.create');
-
-Route::post('save-post', [PostsController::class, 'save'])->name('posts.save');
+//Route::get('display-post', [PostsController::class, 'index'])->name('posts.index');
+//
+//Route::get('create-post', [PostsController::class, 'create'])->name('posts.create');
+//
+//Route::post('save-post', [PostsController::class, 'save'])->name('posts.save');
 
 
 
@@ -62,3 +63,7 @@ Route::get('mailbox', function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
