@@ -239,30 +239,36 @@
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+            @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">Moi</span>
-              <img src="../img/img1.jpg" class="wd-32 rounded-circle" alt="">
+              <span class="logged-name hidden-md-down">{{auth::User()->name}}</span>
+              <img src="{{auth::User()->avatar}}" class="wd-32 rounded-circle" alt="">
               <span class="square-10 bg-success"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-250">
-              <div class="tx-center">
-                <a href="#"><img src="../img/img1.jpg" class="wd-80 rounded-circle" alt=""></a>
-                <h6 class="logged-fullname">Moi</h6>
-                <p>moi@domain.com</p>
-              </div>
-              <hr>
 
+                    <div class="tx-center">
+                        <a href="#"><img src="{{auth::User()->avatar}}" class="wd-80 rounded-circle" alt=""></a>
+                        <h6 class="logged-fullname">{{auth::User()->name}}</h6>
+                        <p>{{auth::User()->email}}</p>
+                    </div>
+
+              <hr>
               <ul class="list-unstyled user-profile-nav">
                 <li><a href="#"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
                 <li><a href="#"><i class="icon ion-ios-gear"></i> Settings</a></li>
-                <li><a href="#"><i class="icon ion-ios-download"></i> Downloads</a></li>
-                <li><a href="#"><i class="icon ion-ios-star"></i> Favorites</a></li>
-                <li><a href="#"><i class="icon ion-ios-folder"></i> Collections</a></li>
-                <li><a href="#"><i class="icon ion-power"></i> Sign Out</a></li>
+                <li><form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary btn-block text-light">
+                            {{ __('Logout') }}
+                        </button>
+                    </form>
+                </li>
               </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+            @endif
         </nav>
       </div><!-- br-header-right -->
     </div><!-- br-header -->
