@@ -18,7 +18,7 @@
     <!-- vendor css -->
     <link href="{{ asset('css/all.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/css/ionicons.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/css/app.css') }}" rel="stylesheet">
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{ asset('css/bracket.css') }}">
 
@@ -243,20 +243,20 @@
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
               <span class="logged-name hidden-md-down">{{auth::User()->name}}</span>
-              <img src="{{auth::User()->avatar}}" class="wd-32 rounded-circle" alt="">
+              <img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-32 rounded-circle" alt="" style="height:45px;">
               <span class="square-10 bg-success"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-250">
 
                     <div class="tx-center">
-                        <a href="#"><img src="{{auth::User()->avatar}}" class="wd-80 rounded-circle" alt=""></a>
+                        <a href="#"><img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-80 rounded-circle" alt=""></a>
                         <h6 class="logged-fullname">{{auth::User()->name}}</h6>
                         <p>{{auth::User()->email}}</p>
                     </div>
 
               <hr>
               <ul class="list-unstyled user-profile-nav">
-                <li><a href="#"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
+                <li><a href="{{ url('edit-user/'.auth::User()->id) }}"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
                 <li><a href="#"><i class="icon ion-ios-gear"></i> Settings</a></li>
                 <li><form action="{{ route('logout') }}" method="POST">
                         @csrf

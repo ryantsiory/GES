@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\CongesController;
 use App\Http\Controllers\PersonnelsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -30,6 +31,14 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('/auth/login');
 });
+
+
+
+Route::get('edit-user/{id}', [UserController::class, 'edit']);
+Route::put('update-user/{id}', [UserController::class, 'update']);
+Route::delete('delete-user/{id}', [UserController::class, 'destroy']);
+
+
 
 Route::resource('clients', ClientsController::class);
 
@@ -64,6 +73,6 @@ Route::get('mailbox', function () {
 
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
