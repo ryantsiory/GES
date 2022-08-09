@@ -9,6 +9,8 @@ use App\Http\Controllers\CongesController;
 use App\Http\Controllers\PersonnelsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\ProjectsController;
 
 
 /*
@@ -44,7 +46,17 @@ Route::resource('clients', ClientsController::class);
 
 Route::resource('personnels', PersonnelsController::class);
 
+
+
+Route::put('mytask/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytask.updateTaskCompleted');
+Route::resource('mytask', TasksController::class);
+
+
+Route::put('projects/update-task-assign-to/{id}', [ProjectsController::class, 'updateTaskAssignTo'])->name('projects.updateTaskAssignTo');
+Route::resource('projects', ProjectsController::class);
+
 Route::resource('postes', PostesController::class);
+
 Route::get('conges/validate', [CongesController::class, 'toValide'])->name('conges.validate');
 Route::post('conges/accept/{id}', [CongesController::class, 'toAccept'])->name('conges.accept');
 Route::post('conges/reject/{id}', [CongesController::class, 'toReject'])->name('conges.reject');
@@ -76,3 +88,6 @@ Route::get('mailbox', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/**', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

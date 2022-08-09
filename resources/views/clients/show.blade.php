@@ -28,8 +28,24 @@
             <div class="col-lg-8">
                 Adresse : {{ $client->adresse }}
 
+
             </div><!-- col -->
         </div><!-- row -->
+        <br>
+        @if ($client->projects)
+                Projets :
+                <ul>
+                    @foreach ($client->projects as $project)
+                    <li>
+                        <div class="row">
+                            <div class="col-3 vfrr">{{  $project->title }}</div>
+                            <div class="col"> {{ $project->date_echeance->format('j F, Y') }}</div>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+        @endif
+
 </div>
 
 @endsection

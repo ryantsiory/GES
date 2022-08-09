@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\Poste;
+use App\Models\Task;
+use App\Models\Project;
+use App\Models\User;
 use App\Models\Conge;
 use App\Models\Information;
 use Illuminate\Database\Eloquent\Model;
@@ -27,5 +30,17 @@ class Personnel extends Model
 
     public function info(){
         return $this->hasOne(Information::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function project(){
+        return $this->hasMany(Project::class);
+    }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
     }
 }

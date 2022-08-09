@@ -27,7 +27,7 @@
                                     <img  class="img-fluid text-center" src={{ asset('/images/'.$user->avatar) }} style="height:300px; width:300px;" alt="Image">
 
                                 <div>
-                                    <input type="file" name="avatar">
+                                    <input type="file" name="avatar" class="btn btn-secondary btn-sm">
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 <input type="text" name="name" value="{{$user->name}}" class="form-control @error('password') is-invalid @enderror">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">User tudent Email</label>
+                                <label for="">User Email</label>
                                 <input type="text" name="email" value="{{$user->email}}" class="form-control @error('email') is-invalid @enderror">
                             </div>
                             <div class="form-group mb-3">

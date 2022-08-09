@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
@@ -66,7 +67,6 @@ class ClientsController extends Controller
     public function show($id)
     {
         $client = Client::find($id);
-
         return view('clients.show', compact('client'));
     }
 
