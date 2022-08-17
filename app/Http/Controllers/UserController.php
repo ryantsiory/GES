@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use app\models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
     public function edit($id)
     {
         $user = User::find($id);
+
         return view('User.edit', compact('user'));
     }
 
@@ -23,10 +25,12 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->password = $request['password'];
 
+
         if($request->hasfile('avatar'))
         {
+            $default = public_path('/images/default-avatar.png');
             $destination = public_path('/images/'.$user->avatar);
-            if(File::exists($destination))
+            if(File::exists($destination) && ! $default)
             {
                 File::delete($destination);
             }
@@ -46,7 +50,11 @@ class UserController extends Controller
 
         }
 
-        $user->update();
+        $user->update([
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => Hash::make($user->password),
+        ]);
 
 
         return redirect()->back()->with('status','User Updated Successfully');

@@ -9,7 +9,7 @@ use App\Http\Controllers\CongesController;
 use App\Http\Controllers\PersonnelsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +23,22 @@ use App\Http\Controllers\UserController;
 */
 
 
+Route::get('/', function () {
+    return view('/auth/login');
+})->middleware('guest','/dashboard')->middleware('auth');
+
+Route::get('/register', function () {
+    return view('/auth/register');
+})->middleware('guest','/dashboard')->middleware('auth');
+
+
+
 Route::get('/login', function () {
     return view('/auth/login');
 });
 
 
-Route::get('/', function () {
-    return view('/auth/login');
-});
+
 
 
 
@@ -67,8 +75,6 @@ Route::resource('dashboard', DashboardController::class);
 Route::get('mailbox', function () {
     return view('mailbox/mailbox');
 });
-
-
 
 
 
