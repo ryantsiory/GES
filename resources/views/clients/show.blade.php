@@ -1,18 +1,17 @@
 @extends('blank')
 
-@section('page-title', 'Client information');
-@section('page-description', 'Gestion de client');
+@section('page-title', 'Informations sur le client');
+@section('page-description', 'Gestion des clients');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Client Member Information</h6>
-      {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
+        <h6 class="br-section-label">Informations Personnel du Client</h6>
 
         <div class="row">
             <div class="col-lg-4">
-                Nom : {{  $client->nom }}
+                Nom : {{ $client->nom }}
 
             </div><!-- col -->
             <div class="col-lg-8">
@@ -22,7 +21,7 @@
         </div><!-- row -->
         <div class="row">
             <div class="col-lg-4">
-                Téléphone : {{  $client->telephone }}
+                Téléphone : {{ $client->telephone }}
 
             </div><!-- col -->
             <div class="col-lg-8">
@@ -30,6 +29,6 @@
 
             </div><!-- col -->
         </div><!-- row -->
-</div>
+    </div>
 
-@endsection
+    @endsection

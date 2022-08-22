@@ -20,56 +20,50 @@
 
 <body>
 
-<div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
-            <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> GE<span class="tx-info">S</span> <span class="tx-normal">]</span></div>
-            <div class="tx-center mg-b-60">The Admin is Bg</div>
+    <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
+                <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> GE<span class="tx-info">S</span> <span class="tx-normal">]</span></div>
+                <div class="tx-center mg-b-60">Connectez-vous!</div>
 
-            <div class="form-group">
-                <input id="email" type="text"
-                       class="form-control @error('email') is-invalid @enderror"
-                       name="email" value="{{ old('email') }}"
-                       placeholder="Enter your username">
-                @error('email')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-            </div><!-- form-group -->
-            <div class="form-group">
-                <input id="password" type="password"
-                       class="form-control @error('password') is-invalid @enderror"
-                       name="password" placeholder="Enter your password">
+                <div class="form-group">
+                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter your username">
+                    @error('email')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div><!-- form-group -->
+                <div class="form-group">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter your password">
 
-                @error('password')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
+                    @error('password')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
 
 
-                @if (Route::has('password.request'))
+                    @if (Route::has('password.request'))
                     <a class="tx-info tx-12 d-block mg-t-10" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
-                @endif
+                    @endif
 
-            </div><!-- form-group -->
-            <button type="submit" class="btn btn-info btn-block">
-                Sign In
-            </button>
+                </div><!-- form-group -->
+                <button type="submit" class="btn btn-info btn-block">
+                    Sign In
+                </button>
 
 
-            @if (Route::has('register'))
+                @if (Route::has('register'))
                 <div class="mg-t-60 tx-center"><a href="{{ route('register') }}" class="tx-info">Sign Up</a></div>
-            @endif
-        </div>
-    </form><!-- login-wrapper -->
-</div><!-- d-flex -->
+                @endif
+            </div>
+        </form><!-- login-wrapper -->
+    </div><!-- d-flex -->
 
-<script src="../lib/jquery/jquery.min.js"></script>
-<script src="../lib/jquery-ui/ui/widgets/datepicker.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jquery-ui/ui/widgets/datepicker.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
 </html>
-
