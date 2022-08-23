@@ -25,11 +25,11 @@ use App\Http\Middleware;
 
 Route::get('/', function () {
     return view('/auth/login');
-})->middleware('guest','/dashboard')->middleware('auth');
+})->middleware('guest', '/dashboard')->middleware('auth');
 
 Route::get('/register', function () {
     return view('/auth/register');
-})->middleware('guest','/dashboard')->middleware('auth');
+})->middleware('guest', '/dashboard')->middleware('auth');
 
 
 
@@ -53,6 +53,7 @@ Route::resource('clients', ClientsController::class);
 Route::resource('personnels', PersonnelsController::class);
 
 Route::resource('postes', PostesController::class);
+Route::get('conges/validated', [CongesController::class, 'validated'])->name('conges.validated');
 Route::get('conges/validate', [CongesController::class, 'toValide'])->name('conges.validate');
 Route::post('conges/accept/{id}', [CongesController::class, 'toAccept'])->name('conges.accept');
 Route::post('conges/reject/{id}', [CongesController::class, 'toReject'])->name('conges.reject');

@@ -20,6 +20,18 @@ class CongesController extends Controller
         return view('conges.index', compact('conges'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function validated()
+    {
+        $conges = Conge::where('status', '1')->orderBy('id')->paginate(4);
+
+        return view('conges.validated', compact('conges'));
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -29,7 +41,7 @@ class CongesController extends Controller
     public function toValide()
     {
 
-        $conges = Conge::where('status',0)->orderBy('id')->paginate(4);
+        $conges = Conge::where('status', 0)->orderBy('id')->paginate(4);
 
 
         return view('conges.validate', compact('conges'));
@@ -155,7 +167,7 @@ class CongesController extends Controller
     {
         $conge = Conge::find($id);
 
-        $conge->update(['status' => 1, 'answered_at' =>now()]);
+        $conge->update(['status' => 1, 'answered_at' => now()]);
 
         return redirect()->route('conges.index');
     }
@@ -171,7 +183,7 @@ class CongesController extends Controller
     {
         $conge = Conge::find($id);
 
-        $conge->update(['status' => -1, 'answered_at' =>now()]);
+        $conge->update(['status' => -1, 'answered_at' => now()]);
 
         return redirect()->route('conges.index');
     }
