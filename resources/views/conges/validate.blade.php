@@ -3,71 +3,71 @@
 
 
 @section('page-title', 'Congés')
-@section('page-description', 'Gestion des conges')
+@section('page-description', 'Gestion des congés')
 
 @section('main-content')
 
 <div class="br-pagebody">
-    <div class="br-section-wrapper">
-      <h6 class="br-section-label">TABLE Conges</h6>
-      <p class="br-section-text">Données concernant les congés de l'entreprise en attente.</p>
+  <div class="br-section-wrapper">
+    <h6 class="br-section-label">VALIDATION DES CONGÉS</h6>
 
-      <a href="{{ route('conges.create') }}" class="btn btn-info mb-2 float-right">Ajouter un conges</a>
-      <div class="bd bd-gray-300 rounded table-responsive">
-        <div class="d-flex justify-content-center mt-3">
-            {{ $conges->links() }}
-        </div>
-        <table class="table mg-b-0">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Personnel</th>
-              <th>Nom</th>
-              <th>Motif</th>
-              <th>Status</th>
-              <th>Départ</th>
-              <th>Retour</th>
-              <th></th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($conges as $conge)
-              <tr>
-                <th scope="row">{{ $conge->id }}</th>
-                <td>{{ $conge->personnel->nom }}</td>
-                <td>{{ $conge->nom }}</td>
-                <td>{{ $conge->motif }}</td>
-                        @if ($conge->status === 0)
-                        <td class="text-info">En attente</td>
-                        @endif
+    <div class="bd bd-gray-300 rounded table-responsive">
+      <div class="d-flex justify-content-center mt-3">
+        {{ $conges->links() }}
+      </div>
+      <table class="table mg-b-0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Personnel</th>
+            <th>Nom</th>
+            <th>Motif</th>
+            <th>Status</th>
+            <th>Départ</th>
+            <th>Retour</th>
+            <th></th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($conges as $conge)
+          <tr>
+            <th scope="row">{{ $conge->id }}</th>
+            <td>{{ $conge->personnel->nom }}</td>
+            <td>{{ $conge->nom }}</td>
+            <td>{{ $conge->motif }}</td>
+            @if ($conge->status === 0)
+            <td class="text-info">En attente</td>
+            @endif
 
-                <td>{{  date('d-m-Y', strtotime($conge->depart_date )) }}</td>
-                <td>{{  date('d-m-Y', strtotime($conge->retour_date )) }}</td>
-                <td><a href="{{ route('conges.show',  $conge->id) }}"><x-far-eye style="height:21px"/></a></td>
-                <td class="d-flex">
+            <td>{{ date('d-m-Y', strtotime($conge->depart_date )) }}</td>
+            <td>{{ date('d-m-Y', strtotime($conge->retour_date )) }}</td>
+            <td><a href="{{ route('conges.show',  $conge->id) }}">
+                <x-far-eye style="height:21px" />
+              </a></td>
+            <td class="d-flex">
 
-                    <form method="post" action="{{ route('conges.accept', $conge->id) }}" >
-                        @csrf
-                        <button type="submit" class="btn btn-success btn-sm mr-2">Accepter</button>
-                    </form>
+              <form method="post" action="{{ route('conges.accept', $conge->id) }}">
+                @csrf
+                <button type="submit" class="btn btn-success btn-sm mr-2">Accepter</button>
+              </form>
 
-                    <form method="post" action="{{ route('conges.reject', $conge->id) }}" >
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
-                    </form>
+              <form method="post" action="{{ route('conges.reject', $conge->id) }}">
+                @csrf
+                <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+              </form>
 
-                </td>
+            </td>
 
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-        <div class="d-flex justify-content-center mt-3">
-            {{ $conges->links() }}
-        </div>
-      </div><!-- bd -->
-    </div>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center mt-3">
+        {{ $conges->links() }}
+      </div>
+    </div><!-- bd -->
+  </div>
 </div>
 
 

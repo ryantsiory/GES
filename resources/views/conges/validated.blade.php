@@ -9,10 +9,8 @@
 
 <div class="br-pagebody">
   <div class="br-section-wrapper">
-    <h6 class="br-section-label">LISTE DES CONGÉS</h6>
-    <p class="br-section-text">Données concernant les congés de l'entreprise.</p>
+    <h6 class="br-section-label">Les personnels en congés</h6>
 
-    <a href="{{ route('conges.create') }}" class="btn btn-info mb-2 float-right">Demander un congé</a>
     <div class="bd bd-gray-300 rounded table-responsive">
       <div class="d-flex justify-content-center mt-3">
         {{ $conges->links() }}
@@ -28,7 +26,7 @@
             <th>Départ</th>
             <th>Retour</th>
             <th></th>
-            <th>Actions</th>
+            {{--<th>Actions</th>--}}
           </tr>
         </thead>
         <tbody>
@@ -51,16 +49,16 @@
             <td><a href="{{ route('conges.show',  $conge->id) }}">
                 <x-far-eye style="height:21px" />
               </a></td>
-            <td class="d-flex">
+            {{--<td class="d-flex">
               <a href="{{ route('conges.edit', $conge->id) }}" class="btn btn-warning btn-sm mr-2">Modifier</a>
 
-              <form method="post" action="{{ route('conges.destroy', $conge->id) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-              </form>
+            <form method="post" action="{{ route('conges.destroy', $conge->id) }}">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+            </form>
 
-            </td>
+            </td>--}}
 
           </tr>
           @endforeach
@@ -108,7 +106,7 @@
       <input type="file" name="file" class="form-control">
     </div>
     <div class="col-md-6">
-      <button type="submit" class="btn btn-success">Télécharger</button>
+      <button type="submit" class="btn btn-success">Upload</button>
     </div>
   </div>
 </form>
