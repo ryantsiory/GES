@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $user = User::find($id);
-        return view('User.edit', compact('user'));
+
+
+        $request->validate([
+            'name' => ['string', 'max:255'],
+            'lastname' => ['string', 'max:255'],
+            'email' => ['string', 'email', 'max:255', 'unique:users'],
+        ]);
+
+        return view('user.edit', compact('user'));
     }
 
     public function update(Request $request, $id)

@@ -34,7 +34,11 @@
                         <div class="col-6 userM">
                             <div class="form-group mb-3">
                                 <label for="">User Name</label>
-                                <input type="text" name="name" value="{{$user->name}}" class="form-control @error('password') is-invalid @enderror">
+                                <input type="text" name="name" value="{{$user->name}}" class="form-control @error('name') is-invalid @enderror">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">User Name</label>
+                                <input type="text" name="lastname" value="{{$user->name}}" class="form-control @error('lastname') is-invalid @enderror">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">User Email</label>

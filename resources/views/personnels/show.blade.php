@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-lg-4">
-                Nom : <b>{{  $personnel->nom }}</b>
+                Nom : <b>{{  $personnel->name }} {{  $personnel->lastname }}</b></b>
 
             </div><!-- col -->
             <div class="col-lg-8">

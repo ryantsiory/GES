@@ -38,6 +38,14 @@
                 @enderror
             </div><!-- form-group -->
             <div class="form-group">
+                <input id="lastname" type="text"
+                       class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Enter your full name">
+
+                @error('lastname')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div><!-- form-group -->
+            <div class="form-group">
                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
                        name="email" placeholder="Enter your email">
 

@@ -22,6 +22,7 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
+              <th>Adresse e-mail</th>
               <th>Poste</th>
               <th></th>
               <th>Actions</th>
@@ -31,7 +32,8 @@
             @foreach ($personnels as $personnel)
               <tr>
                 <th scope="row">{{ $personnel->id }}</th>
-                <td>{{ $personnel->nom }}</td>
+                <td>{{ $personnel->name }} {{ $personnel->lastname }}</td>
+                <td>{{ $personnel->email }} </td>
                 <td>{{ $personnel->poste->nom }}</td>
                 <td><a href="{{ route('personnels.show',  $personnel->id) }}"><x-far-eye style="height:21px"/></a></td>
                 <td class="d-flex">

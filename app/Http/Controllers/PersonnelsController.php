@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personnel;
+use App\Models\User;
 use App\Models\Poste;
 use App\Models\Information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PersonnelsController extends Controller
 {
@@ -16,7 +17,7 @@ class PersonnelsController extends Controller
      */
     public function index()
     {
-        $personnels = Personnel::orderBy('id')->paginate(4);
+        $personnels = User::orderBy('id')->paginate(4);
 
         return view('personnels.index', compact('personnels'));
     }
@@ -30,7 +31,9 @@ class PersonnelsController extends Controller
     {
         $postes = Poste::all();
 
-        return view('personnels.create', compact('postes'));
+        $personnels = User::all();
+
+        return view('personnels.create', compact('personnels','postes'));
     }
 
     /**
@@ -42,20 +45,26 @@ class PersonnelsController extends Controller
     public function store(Request $request)
     {
 
+
         $request->validate([
-            'nom' =>  'required',
-            'poste' =>  'required'
-             //['required', 'email']
+            'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'poste' => ['required'],
+            'avatar' => ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ]);
 
-        $nom =  $request->nom;
-        $poste =  $request->poste;
 
-
-        Personnel::create([
-            'nom' => $nom,
-            'poste_id' => $poste,
+        User::create([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'poste_id' => $request->poste,
+            'avatar' => 'default-avatar-profile.png'
         ]);
+
 
         session()->flash('success');
 
@@ -70,7 +79,7 @@ class PersonnelsController extends Controller
      */
     public function show($id)
     {
-        $personnel = Personnel::find($id);
+        $personnel = User::find($id);
         $info = Information::where('user_id', $id);
 
         return view('personnels.show', compact('personnel', 'info'));
@@ -84,7 +93,7 @@ class PersonnelsController extends Controller
      */
     public function edit($id)
     {
-        $personnel = Personnel::find($id);
+        $personnel = User::find($id);
         $postes = Poste::all();
 
         return view('personnels.edit', compact('personnel', 'postes'));
@@ -99,7 +108,7 @@ class PersonnelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $personnel = Personnel::find($id);
+        $personnel = User::find($id);
 
         $nom =  $request->nom;
         $poste =  $request->poste;
@@ -117,7 +126,7 @@ class PersonnelsController extends Controller
      */
     public function destroy($id)
     {
-        Personnel::find($id)->delete();
+        User::find($id)->delete();
         return redirect()->route('personnels.index');
     }
 }

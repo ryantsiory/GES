@@ -30,11 +30,6 @@ Route::get('/login', function () {
 });
 
 
-Route::get('/', function () {
-    return view('/auth/login');
-});
-
-
 
 Route::get('edit-user/{id}', [UserController::class, 'edit']);
 Route::put('update-user/{id}', [UserController::class, 'update']);

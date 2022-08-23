@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personnel;
+use App\Models\User;
 use App\Models\Task;
 use App\Models\Poste;
 use App\Models\Information;
@@ -19,7 +19,7 @@ class TasksController extends Controller
     {
             $user_id = auth()->user()->id;
 
-            $personnel = Personnel::find($user_id);
+            $personnel = User::find($user_id);
 
             $tasks = Task::where("user_id", $user_id)->get();
 
@@ -33,9 +33,9 @@ class TasksController extends Controller
      */
     public function create()
     {
-        $postes = Poste::all();
+        // $postes = Poste::all();
 
-        return view('personnels.create', compact('postes'));
+        // return view('personnels.create', compact('postes'));
     }
 
     /**
@@ -47,24 +47,24 @@ class TasksController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'nom' =>  'required',
-            'poste' =>  'required'
-             //['required', 'email']
-        ]);
+        // $request->validate([
+        //     'nom' =>  'required',
+        //     'poste' =>  'required'
+        //      //['required', 'email']
+        // ]);
 
-        $nom =  $request->nom;
-        $poste =  $request->poste;
+        // $nom =  $request->nom;
+        // $poste =  $request->poste;
 
 
-        Personnel::create([
-            'nom' => $nom,
-            'poste_id' => $poste,
-        ]);
+        // User::create([
+        //     'nom' => $nom,
+        //     'poste_id' => $poste,
+        // ]);
 
-        session()->flash('success');
+        // session()->flash('success');
 
-        return redirect()->route('personnels.index');
+        // return redirect()->route('personnels.index');
     }
 
     /**
@@ -75,10 +75,10 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $personnel = Personnel::find($id);
-        $info = Information::where('user_id', $id);
+        // $personnel = User::find($id);
+        // $info = Information::where('user_id', $id);
 
-        return view('personnels.show', compact('personnel', 'info'));
+        // return view('personnels.show', compact('personnel', 'info'));
     }
 
     /**
@@ -87,13 +87,13 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
+    public function edit($id)
+    {
     //     $personnel = Personnel::find($id);
     //     $postes = Poste::all();
 
     //     return view('personnels.edit', compact('personnel', 'postes'));
-    // }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -102,17 +102,17 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $personnel = Personnel::find($id);
+    public function update(Request $request, $id)
+    {
+        // $personnel = Personnel::find($id);
 
-    //     $nom =  $request->nom;
-    //     $poste =  $request->poste;
+        // $nom =  $request->nom;
+        // $poste =  $request->poste;
 
-    //     $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
+        // $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
 
-    //     return redirect()->route('personnels.index');
-    // }
+        // return redirect()->route('personnels.index');
+    }
 
 
 
@@ -140,9 +140,9 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     Personnel::find($id)->delete();
-    //     return redirect()->route('personnels.index');
-    // }
+    public function destroy($id)
+    {
+        // Personnel::find($id)->delete();
+        // return redirect()->route('personnels.index');
+    }
 }

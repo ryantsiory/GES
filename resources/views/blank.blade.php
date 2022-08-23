@@ -250,7 +250,7 @@
 
                     <div class="tx-center">
                         <a href="#"><img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-80 rounded-circle" alt=""></a>
-                        <h6 class="logged-fullname">{{auth::User()->name}}</h6>
+                        <h6 class="logged-fullname">{{auth::User()->name}} {{auth::User()->lastname}}</h6>
                         <p>{{auth::User()->email}}</p>
                     </div>
 
