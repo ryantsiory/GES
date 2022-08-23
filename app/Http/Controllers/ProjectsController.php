@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personnel;
+use App\Models\User;
 use App\Models\Task;
 use App\Models\Poste;
 use App\Models\User;

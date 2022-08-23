@@ -79,10 +79,10 @@ class PersonnelsController extends Controller
      */
     public function show($id)
     {
-        $personnel = User::find($id);
+        $user = User::find($id);
         $info = Information::where('user_id', $id);
 
-        return view('personnels.show', compact('personnel', 'info'));
+        return view('personnels.show', compact('user', 'info'));
     }
 
     /**
@@ -93,10 +93,10 @@ class PersonnelsController extends Controller
      */
     public function edit($id)
     {
-        $personnel = User::find($id);
+        $user = User::find($id);
         $postes = Poste::all();
 
-        return view('personnels.edit', compact('personnel', 'postes'));
+        return view('personnels.edit', compact('user', 'postes'));
     }
 
     /**
@@ -108,12 +108,12 @@ class PersonnelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $personnel = User::find($id);
+        $user = User::find($id);
 
         $nom =  $request->nom;
         $poste =  $request->poste;
 
-        $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
+        $user->update(['nom' => $nom, 'poste_id' => $poste]);
 
         return redirect()->route('personnels.index');
     }

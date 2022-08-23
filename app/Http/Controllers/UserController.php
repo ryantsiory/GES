@@ -3,24 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\models\User;
+use App\Models\User;
+use App\Models\Information;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $user = User::find($id);
-
-
-        $request->validate([
-            'name' => ['string', 'max:255'],
-            'lastname' => ['string', 'max:255'],
-            'email' => ['string', 'email', 'max:255', 'unique:users'],
-        ]);
-
         return view('user.edit', compact('user'));
     }
 
@@ -28,6 +21,7 @@ class UserController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $user->name = $request['name'];
+        $user->lastname = $request['lastname'];
         $user->email = $request['email'];
         $user->password = $request['password'];
 
@@ -47,6 +41,7 @@ class UserController extends Controller
 
             $user->update([
                 'name' => $user->name,
+                'lastname' => $user->lastname,
                 'email' => $user->email,
                 'password' => Hash::make($user->password),
                 'avatar' => $user->avatar,
@@ -54,6 +49,11 @@ class UserController extends Controller
 
         }
 
+        Information::where('user_id',Auth::user()->id)->update([
+                                                            'adresse'=>$request['adresse'],
+                                                            'telephone'=>$request['telephone'],
+                                                            'date_de_naissance'=>$request['date_de_naissance']
+                                                        ]);
         $user->update();
 
 

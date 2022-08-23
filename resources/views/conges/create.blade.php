@@ -18,8 +18,8 @@
                 <select class="form-control @error('poste') is-invalid @enderror" name="personnel" >
                     <option value="" default selected disabled>--Choisir le personnel--</option>
 
-                    @foreach ($personnels as $personnel)
-                    <option value="{{ $personnel->id}}" >{{ $personnel->nom}}</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id}}" >{{ $user->name}} {{ $user->lastname}}</option>
                   @endforeach
                 </select>
                 @error('personnel')

@@ -19,11 +19,11 @@ class TasksController extends Controller
     {
             $user_id = auth()->user()->id;
 
-            $personnel = User::find($user_id);
+            $user = User::find($user_id);
 
             $tasks = Task::where("user_id", $user_id)->get();
 
-        return view('mytask.index', compact('personnel', 'tasks'));
+        return view('mytask.index', compact('user', 'tasks'));
     }
 
     /**

@@ -59,15 +59,6 @@ Route::post('conges/reject/{id}', [CongesController::class, 'toReject'])->name('
 Route::resource('conges', CongesController::class);
 
 
-
-//Route::get('display-post', [PostsController::class, 'index'])->name('posts.index');
-//
-//Route::get('create-post', [PostsController::class, 'create'])->name('posts.create');
-//
-//Route::post('save-post', [PostsController::class, 'save'])->name('posts.save');
-
-
-
 Route::resource('dashboard', DashboardController::class);
 
 
@@ -78,11 +69,9 @@ Route::get('mailbox', function () {
 
 
 
-
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/**', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('**', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
