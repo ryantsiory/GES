@@ -4,12 +4,10 @@
 
 <div class="br-chatpanel">
     <div class="br-chatpanel-left">
-    <nav class="nav">
-          <a href="/group/create" class="nav-link active">create group</a>
-          <a href="/subscribe" class="nav-link">Join Group</a>
-
-    </nav>
-
+        <nav class="nav">
+            <a href="{{ url('/home') }}" data-toggle="tab" class="nav-link">Groups</a>
+            <a href="/subscribe" class="nav-link">Join Group</a>
+        </nav>
 
 
       <div class="br-active-contacts">

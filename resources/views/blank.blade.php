@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themepixels.me/demo/bracketplus1.4/app/template/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Sep 2021 12:46:55 GMT -->
-
 <head>
-  <link rel="icon" href="{{ url('css/css/faviconGes.png') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url('css/style^m.css') }}">
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <!-- Meta -->
-  <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
-  <meta name="author" content="ThemePixels">
+
+    <link rel="icon" href="{{ url('css/css/faviconGes.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/style^m.css') }}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+    @if (!Auth::guest())
+        <meta name="user-id" content="{{ Auth::user()->id }}">
+    @endif
 
   <title>GES</title>
 
@@ -276,18 +281,15 @@
   </div><!-- br-header -->
   <!-- ########## END: HEAD PANEL ########## -->
 
-  <!-- ########## START: RIGHT PANEL ########## -->
-  <!-- ########## END: RIGHT PANEL ########## --->
+    <!-- ########## START: RIGHT PANEL ########## -->
+    @yield('right-content')
+    <!-- ########## END: RIGHT PANEL ########## --->
 
-  <!-- ########## START: MAIN PANEL ########## -->
-  <div class="br-mainpanel">
-    <div class="br-pageheader">
-      <nav class="breadcrumb pd-0 mg-0 tx-12">
-        <a class="breadcrumb-item" href="/">GES</a>
-        <span class="breadcrumb-item active">@yield('page-title')</span>
-      </nav>
-    </div><!-- br-pageheader -->
-    <div class="br-pagetitle">
+    <!-- ########## START: MAIN PANEL ########## -->
+    <div class="br-mainpanel">
+
+      <div class="br-pagetitle">
+
 
       <div>
         <h4>@yield('page-title')</h4>
