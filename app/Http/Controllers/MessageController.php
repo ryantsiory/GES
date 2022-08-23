@@ -1,18 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\chat;
-use App\Models\Message;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Pusher\Pusher;
-use App\Models\Group;
-use View;
-use App\Events\GroupCreated;
+use Illuminate\Http\Request;
+use App\Models\Message;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\group;
 
-class HomeController extends Controller
+
+class MessageController extends Controller
 {
 
     public function __construct()
@@ -25,12 +22,13 @@ class HomeController extends Controller
     public function index()
     {
         $my_id = Auth::id();
+        $group = group::all();
         // select channels that User Subscribe
         $users = DB::select("select groups.id, groups.name
         from groups inner JOIN  group_participants ON groups.id = group_participants.group_id and group_participants.user_id = " . Auth::id() . "
         where group_participants.user_id = " . Auth::id() . "
         group by groups.id, groups.name");
-        return view('home', compact('users'));
+        return view('mailbox.mailboxGroup', compact(['users', 'group']));
     }
     //  get all Channels are in App
     public function subscribe()
@@ -56,17 +54,18 @@ class HomeController extends Controller
     }
 
     // get messages of user according find Group
-    public function getMessag($id)
+    public function getMessage($id)
     {
         $my_id = Auth::id();
-        $group = Group::find($id);
+        $group = Group::find($id)
+        ;
         // get all messages that User sent & got
         // $messages = Message::where(function ($query) use ($id, $my_id) {
         //     $query->where('group_id', $id)->where('user_id', $my_id);
         // })->oRwhere(function ($query) use ($id, $my_id) {
         //     $query->where('group_id', $my_id)->where('user_id', $id);
         // })->get();
-        $messages = message::where(['group_id' => $id])->where(['user_id' => $my_id])->get();
+        $messages = message::where(['group_id' => $id])->get();
         foreach($messages as $value) {
             message::where(['user_id' => $my_id])->update(['is_read' => 1]); // if User start to see messages is_read in Table update to 0
         }

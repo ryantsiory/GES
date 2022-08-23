@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\message;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //require_once __DIR__ . '/../Http/Helpers/func_helper.php';
+        //
     }
 
     /**
@@ -25,7 +28,31 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Builder::defaultStringLength(191);
-        Paginator::useBootstrap();
+		Schema::defaultStringLength(191);
+		 view()->composer('*', function ($view)
+            {
+
+                view()->composer('*', function($view)
+                {
+                    if (Auth::check()) {
+						$my_id = Auth::id();
+                        $users = message::where('is_read', 0)->where('user_id', $my_id)->count();
+                        $view->with('users', $users );
+                    }else {
+                        $view->with('users', 0);
+                    }
+                });
+				view()->composer('*', function($view)
+                {
+                    if (Auth::check()) {
+						$my_id = Auth::id();
+                         $message = message::where('is_read', 0)->where(['user_id' => $my_id])->get();
+                        $view->with('message', $message );
+                    }
+                });
+
+
+            });
+
     }
 }
