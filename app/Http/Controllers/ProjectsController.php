@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Poste;
-use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -55,7 +54,7 @@ class ProjectsController extends Controller
         $poste =  $request->poste;
 
 
-        Personnel::create([
+        User::create([
             'nom' => $nom,
             'poste_id' => $poste,
         ]);

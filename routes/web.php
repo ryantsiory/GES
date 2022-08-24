@@ -39,22 +39,30 @@ Route::delete('delete-user/{id}', [UserController::class, 'destroy']);
 
 Route::resource('clients', ClientsController::class);
 
-Route::resource('personnels', PersonnelsController::class);
 
 
+Route::middleware(['manager'])->group(function () {
+    Route::resource('personnels', PersonnelsController::class);
+    Route::put('projects/update-task-assign-to/{id}', [ProjectsController::class, 'updateTaskAssignTo'])->name('projects.updateTaskAssignTo');
+    Route::resource('projects', ProjectsController::class);
+    Route::resource('postes', PostesController::class);
+
+});
+
+
+
+Route::middleware(['directeur'])->group(function () {
+
+    Route::get('conges/validate', [CongesController::class, 'toValide'])->name('conges.validate');
+    Route::post('conges/accept/{id}', [CongesController::class, 'toAccept'])->name('conges.accept');
+    Route::post('conges/reject/{id}', [CongesController::class, 'toReject'])->name('conges.reject');
+
+});
 
 Route::put('mytask/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytask.updateTaskCompleted');
 Route::resource('mytask', TasksController::class);
 
 
-Route::put('projects/update-task-assign-to/{id}', [ProjectsController::class, 'updateTaskAssignTo'])->name('projects.updateTaskAssignTo');
-Route::resource('projects', ProjectsController::class);
-
-Route::resource('postes', PostesController::class);
-
-Route::get('conges/validate', [CongesController::class, 'toValide'])->name('conges.validate');
-Route::post('conges/accept/{id}', [CongesController::class, 'toAccept'])->name('conges.accept');
-Route::post('conges/reject/{id}', [CongesController::class, 'toReject'])->name('conges.reject');
 
 Route::resource('conges', CongesController::class);
 

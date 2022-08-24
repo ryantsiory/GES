@@ -13,8 +13,8 @@
       <div class="bd bd-gray-300 rounded table-responsive px-2">
         <div class="d-flex justify-content-center mt-3 ">
         </div>
-              {{ $personnel->nom }}
-              {{ $personnel->poste->nom }}
+              {{ $user->name }} {{ $user->lastname }}
+              {{ $user->poste->nom }}
               <br>
               <ul>
                 @foreach ($tasks as $task)
@@ -22,7 +22,7 @@
                     {{ $task->project->title }}<br>
                     {{ $task->title }} :
                     {{ $task->description }}
-                    <span class="ml-5 pl-5"{{ $task->date_echeance }}<span><br>
+                    <span class="ml-5 pl-5">{{ $task->date_echeance }}<span><br>
 
                     <div class="row">
                       <div class="col-2">

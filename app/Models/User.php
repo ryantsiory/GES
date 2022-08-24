@@ -28,7 +28,8 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar',
-        'poste_id'
+        'poste_id',
+        'role_id'
     ];
 
     /**

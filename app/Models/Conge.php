@@ -10,7 +10,7 @@ class Conge extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nom', 'motif', 'status', 'personnel_id', 'depart_date', 'retour_date', 'answered_at'];
+    protected $fillable = ['nom', 'motif', 'status', 'user_id', 'depart_date', 'retour_date', 'answered_at'];
 
     protected $casts = [
         'created_at' => 'datetime',

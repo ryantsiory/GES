@@ -242,7 +242,7 @@
             @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">{{auth::User()->name}}</span>
+              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role_id}}</span>
               <img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-32 rounded-circle" alt="" style="height:45px;">
               <span class="square-10 bg-success"></span>
             </a>

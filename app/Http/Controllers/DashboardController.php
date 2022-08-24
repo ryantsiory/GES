@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
+use App\Models\Conge;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,9 +16,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $client_count = Client::count();
+        $client_count = Client::count();$client_count = Client::count();
+        $personnel = User::count();
+        $validateConge = Conge::where('status', '1')->count();
+        $demandeConge = Conge::where('status', '0')->count();
 
-        return view('dashboard', compact('client_count'));
+        return view('dashboard', compact('client_count','personnel', 'validateConge', 'demandeConge'));
     }
 
     /**

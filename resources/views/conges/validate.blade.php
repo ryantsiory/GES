@@ -35,7 +35,7 @@
             @foreach ($conges as $conge)
               <tr>
                 <th scope="row">{{ $conge->id }}</th>
-                <td>{{ $conge->personnel->nom }}</td>
+                <td>{{ $conge->user?->name }} {{ $conge->user?->lastname }}</td>
                 <td>{{ $conge->nom }}</td>
                 <td>{{ $conge->motif }}</td>
                         @if ($conge->status === 0)

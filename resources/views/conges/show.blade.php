@@ -29,11 +29,11 @@
 
         <div class="row">
             <div class="col-lg-4">
-                Nom personnel : {{  $personnel->nom }}
+                Nom personnel : {{  $user->name }} {{  $user->lastname }}
 
             </div><!-- col -->
             <div class="col-lg-4">
-                Poste : {{  $personnel->poste->nom }}
+                Poste : {{  $user->poste->nom }}
 
             </div><!-- col -->
             <div class="col-lg-4">
