@@ -131,6 +131,16 @@
             </ul>
           </li>
 
+          <li class="br-menu-item">
+            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+              <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
+              <span class="menu-item-label">MES TÂCHES</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+            </ul>
+          </li>
+
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub    {{ (request()->is('conges*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-redo-outline tx-20"></i>
@@ -314,6 +324,7 @@
               <span class="square-10 bg-success"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-250">
+
 
                     <div class="tx-center">
                         <a href="#"><img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-80 rounded-circle" alt=""></a>
