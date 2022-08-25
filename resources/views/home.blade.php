@@ -1,23 +1,27 @@
-@extends('layouts.app')
+@extends('blank')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@section('page-title', 'Mes tâches')
+@section('page-description', 'Mes tâches')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-<h1>HOME PAGE</h1>
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('main-content')
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+      <h6 class="br-section-label">Mes tâches</h6>
+      {{-- <p class="br-section-text">Données des postes de l'entreprise</p> --}}
+
+
+      <ul class="list-group">
+
+        @foreach ($tasks as $task)
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ $task->project->title }}
+          <span class="badge badge-primary badge-pill">14</span>
+        </li>
+
+        @endforeach
+      </ul>
+
+
+
 @endsection

@@ -12,6 +12,7 @@ use App\Models\Task;
 use App\Models\Project;
 use App\Models\Conge;
 use App\Models\Information;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -56,6 +57,12 @@ class User extends Authenticatable
     public function poste()
     {
         return $this->belongsTo(Poste::class);
+    }
+
+
+    public function role()
+    {
+        return $this->hasOne(Role::class);
     }
 
     public function conge()

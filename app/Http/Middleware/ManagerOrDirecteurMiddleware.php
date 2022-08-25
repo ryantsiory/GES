@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DirecteurMiddleware
+class ManagerOrDirecteurMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,14 +17,12 @@ class DirecteurMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role_id === 2) {
+        if (Auth::user() &&  Auth::user()->role_id === 1 || Auth::user()->role_id === 2) {
 
             return $next($request);
-
-
        }
 
-       return redirect('home')->with('error','You have not directeur access');
+       return redirect('home')->with('error','You have not manager access');
    }
 
 }

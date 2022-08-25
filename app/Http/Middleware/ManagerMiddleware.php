@@ -17,12 +17,12 @@ class ManagerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->role_id !== 1) {
+        if (Auth::user() &&  Auth::user()->role_id === 1) {
 
-            return redirect('home')->with('error','You have not manager access');
+            return $next($request);
        }
 
-       return $next($request);
+       return redirect('home')->with('error','You have not manager access');
    }
 
 }
