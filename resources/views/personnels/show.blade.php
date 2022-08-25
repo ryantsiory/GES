@@ -12,26 +12,26 @@
 
         <div class="row">
             <div class="col-lg-4">
-                Nom : <b>{{  $personnel->name }} {{  $personnel->lastname }}</b></b>
+                Nom : <b>{{  $user->name }} {{  $user->lastname }}</b></b>
 
             </div><!-- col -->
             <div class="col-lg-8">
-                Poste : <b>{{  $personnel->poste->nom }}</b>
+                Poste : <b>{{  $user->poste->nom }}</b>
 
             </div><!-- col -->
         </div><!-- row -->
-        @if($personnel->info)
+        @if($user->info)
         <div class="row">
             <div class="col-lg-4">
-                Date de naissance : <b>{{  $personnel->info->date_de_naissance }}</b>
+                Date de naissance : <b>{{  $user->info->date_de_naissance }}</b>
 
             </div><!-- col -->
             <div class="col-lg-4">
-                Telephone : <b>{{  $personnel->info->telephone }}</b>
+                Telephone : <b>{{  $user->info->telephone }}</b>
 
             </div><!-- col -->
             <div class="col-lg-4">
-                Adresse : <b>{{ $personnel->info->adresse }}</b>
+                Adresse : <b>{{ $user->info->adresse }}</b>
 
             </div><!-- col -->
         </div><!-- row -->

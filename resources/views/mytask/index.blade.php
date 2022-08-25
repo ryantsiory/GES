@@ -22,7 +22,7 @@
                     {{ $task->project->title }}<br>
                     {{ $task->title }} :
                     {{ $task->description }}
-                    <span class="ml-5 pl-5">{{ $task->date_echeance }}<span><br>
+                    <span class="ml-5 pl-5">{{ $task->date_end }}<span><br>
 
                     <div class="row">
                       <div class="col-2">

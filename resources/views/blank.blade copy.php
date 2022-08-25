@@ -32,51 +32,6 @@
     <div class="br-logo" style="padding-left:75px"><a href="#"><span>[</span>Ge<i>S</i><span>]</span></a></div>
     <div class="br-sideleft sideleft-scrollbar">
       <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
-
-
-
-      @if(Auth::user()->role->name === 'personnel')
-      <ul class="br-sideleft-menu">
-        <li class="br-menu-item">
-          <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
-            <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
-            <span class="menu-item-label">TABLEAU DE BORD</span>
-          </a><!-- br-menu-link -->
-        </li><!-- br-menu-item -->
-
-        <li class="br-menu-item">
-            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
-              <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
-              <span class="menu-item-label">MES TÂCHES</span>
-            </a><!-- br-menu-link -->
-            <ul class="br-menu-sub">
-              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
-            </ul>
-          </li>
-
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub    {{ (request()->is('conges*')) ? 'active' : '' }}">
-            <i class="menu-item-icon icon ion-ios-redo-outline tx-20"></i>
-            <span class="menu-item-label">CONGES</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            <li class="sub-item"><a href="{{ route('conges.create') }}" class="sub-link">Demander un congé</a></li>
-            <li class="sub-item"><a href="{{ route('conges.index') }}" class="sub-link">Ma liste de congés</a></li>
-          </ul>
-        </li>
-        <li class="br-menu-item">
-          <a href="mailbox" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
-            <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-            <span class="menu-item-label">MESSAGES</span>
-          </a><!-- br-menu-link -->
-        </li><!-- br-menu-item -->
-
-      </ul><!-- br-sideleft-menu -->
-      @endif
-
-
-
-      @if(Auth::user()->role->name !== 'personnel')
       <ul class="br-sideleft-menu">
         <li class="br-menu-item">
           <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
@@ -95,8 +50,6 @@
             <li class="sub-item"><a href="{{ route('personnels.index') }}" class="sub-link">Liste personnel</a></li>
           </ul>
         </li>
-
-
         <li class="br-menu-item" >
           <a href="#" class="br-menu-link with-sub  {{ (request()->is('clients*')) ? 'active' : '' }}" >
             <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
@@ -107,8 +60,6 @@
             <li class="sub-item"><a href="{{ route('clients.index') }}" class="sub-link">Liste client</a></li>
           </ul>
         </li>
-
-
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
@@ -121,17 +72,6 @@
         </li>
 
         <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
-              <i class="menu-item-icon icon ion-ios-bookmarks-outline-outline tx-20"></i>
-              <span class="menu-item-label">PROJETS</span>
-            </a><!-- br-menu-link -->
-            <ul class="br-menu-sub">
-              <li class="sub-item"><a href="{{ route('projects.create') }}" class="sub-link">Nouveau projet</a></li>
-              <li class="sub-item"><a href="{{ route('projects.index') }}"  class="sub-link">Liste projet</a></li>
-            </ul>
-          </li>
-
-        <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub    {{ (request()->is('conges*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-redo-outline tx-20"></i>
             <span class="menu-item-label">CONGES</span>
@@ -139,15 +79,9 @@
           <ul class="br-menu-sub">
             <li class="sub-item"><a href="{{ route('conges.create') }}" class="sub-link">Demander congé</a></li>
             <li class="sub-item"><a href="{{ route('conges.index') }}" class="sub-link">Liste congé</a></li>
-
-
-            @if(Auth::user()->role->name === 'directeur')
             <li class="sub-item"><a href="{{ route('conges.validate') }}" class="sub-link">Valider congé</a></li>
-            @endif
           </ul>
         </li>
-
-
         <li class="br-menu-item">
           <a href="mailbox" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
@@ -156,7 +90,6 @@
         </li><!-- br-menu-item -->
 
       </ul><!-- br-sideleft-menu -->
-      @endif
 
 
 
@@ -309,7 +242,7 @@
             @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role->name}}</span>
+              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role_id}}</span>
               <img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-32 rounded-circle" alt="" style="height:45px;">
               <span class="square-10 bg-success"></span>
             </a>

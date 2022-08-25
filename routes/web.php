@@ -40,8 +40,6 @@ Route::delete('delete-user/{id}', [UserController::class, 'destroy']);
 
 
 Route::middleware(['manager'])->group(function () {
-    Route::resource('personnels', PersonnelsController::class);
-    Route::put('projects/update-task-assign-to/{id}', [ProjectsController::class, 'updateTaskAssignTo'])->name('projects.updateTaskAssignTo');
 
     Route::resource('postes', PostesController::class);
 
@@ -60,6 +58,9 @@ Route::middleware(['directeur'])->group(function () {
 
 Route::middleware(['managerOrDirecteur'])->group(function () {
 
+
+    Route::resource('personnels', PersonnelsController::class);
+    Route::put('projects/update-task-assign-to/{id}', [ProjectsController::class, 'updateTaskAssignTo'])->name('projects.updateTaskAssignTo');
     Route::resource('projects', ProjectsController::class);
     Route::resource('clients', ClientsController::class);
 
@@ -84,7 +85,7 @@ Route::get('mailbox', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\TasksController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('**', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('**', [App\Http\Controllers\HomeController::class, 'index']);

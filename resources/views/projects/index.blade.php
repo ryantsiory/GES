@@ -21,6 +21,7 @@
               <th>ID</th>
               <th>Nom</th>
               <th>Description</th>
+              <th>Echeance</th>
               <th></th>
               <th>Actions</th>
             </tr>
@@ -31,6 +32,7 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->description }}</td>
+                    <td>{{ $project->date_echeance }}</td>
                     <td><a href="{{ route('projects.show',  $project->id) }}"><x-far-eye style="height:21px"/></a></td>
                     <td class="d-flex">
                         <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning btn-sm mr-2">Modifier</a>
