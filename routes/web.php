@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessagesController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +76,8 @@ Route::resource('conges', CongesController::class);
 
 Route::resource('dashboard', DashboardController::class);
 
+Route::resource('messages', MessagesController::class);
+
 
 Route::get('mailbox', function () {
     return view('mailbox/mailbox');
@@ -89,3 +92,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('**', [App\Http\Controllers\HomeController::class, 'index']);
+
+Route::get('/messages', [MessagesController::class, 'index'])->name('messages.index');
+Route::get('/message/{id}', [MessagesController::class, 'getMessage'])->name('message');
+Route::post('message', [MessagesController::class, 'sendMessage']);
