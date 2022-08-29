@@ -48,19 +48,19 @@
 
                 @if (Route::has('password.request'))
                     <a class="tx-info tx-12 d-block mg-t-10" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
+                        {{ __('Mot de passe oublié?') }}
                     </a>
                 @endif
 
             </div><!-- form-group -->
             <button type="submit" class="btn btn-info btn-block">
-                Sign In
+                Se Connecter
             </button>
 
 
-            @if (Route::has('register'))
-                <div class="mg-t-60 tx-center"><a href="{{ route('register') }}" class="tx-info">Sign Up</a></div>
-            @endif
+{{--            @if (Route::has('register'))--}}
+{{--                <div class="mg-t-60 tx-center"><a href="{{ route('register') }}" class="tx-info">Sign Up</a></div>--}}
+{{--            @endif--}}
         </div>
     </form><!-- login-wrapper -->
 </div><!-- d-flex -->

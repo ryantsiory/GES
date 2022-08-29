@@ -1,13 +1,13 @@
 @extends('blank')
 
 
-@section('page-title', 'Demander Congés')
-@section('page-description', 'Gestion des conges')
+@section('page-title', 'Demander un Congé')
+@section('page-description', 'Gestion du congé')
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Demander Congé</h6>
+      <h6 class="br-section-label">Demander un Congé</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('conges.store') }}" method="post">
@@ -30,7 +30,7 @@
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="nom">Conge</label>
+                <label for="nom">Congé</label>
                 <input class="form-control @error('nom') is-invalid @enderror"  name="nom" placeholder="Entrez le nom " type="text" value="Demande congés">
                 @error('nom')
                     <div class="invalid-feedback">
@@ -40,7 +40,7 @@
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="motif">Motif du congés</label>
+                <label for="motif">Motif du congé</label>
                 <input class="form-control @error('motif') is-invalid @enderror"  name="motif" placeholder="Entrez le motif" type="text">
                 @error('motif')
                     <div class="invalid-feedback">
@@ -73,7 +73,7 @@
             </div><!-- col -->
         </div><!-- row -->
         <div class="row mt-2 mx-auto">
-            <button type="submit" class="btn btn-success">Ajouter un conges</button>
+            <button type="submit" class="btn btn-success">Demander un congé</button>
         </div>
      </form>
 </div>

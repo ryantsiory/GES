@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Modifier client');
-@section('page-description', 'Gestion de client');
+@section('page-title', 'Modifier un client');
+@section('page-description', 'Gestion du client');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Modifier client</h6>
+      <h6 class="br-section-label">Modifier le client</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('clients.update', $client->id) }}" method="post">

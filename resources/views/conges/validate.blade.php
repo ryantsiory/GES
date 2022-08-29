@@ -3,16 +3,15 @@
 
 
 @section('page-title', 'Congés')
-@section('page-description', 'Gestion des conges')
+@section('page-description', 'Gestion du congé')
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">TABLE Conges</h6>
+      <h6 class="br-section-label">TABLE Congés</h6>
       <p class="br-section-text">Données concernant les congés de l'entreprise en attente.</p>
 
-      <a href="{{ route('conges.create') }}" class="btn btn-info mb-2 float-right">Ajouter un conges</a>
       <div class="bd bd-gray-300 rounded table-responsive">
         <div class="d-flex justify-content-center mt-3">
             {{ $conges->links() }}
