@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Ajout poste');
-@section('page-description', 'Gestion de poste');
+@section('page-title', 'Nouveau poste');
+@section('page-description', 'Gestion du poste');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Ajout poste</h6>
+      <h6 class="br-section-label">Ajouter un nouveau poste</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('postes.store') }}" method="post">
@@ -25,7 +25,7 @@
 
         </div><!-- row -->
         <div class="row mt-2 mx-auto">
-            <button type="submit" class="btn btn-success">Créer poste</button>
+            <button type="submit" class="btn btn-success">Créer le poste</button>
         </div>
      </form>
     </div>

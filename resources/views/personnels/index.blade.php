@@ -12,7 +12,7 @@
       <h6 class="br-section-label">TABLE PERSONNEL</h6>
       <p class="br-section-text">Données concernant les personnels.</p>
 
-      <a href="{{ route('personnels.create') }}" class="btn btn-info mb-2 float-right">Ajouter un personnel</a>
+      <a href="{{ route('personnels.create') }}" class="btn btn-info mb-2 float-right">Ajouter un nouveau personnel</a>
       <div class="bd bd-gray-300 rounded table-responsive">
         <div class="d-flex justify-content-center mt-3">
             {{ $personnels->links() }}
@@ -21,7 +21,7 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>Nom</th>
               <th>Adresse e-mail</th>
               <th>Poste</th>
               <th></th>

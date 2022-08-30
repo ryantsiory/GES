@@ -65,7 +65,7 @@
           </ul>
         </li>
         <li class="br-menu-item">
-          <a href="mailbox" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
+          <a href="messages" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
             <span class="menu-item-label">MESSAGES</span>
           </a><!-- br-menu-link -->
@@ -159,7 +159,7 @@
 
 
         <li class="br-menu-item">
-          <a href="mailbox" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
+            <a href="messages" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
             <span class="menu-item-label">MESSAGES</span>
           </a><!-- br-menu-link -->

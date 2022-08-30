@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Client information');
-@section('page-description', 'Gestion de client');
+@section('page-title', 'Informations du client');
+@section('page-description', 'Gestion du client');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Client Member Information</h6>
+      <h6 class="br-section-label">Information sur u client</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
         <div class="row">

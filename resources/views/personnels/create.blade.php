@@ -1,6 +1,6 @@
 @extends('blank')
 
-@section('page-title', 'Ajout personnel');
+@section('page-title', 'Nouveau personnel');
 @section('page-description', 'Gestion du personnel');
 
 @section('main-content')
@@ -15,7 +15,7 @@
         <div class="row mb-4">
             <div class="col-lg-4">
                 <input id="name" type="text"
-                       class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter your full name">
+                       class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Nom">
 
                 @error('name')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -23,7 +23,7 @@
             </div><!-- col -->
             <div class="col-lg-4">
                 <input id="lastname" type="text"
-                class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Enter your full name">
+                class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Prénom(s)">
 
                 @error('lastname')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -35,14 +35,14 @@
         <div class="row mb-4">
             <div class="col-lg-4">
                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                name="email" placeholder="Enter your email">
+                name="email" placeholder="Email">
 
                 @error('email')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div><!-- col -->
             <div class="col-lg-4">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter your password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Entrer le mot de passe">
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
                 @enderror
             </div><!-- col -->
             <div class="col-lg-4">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm your password">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmer le mot de passe">
 
             </div><!-- col -->
 

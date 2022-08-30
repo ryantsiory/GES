@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Modifier personnel');
+@section('page-title', 'Modifier le personnel');
 @section('page-description', 'Gestion de personnel');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Modifier personnel</h6>
+      <h6 class="br-section-label">Modifier un personnel</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('personnels.update', $personnel->id) }}" method="post">

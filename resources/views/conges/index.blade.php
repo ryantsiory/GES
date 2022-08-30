@@ -3,16 +3,15 @@
 
 
 @section('page-title', 'Congés')
-@section('page-description', 'Gestion des conges')
+@section('page-description', 'Gestion du congé')
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">TABLE Conges</h6>
+      <h6 class="br-section-label">TABLE Congés</h6>
       <p class="br-section-text">Données concernant les congés de l'entreprise.</p>
 
-      <a href="{{ route('conges.create') }}" class="btn btn-info mb-2 float-right">Ajouter un conges</a>
       <div class="bd bd-gray-300 rounded table-responsive">
         <div class="d-flex justify-content-center mt-3">
             {{ $conges->links() }}
@@ -70,54 +69,6 @@
       </div><!-- bd -->
     </div>
 </div>
-
-
-{{--
-<form >
-{{-- <form action="{{ route('store.product') }}" method="POST"> --}}
-  {{-- @csrf
-  <label for="name">Nom du produit : </label>
-  <input type="text" name="name">
-
-  <label for="price">Prix du produit : </label>
-  <input type="number" name="price" step="0.01">
-
-  <label for="description">Description du produit : </label>
-  <textarea name="description">
-  </textarea>
-
-  <input type="submit" value="Envoyer">
-</form>
-
-@if ( $errors->has('title') )
-    <p class="error-message">{{ $errors->first('title') }}</p>
-@endif
-
-
-@error('description')
-    <p> {{  $message  }} </p>
-@enderror
-
-
-<form action="{{ route('file.upload.post') }}" method="POST" enctype="multipart/form-data">
-  @csrf
-  <div class="row">
-      <div class="col-md-6">
-          <input type="file" name="file" class="form-control">
-      </div>
-      <div class="col-md-6">
-          <button type="submit" class="btn btn-success">Upload</button>
-      </div>
-  </div>
-</form>
-
-<div class="container">
-  @foreach ($users as $user)
-      {{ $user->name }}
-  @endforeach
-</div>
-
-{{ $users->links() }} --}}
 
 
 

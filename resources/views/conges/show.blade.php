@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Conges information');
-@section('page-description', 'Gestion du conges');
+@section('page-title', 'Informations du congé');
+@section('page-description', 'Gestion du congé');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Congé Information</h6>
+      <h6 class="br-section-label">Informations sur le congé</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
         <div class="row" >
             <div class="col-lg-4 h4">
