@@ -203,6 +203,8 @@
 
               <div class="media-list">
                 <!-- loop starts here -->
+
+                @if (!empty($users))
                       @foreach($users as $user)
                       <a href="messages" class="media-list-link">
                           <li class="user" id="{{ $user->id }}">
@@ -238,7 +240,7 @@
                           </li>
                       </a>
                       @endforeach
-
+                      @endif
 
                 <div class="dropdown-footer">
                   <a href="messages"><i class="fa fa-angle-down"></i> Show All Messages</a>
