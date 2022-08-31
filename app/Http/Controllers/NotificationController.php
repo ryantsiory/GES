@@ -155,7 +155,10 @@ class NotificationController extends Controller
 
     public function allSeen()
     {
-        $notif = Notification::where(['seen' => 0])->update(['seen' =>1]);
+        $user_id = auth()->user()->id;
+
+        $notif = Notification::where('user_id', $user_id)->where(['seen' => 0])->update(['seen' =>1]);
+        return back()->withInput();
 
     }
 

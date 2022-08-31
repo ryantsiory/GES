@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -32,6 +33,7 @@ Route::get('/login', function () {
 
 
 
+Route::post('notifications/all-seen', [NotificationController::class, 'allSeen'])->name('notifications.allSeen');
 Route::get('edit-user/{id}', [UserController::class, 'edit']);
 Route::put('update-user/{id}', [UserController::class, 'update']);
 Route::delete('delete-user/{id}', [UserController::class, 'destroy']);
@@ -42,7 +44,7 @@ Route::delete('delete-user/{id}', [UserController::class, 'destroy']);
 
 Route::middleware(['manager'])->group(function () {
 
-    Route::resource('postes', PostesController::class);
+
 
 });
 
@@ -65,11 +67,10 @@ Route::middleware(['managerOrDirecteur'])->group(function () {
     Route::resource('projects', ProjectsController::class);
     Route::resource('clients', ClientsController::class);
     Route::resource('tasks', TasksController::class);
+    Route::resource('postes', PostesController::class);
 
 });
 
-
-Route::put('notifications/all-seen', [NotificationController::class, 'allSeen'])->name('notification.allSeen');
 Route::put('mytask/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytask.updateTaskCompleted');
 Route::resource('mytask', TasksController::class);
 
