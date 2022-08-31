@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themepixels.me/demo/bracketplus1.4/app/template/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Sep 2021 12:46:55 GMT -->
 <head>
     <link rel="icon" href="{{ url('css/css/faviconGes.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/style^m.css') }}">
@@ -273,14 +272,14 @@
 
               <div class="media-list">
                 <!-- loop starts here -->
-                @if (!empty($notifications))
-                @foreach ($notifications as $notification)
+                @if (!empty($notif))
+                @foreach ($notif as $notif)
                 <a href="#" class="media-list-link read">
                     <div class="media">
                       <img src="../img/img8.jpg" alt="">
                       <div class="media-body">
-                        <p class="noti-text"><strong>{{ $notification->subject }} </strong>{{ $notification->text }}</p>
-                        <span>{{ $notification->created_at }}</span>
+                        <p class="noti-text"><strong>{{ $notif->subject }} </strong>{{ $notif->text }}</p>
+                        <span>{{ $notif->created_at }}</span>
                       </div>
                     </div><!-- media -->
                   </a>

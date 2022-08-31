@@ -31,7 +31,7 @@
             @csrf
             <div class="form-group">
                 <input id="name" type="text"
-                       class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter your full name">
+                       class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter your  name">
 
                 @error('name')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -39,7 +39,7 @@
             </div><!-- form-group -->
             <div class="form-group">
                 <input id="lastname" type="text"
-                       class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Enter your full name">
+                       class="form-control @error('lastname') is-invalid @enderror" name="lastname" placeholder="Enter your firstname">
 
                 @error('lastname')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>

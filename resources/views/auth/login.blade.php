@@ -58,9 +58,9 @@
             </button>
 
 
-{{--            @if (Route::has('register'))--}}
-{{--                <div class="mg-t-60 tx-center"><a href="{{ route('register') }}" class="tx-info">Sign Up</a></div>--}}
-{{--            @endif--}}
+@if (Route::has('register'))
+    <div class="mg-t-60 tx-center"><a href="{{ route('register') }}" class="tx-info">Sign Up</a></div>
+@endif
         </div>
     </form><!-- login-wrapper -->
 </div><!-- d-flex -->

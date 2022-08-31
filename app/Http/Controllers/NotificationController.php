@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Notification;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class NotificationController extends Controller
 {
@@ -22,9 +23,7 @@ class NotificationController extends Controller
 
             $user = User::find($user_id);
 
-            $notifications = Notification::where("user_id", $user_id)->get();
-
-        return view('mytask.index', compact('user', 'notifications'));
+            return view('mytask.index', compact('user', 'notifications'));
     }
 
 

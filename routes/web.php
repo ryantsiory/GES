@@ -25,6 +25,10 @@ use App\Http\Controllers\ProjectsController;
 |
 */
 
+Route::get('/', function () {
+    return view('/auth/login');
+})->middleware('guest', '/dashboard')->middleware('auth');
+
 
 Route::get('/login', function () {
     return view('/auth/login');

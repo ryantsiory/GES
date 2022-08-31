@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Notification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
+    protected $notification;
     /**
      * Create a new controller instance.
      *
@@ -16,6 +19,13 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+
+        // $user_id = Auth::user()->id;
+
+        // $this->notification = Notification::where("user_id", $user_id)->get();
+        // View::share('notif', $this->notification);
+
     }
 
     /**
@@ -29,8 +39,7 @@ class HomeController extends Controller
 
         $user = User::find($user_id);
 
-        $notifications = Notification::where("user_id", $user_id)->get();
 
-        return view('blank', compact('user', 'notifications'));
+        return view('blank', compact('user'));
     }
 }
