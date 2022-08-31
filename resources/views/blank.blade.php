@@ -289,7 +289,7 @@
                         <a href="{{ route('conges.show', $notification->object) }}" class="media-list-link @if ($notification->seen == 1) read @endif">
                         @endif
                         @if ($notification->subject == "Tâche")
-                        <a href="{{ route('mytasks') }}" class="media-list-link @if ($notification->seen == 1) read @endif">
+                        <a href="{{ route('mytasks.index') }}" class="media-list-link @if ($notification->seen == 1) read @endif">
                         @endif
                     <div class="media">
                       <img src="../img/img8.jpg" alt="">
