@@ -195,69 +195,60 @@
               <span class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
               <!-- end: if statement -->
             </a>
-            <div class="dropdown-menu dropdown-menu-header">
+            <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Messages</label>
-                <a href="#">+ Add New Message</a>
+                <a href="messages">Envoyer un nouveau Message</a>
               </div><!-- d-flex -->
 
               <div class="media-list">
                 <!-- loop starts here -->
-                <a href="#" class="media-list-link">
-                  <div class="media">
-                    <img src="../img/img3.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Donna Seay</p>
-                        <span>2 minutes ago</span>
-                      </div><!-- d-flex -->
-                      <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <!-- loop ends here -->
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img4.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Samantha Francis</p>
-                        <span>3 hours ago</span>
-                      </div><!-- d-flex -->
-                      <p>My entire soul, like these sweet mornings of spring.</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img7.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Robert Walker</p>
-                        <span>5 hours ago</span>
-                      </div><!-- d-flex -->
-                      <p>I should be incapable of drawing a single stroke at the present moment...</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img5.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Larry Smith</p>
-                        <span>Yesterday</span>
-                      </div><!-- d-flex -->
-                      <p>When, while the lovely valley teems with vapour around me, and the meridian sun strikes...</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
+                      @foreach($users as $user)
+                      <a href="messages" class="media-list-link">
+                          <li class="user" id="{{ $user->id }}">
+                              {{--will show unread count notification--}}
+                              @if($user->unread)
+                                  <span class="pending">{{ $user->unread }}</span>
+                              @endif
+
+                              <div class="media">
+                                  <div class="media-left">
+                                      <img src="{{ $user->avatar }}" alt="" class="media-object">
+                                  </div>
+                                  <div>
+                                      <p class="name">{{ $user->name }}</p>
+                                  </div><!-- d-flex -->
+
+                                      <div>
+                                          <ul>
+                                                  @foreach($messages as $message)
+                                                      @if($user->id == $message->from)
+                                                      <li>
+                                                          <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
+                                                              <p>{{ $message->message }}</p>
+                                                              </div>
+                                                      </li>
+                                                      @endif
+                                                  @endforeach
+                                          </ul>
+                                      </div>
+
+
+                              </div>
+                          </li>
+                      </a>
+                      @endforeach
+
+
                 <div class="dropdown-footer">
-                  <a href="#"><i class="fa fa-angle-down"></i> Show All Messages</a>
+                  <a href="messages"><i class="fa fa-angle-down"></i> Show All Messages</a>
                 </div>
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+
+
+
           <div class="dropdown ">
             <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
 

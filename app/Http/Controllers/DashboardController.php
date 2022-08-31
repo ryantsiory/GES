@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Message;
 use App\Models\User;
 use App\Models\Conge;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -21,7 +24,17 @@ class DashboardController extends Controller
         $validateConge = Conge::where('status', '1')->count();
         $demandeConge = Conge::where('status', '0')->count();
 
-        return view('dashboard', compact('client_count','personnel', 'validateConge', 'demandeConge'));
+        $users = DB::select("select users.id, users.name, users.avatar, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.name, users.avatar, users.email");
+
+        $my_id = Auth::id();
+
+        $messages = Message::select('message', 'from', 'to')->where('to', $my_id)->get();
+
+
+        return view('dashboard', compact('client_count','personnel', 'validateConge', 'demandeConge', 'users', 'messages'));
     }
 
     /**
