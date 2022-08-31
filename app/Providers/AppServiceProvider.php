@@ -7,9 +7,8 @@ use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Notification;
 use App\Models\Message;
+use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         // Using view composer to set following variables globally
-        if(auth()->user()){
+
             view()->composer('*',function($view) {
 
                 $user_id = auth()->user()->id;
@@ -43,7 +42,8 @@ class AppServiceProvider extends ServiceProvider
                 $count_notifications = Notification::where("user_id", $user_id)->where("seen", 0)->count();
 
 
-                //about message
+                //messages
+                // count how many message are unread from the selected user
                 $users = DB::select("select users.id, users.name, users.avatar, users.email, count(is_read) as unread
                 from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
                 where users.id != " . Auth::id() . "
@@ -54,12 +54,13 @@ class AppServiceProvider extends ServiceProvider
                 $messages = Message::select('message', 'from', 'to')->where('to', $my_id)->get();
 
 
+
                 $view->with('notifications', $notifications);
                 $view->with('count_notifications', $count_notifications);
+
                 $view->with('users', $users);
                 $view->with('messages', $messages);
             });
-        }
 
 
     }
