@@ -64,6 +64,7 @@ Route::middleware(['managerOrDirecteur'])->group(function () {
     Route::put('projects/update-task-assign-to/{id}', [ProjectsController::class, 'updateTaskAssignTo'])->name('projects.updateTaskAssignTo');
     Route::resource('projects', ProjectsController::class);
     Route::resource('clients', ClientsController::class);
+    Route::resource('tasks', TasksController::class);
 
 });
 

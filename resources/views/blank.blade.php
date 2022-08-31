@@ -273,6 +273,7 @@
 
               <div class="media-list">
                 <!-- loop starts here -->
+                @if (!empty($notifications))
                 @foreach ($notifications as $notification)
                 <a href="#" class="media-list-link read">
                     <div class="media">
@@ -284,6 +285,8 @@
                     </div><!-- media -->
                   </a>
                 @endforeach
+                @endif
+
 
                 <!-- loop ends here -->
                 <a href="#" class="media-list-link read">
