@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Personnel;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,8 +13,8 @@ class Poste extends Model
     protected $fillable = ['nom'];
 
 
-    public function personnels()
+    public function users()
     {
-        return $this->hasMany(Personnel::class);
+        return $this->hasMany(User::class);
     }
 }

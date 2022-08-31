@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personnel;
+use App\Models\User;
 use App\Models\Conge;
 use Illuminate\Http\Request;
 
@@ -42,9 +42,9 @@ class CongesController extends Controller
      */
     public function create()
     {
-        $personnels = Personnel::all();
+        $users = User::all();
 
-        return view('conges.create', compact('personnels'));
+        return view('conges.create', compact('users'));
     }
 
     /**
@@ -59,14 +59,14 @@ class CongesController extends Controller
         $request->validate([
             'nom' =>  'required|min:5',
             'motif' =>  'required|min:5',
-            'personnel' =>  'required',
+            'user' =>  'required',
             'depart_date' =>  'required|date|after:now',
             'retour_date' =>  'required|date|after:depart_date'
         ]);
 
         $nom =  $request->nom;
         $motif =  $request->motif;
-        $personnel_id =  $request->personnel;
+        $user_id =  $request->user;
         $depart_date =  $request->depart_date;
         $retour_date =  $request->retour_date;
 
@@ -74,7 +74,7 @@ class CongesController extends Controller
         Conge::create([
             'nom' => $nom,
             'motif' => $motif,
-            'personnel_id' => $personnel_id,
+            'user_id' => $user_id,
             'status' => 0,
             'depart_date' => $depart_date,
             'retour_date' => $retour_date,
@@ -95,11 +95,11 @@ class CongesController extends Controller
     {
         $conge = Conge::find($id);
 
-        $personnel_id = $conge->personnel_id;
+        $user_id = $conge->user_id;
 
-        $personnel = Personnel::find($personnel_id);
+        $user = User::find($user_id);
 
-        return view('conges.show', compact('conge', 'personnel'));
+        return view('conges.show', compact('conge', 'user'));
     }
 
     /**

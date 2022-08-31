@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themepixels.me/demo/bracketplus1.4/app/template/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Sep 2021 12:46:55 GMT -->
 <head>
     <link rel="icon" href="{{ url('css/css/faviconGes.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/style^m.css') }}">
@@ -18,7 +17,7 @@
     <!-- vendor css -->
     <link href="{{ asset('css/all.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/css/ionicons.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/css/app.css') }}" rel="stylesheet">
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{ asset('css/bracket.css') }}">
 
@@ -32,6 +31,51 @@
     <div class="br-logo" style="padding-left:75px"><a href="#"><span>[</span>Ge<i>S</i><span>]</span></a></div>
     <div class="br-sideleft sideleft-scrollbar">
       <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
+
+
+
+      @if(Auth::user()->role->name === 'personnel')
+      <ul class="br-sideleft-menu">
+        <li class="br-menu-item">
+          <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
+            <span class="menu-item-label">TABLEAU DE BORD</span>
+          </a><!-- br-menu-link -->
+        </li><!-- br-menu-item -->
+
+        <li class="br-menu-item">
+            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+              <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
+              <span class="menu-item-label">MES TÂCHES</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+            </ul>
+          </li>
+
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub    {{ (request()->is('conges*')) ? 'active' : '' }}">
+            <i class="menu-item-icon icon ion-ios-redo-outline tx-20"></i>
+            <span class="menu-item-label">CONGES</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item"><a href="{{ route('conges.create') }}" class="sub-link">Demander un congé</a></li>
+            <li class="sub-item"><a href="{{ route('conges.index') }}" class="sub-link">Ma liste de congés</a></li>
+          </ul>
+        </li>
+        <li class="br-menu-item">
+          <a href="messages" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
+            <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
+            <span class="menu-item-label">MESSAGES</span>
+          </a><!-- br-menu-link -->
+        </li><!-- br-menu-item -->
+
+      </ul><!-- br-sideleft-menu -->
+      @endif
+
+
+
+      @if(Auth::user()->role->name !== 'personnel')
       <ul class="br-sideleft-menu">
         <li class="br-menu-item">
           <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
@@ -50,6 +94,8 @@
             <li class="sub-item"><a href="{{ route('personnels.index') }}" class="sub-link">Liste personnel</a></li>
           </ul>
         </li>
+
+
         <li class="br-menu-item" >
           <a href="#" class="br-menu-link with-sub  {{ (request()->is('clients*')) ? 'active' : '' }}" >
             <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
@@ -60,6 +106,8 @@
             <li class="sub-item"><a href="{{ route('clients.index') }}" class="sub-link">Liste client</a></li>
           </ul>
         </li>
+
+
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
@@ -72,6 +120,27 @@
         </li>
 
         <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+              <i class="menu-item-icon icon ion-ios-bookmarks-outline-outline tx-20"></i>
+              <span class="menu-item-label">PROJETS</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <li class="sub-item"><a href="{{ route('projects.create') }}" class="sub-link">Nouveau projet</a></li>
+              <li class="sub-item"><a href="{{ route('projects.index') }}"  class="sub-link">Liste projet</a></li>
+            </ul>
+          </li>
+
+          <li class="br-menu-item">
+            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+              <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
+              <span class="menu-item-label">MES TÂCHES</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub">
+              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+            </ul>
+          </li>
+
+        <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub    {{ (request()->is('conges*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-redo-outline tx-20"></i>
             <span class="menu-item-label">CONGES</span>
@@ -79,17 +148,24 @@
           <ul class="br-menu-sub">
             <li class="sub-item"><a href="{{ route('conges.create') }}" class="sub-link">Demander congé</a></li>
             <li class="sub-item"><a href="{{ route('conges.index') }}" class="sub-link">Liste congé</a></li>
+
+
+            @if(Auth::user()->role->name === 'directeur')
             <li class="sub-item"><a href="{{ route('conges.validate') }}" class="sub-link">Valider congé</a></li>
+            @endif
           </ul>
         </li>
+
+
         <li class="br-menu-item">
-          <a href="mailbox" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
+            <a href="messages" class="br-menu-link    {{ (request()->is('mailbox*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
             <span class="menu-item-label">MESSAGES</span>
           </a><!-- br-menu-link -->
         </li><!-- br-menu-item -->
 
       </ul><!-- br-sideleft-menu -->
+      @endif
 
 
 
@@ -181,30 +257,40 @@
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
-          <div class="dropdown">
+          <div class="dropdown ">
             <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-              <i class="icon ion-ios-bell-outline tx-24"></i>
-              <!-- start: if statement -->
-              <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
-              <!-- end: if statement -->
+
+                <i class="icon ion-ios-bell-outline tx-24"></i>
+                <!-- start: if statement -->
+                @if (!empty($count_notifications))
+                <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
+                <!-- end: if statement -->
+                @endif
+
             </a>
-            <div class="dropdown-menu dropdown-menu-header">
+            <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Notifications</label>
-                <a href="#">Mark All as Read</a>
+                <a href="notifications/all-seen">tout marquer comme lu</a>
               </div><!-- d-flex -->
 
               <div class="media-list">
                 <!-- loop starts here -->
+                @if (!empty($notif))
+                @foreach ($notif as $notif)
                 <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img8.jpg" alt="">
-                    <div class="media-body">
-                      <p class="noti-text"><strong>Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
-                      <span>October 03, 2017 8:45am</span>
-                    </div>
-                  </div><!-- media -->
-                </a>
+                    <div class="media">
+                      <img src="../img/img8.jpg" alt="">
+                      <div class="media-body">
+                        <p class="noti-text"><strong>{{ $notif->subject }} </strong>{{ $notif->text }}</p>
+                        <span>{{ $notif->created_at }}</span>
+                      </div>
+                    </div><!-- media -->
+                  </a>
+                @endforeach
+                @endif
+
+
                 <!-- loop ends here -->
                 <a href="#" class="media-list-link read">
                   <div class="media">
@@ -215,54 +301,45 @@
                     </div>
                   </div><!-- media -->
                 </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img10.jpg" alt="">
-                    <div class="media-body">
-                      <p class="noti-text">20+ new items added are for sale in your <strong>Sale Group</strong></p>
-                      <span>October 01, 2017 10:20pm</span>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img5.jpg" alt="">
-                    <div class="media-body">
-                      <p class="noti-text"><strong>Julius Erving</strong> wants to connect with you on your conversation with <strong>Ronnie Mara</strong></p>
-                      <span>October 01, 2017 6:08pm</span>
-                    </div>
-                  </div><!-- media -->
-                </a>
+
                 <div class="dropdown-footer">
                   <a href="#"><i class="fa fa-angle-down"></i> Show All Notifications</a>
                 </div>
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+
+            @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">Moi</span>
-              <img src="../img/img1.jpg" class="wd-32 rounded-circle" alt="">
+              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role->name}} {{auth::User()->id}}</span>
+              <img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-32 rounded-circle" alt="" style="height:45px;">
               <span class="square-10 bg-success"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-250">
-              <div class="tx-center">
-                <a href="#"><img src="../img/img1.jpg" class="wd-80 rounded-circle" alt=""></a>
-                <h6 class="logged-fullname">Moi</h6>
-                <p>moi@domain.com</p>
-              </div>
-              <hr>
 
+
+                    <div class="tx-center">
+                        <a href="#"><img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-80 rounded-circle" alt=""></a>
+                        <h6 class="logged-fullname">{{auth::User()->name}} {{auth::User()->lastname}}</h6>
+                        <p>{{auth::User()->email}}</p>
+                    </div>
+
+              <hr>
               <ul class="list-unstyled user-profile-nav">
-                <li><a href="#"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
+                <li><a href="{{ url('edit-user/'.auth::User()->id) }}"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
                 <li><a href="#"><i class="icon ion-ios-gear"></i> Settings</a></li>
-                <li><a href="#"><i class="icon ion-ios-download"></i> Downloads</a></li>
-                <li><a href="#"><i class="icon ion-ios-star"></i> Favorites</a></li>
-                <li><a href="#"><i class="icon ion-ios-folder"></i> Collections</a></li>
-                <li><a href="#"><i class="icon ion-power"></i> Sign Out</a></li>
+                <li><form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary btn-block text-light">
+                            {{ __('Logout') }}
+                        </button>
+                    </form>
+                </li>
               </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+            @endif
         </nav>
       </div><!-- br-header-right -->
     </div><!-- br-header -->

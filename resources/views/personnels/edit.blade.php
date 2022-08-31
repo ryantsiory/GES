@@ -1,26 +1,26 @@
 @extends('blank')
 
-@section('page-title', 'Modifier personnel');
+@section('page-title', 'Modifier le personnel');
 @section('page-description', 'Gestion de personnel');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Modifier personnel</h6>
+      <h6 class="br-section-label">Modifier un personnel</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
-      <form action="{{ route('personnels.update', $personnel->id) }}" method="post">
+      <form action="{{ route('personnels.update', $user->id) }}" method="post">
         @csrf
         @method('PUT')
 
         <div class="row">
             <div class="col-lg-4">
-            <input class="form-control"  name="nom"  type="text" value="{{ $personnel->nom }}" >
+            <input class="form-control"  name="nom"  type="text" value="{{ $user->nom }}" >
             </div><!-- col -->
             <div class="col-lg-8">
                 <select class="form-control @error('poste') is-invalid @enderror" name="poste" >
-                    <option value="{{ $personnel->poste->nom }}" default selected>{{ $personnel->poste->nom }}</option>
+                    <option value="{{ $user->poste->nom }}" default selected>{{ $user->poste->nom }}</option>
 
                     @foreach ($postes as $poste)
                     <option value="{{ $poste->id}}" >{{ $poste->nom}}</option>

@@ -1,16 +1,16 @@
 @extends('blank')
 
 @section('page-title', 'Clients')
-@section('page-description', 'Gestion de client')
+@section('page-description', 'Gestion du client')
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">TABLE CLIENT</h6>
-      <p class="br-section-text">Données des clients de l'entreprise</p>
+      <h6 class="br-section-label">TABLE CLIENTS</h6>
+      <p class="br-section-text">Données sur les clients de l'entreprise</p>
 
-      <a href="{{ route('clients.create') }}" class="btn btn-info mb-2 float-right">Ajouter client</a>
+      <a href="{{ route('clients.create') }}" class="btn btn-info mb-2 float-right">Ajouter un nouveau client</a>
       <div class="bd bd-gray-300 rounded table-responsive">
         <div class="d-flex justify-content-center mt-3">
             {{ $clients->links() }}

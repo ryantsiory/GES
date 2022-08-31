@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Poste;
-use App\Models\Personnel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostesController extends Controller
@@ -63,9 +63,9 @@ class PostesController extends Controller
     {
         $poste = Poste::find($id);
 
-        $personnels = Personnel::where('poste_id', $id)->get();
+        $users = User::where('poste_id', $id)->get();
 
-        return view('postes.show', compact('poste', 'personnels'));
+        return view('postes.show', compact('poste', 'users'));
     }
 
     /**

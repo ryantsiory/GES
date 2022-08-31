@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('avatar')->default('https://www.gravatar.com/avatar/{{ md5($email) }}?d=mp');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

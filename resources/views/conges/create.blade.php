@@ -1,13 +1,13 @@
 @extends('blank')
 
 
-@section('page-title', 'Demander Congés')
-@section('page-description', 'Gestion des conges')
+@section('page-title', 'Demander un Congé')
+@section('page-description', 'Gestion du congé')
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Demander Congé</h6>
+      <h6 class="br-section-label">Demander un Congé</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('conges.store') }}" method="post">
@@ -15,22 +15,22 @@
         <div class="row">
             <div class="col-lg-4">
                 <label for="personnel">Nom du personnel</label>
-                <select class="form-control @error('poste') is-invalid @enderror" name="personnel" >
+                <select class="form-control @error('user') is-invalid @enderror" name="user" >
                     <option value="" default selected disabled>--Choisir le personnel--</option>
 
-                    @foreach ($personnels as $personnel)
-                    <option value="{{ $personnel->id}}" >{{ $personnel->nom}}</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id}}" >{{ $user->name}} {{ $user->lastname}}</option>
                   @endforeach
                 </select>
-                @error('personnel')
+                @error('user')
                     <div class="invalid-feedback">
-                        {{ $errors->first('personnel') }}
+                        {{ $errors->first('user') }}
                     </div>
                 @enderror
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="nom">Conge</label>
+                <label for="nom">Congé</label>
                 <input class="form-control @error('nom') is-invalid @enderror"  name="nom" placeholder="Entrez le nom " type="text" value="Demande congés">
                 @error('nom')
                     <div class="invalid-feedback">
@@ -40,7 +40,7 @@
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="motif">Motif du congés</label>
+                <label for="motif">Motif du congé</label>
                 <input class="form-control @error('motif') is-invalid @enderror"  name="motif" placeholder="Entrez le motif" type="text">
                 @error('motif')
                     <div class="invalid-feedback">
@@ -73,7 +73,7 @@
             </div><!-- col -->
         </div><!-- row -->
         <div class="row mt-2 mx-auto">
-            <button type="submit" class="btn btn-success">Ajouter un conges</button>
+            <button type="submit" class="btn btn-success">Demander un congé</button>
         </div>
      </form>
 </div>

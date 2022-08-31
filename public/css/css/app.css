@@ -4,3 +4,16 @@
     background-image: linear-gradient(to right, #1CAF9A 0%, #17A2B8 100%);
     background-repeat: repeat-x;
 }
+
+.userM {
+    margin-left: 50px;
+}
+
+
+
+
+.dropdown-notif{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 450px;
+}

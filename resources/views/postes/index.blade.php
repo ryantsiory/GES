@@ -1,16 +1,16 @@
 @extends('blank')
 
-@section('page-title', 'Poste')
-@section('page-description', 'Gestion de poste')
+@section('page-title', 'Postes')
+@section('page-description', 'Gestion du poste')
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
       <h6 class="br-section-label">TABLE Postes</h6>
-      <p class="br-section-text">Données des postes de l'entreprise</p>
+      <p class="br-section-text">Données sur les postes de l'entreprise</p>
 
-      <a href="{{ route('postes.create') }}" class="btn btn-info mb-2 float-right">Ajouter poste</a>
+      <a href="{{ route('postes.create') }}" class="btn btn-info mb-2 float-right">Ajouter un nouveau poste</a>
       <div class="bd bd-gray-300 rounded table-responsive">
         <div class="d-flex justify-content-center mt-3">
             {{ $postes->links() }}

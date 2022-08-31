@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Modifier poste');
-@section('page-description', 'Gestion de poste');
+@section('page-title', 'Modifier un poste');
+@section('page-description', 'Gestion du poste');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Modifier poste</h6>
+      <h6 class="br-section-label">Modifier un poste</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
 

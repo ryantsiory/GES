@@ -1,13 +1,13 @@
 @extends('blank')
 
-@section('page-title', 'Ajout client');
-@section('page-description', 'Gestion de client');
+@section('page-title', 'Nouveau client');
+@section('page-description', 'Gestion du client');
 
 @section('main-content')
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-      <h6 class="br-section-label">Ajouter client</h6>
+      <h6 class="br-section-label">Nouveau client</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
       <form action="{{ route('clients.store') }}" method="post">
