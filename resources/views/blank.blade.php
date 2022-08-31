@@ -258,30 +258,33 @@
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
-          <div class="dropdown">
+          <div class="dropdown ">
             <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
               <i class="icon ion-ios-bell-outline tx-24"></i>
               <!-- start: if statement -->
               <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
               <!-- end: if statement -->
             </a>
-            <div class="dropdown-menu dropdown-menu-header">
+            <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Notifications</label>
-                <a href="#">Mark All as Read</a>
+                <a href="#">tout marquer comme lu</a>
               </div><!-- d-flex -->
 
               <div class="media-list">
                 <!-- loop starts here -->
+                @foreach ($notifications as $notification)
                 <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img8.jpg" alt="">
-                    <div class="media-body">
-                      <p class="noti-text"><strong>Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
-                      <span>October 03, 2017 8:45am</span>
-                    </div>
-                  </div><!-- media -->
-                </a>
+                    <div class="media">
+                      <img src="../img/img8.jpg" alt="">
+                      <div class="media-body">
+                        <p class="noti-text"><strong>{{ $notification->subject }} </strong>{{ $notification->text }}</p>
+                        <span>{{ $notification->created_at }}</span>
+                      </div>
+                    </div><!-- media -->
+                  </a>
+                @endforeach
+
                 <!-- loop ends here -->
                 <a href="#" class="media-list-link read">
                   <div class="media">
@@ -292,30 +295,14 @@
                     </div>
                   </div><!-- media -->
                 </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img10.jpg" alt="">
-                    <div class="media-body">
-                      <p class="noti-text">20+ new items added are for sale in your <strong>Sale Group</strong></p>
-                      <span>October 01, 2017 10:20pm</span>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img5.jpg" alt="">
-                    <div class="media-body">
-                      <p class="noti-text"><strong>Julius Erving</strong> wants to connect with you on your conversation with <strong>Ronnie Mara</strong></p>
-                      <span>October 01, 2017 6:08pm</span>
-                    </div>
-                  </div><!-- media -->
-                </a>
+
                 <div class="dropdown-footer">
                   <a href="#"><i class="fa fa-angle-down"></i> Show All Notifications</a>
                 </div>
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+
             @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">

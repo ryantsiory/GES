@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Notification;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_id = auth()->user()->id;
+
+        $user = User::find($user_id);
+
+        $notifications = Notification::where("user_id", $user_id)->get();
+
+        return view('blank', compact('user', 'notifications'));
     }
 }

@@ -8,3 +8,12 @@
 .userM {
     margin-left: 50px;
 }
+
+
+
+
+.dropdown-notif{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 450px;
+}

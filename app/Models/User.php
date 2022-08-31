@@ -13,6 +13,7 @@ use App\Models\Project;
 use App\Models\Conge;
 use App\Models\Information;
 use App\Models\Role;
+use App\Models\Notification;
 
 class User extends Authenticatable
 {
@@ -80,5 +81,9 @@ class User extends Authenticatable
 
     public function tasks(){
         return $this->hasMany(Task::class);
+    }
+
+    public function notifications(){
+        return $this->hasMany(Notification::class);
     }
 }
