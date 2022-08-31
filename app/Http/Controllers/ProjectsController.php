@@ -76,8 +76,17 @@ class ProjectsController extends Controller
 
         $users =  User::all();;
 
+        $tasks= Task::where("project_id",$id)->get();
+        $count =Task::where("project_id",$id)->count();
+        $completed_number=0;
+        foreach ($tasks as $task){
+            $completed_number= $completed_number+$task->completed ;
+        }
+        $completed_number = round($completed_number/$count);
 
-        return view('projects.show', compact('project', 'users'));
+
+
+        return view('projects.show', compact('project', 'users', 'completed_number', 'tasks'));
     }
 
     /**

@@ -10,10 +10,17 @@
       <h6 class="br-section-label">Poste Member Information</h6>
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
+      <a class="btn btn-primary" href="{{ route('tasks.create') }}" >Nouvelle tâches</a>
         <div class="row">
             <div class="col-lg-4">
-                Nom projet : <h5 class="text-uppercase">{{  $project->title }}</h5>
+                Nom projet : <h5 class="text-uppercase">{{  $project->title }}</h5> {{ $completed_number }}%
                 <span>{{ $project->description }}</span>
+                <div class="col-5">
+                    <div class="progress mt-1" style="height: 5px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $completed_number }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+            </div>
 
             </div><!-- col -->
         </div><!-- row -->
@@ -60,6 +67,7 @@
                                     <button type="submit" class="btn btn-sm">Valider</button>
                                 </form>
                             </div>
+
                         </div>
                         {{ $task->description }}
                         {{ $task->user_id }}
