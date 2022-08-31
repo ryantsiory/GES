@@ -15,6 +15,8 @@ class Project extends Model
 
     protected $casts = [
         'date_echeance' => 'date',
+        'created_at' => 'date',
+        'updated_at' => 'date',
     ];
 
     public function client(){

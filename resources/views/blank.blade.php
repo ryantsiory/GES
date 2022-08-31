@@ -37,12 +37,12 @@
 
       @if(Auth::user()->role->name === 'personnel')
       <ul class="br-sideleft-menu">
-        <li class="br-menu-item">
+        {{-- <li class="br-menu-item">
           <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
             <span class="menu-item-label">TABLEAU DE BORD</span>
           </a><!-- br-menu-link -->
-        </li><!-- br-menu-item -->
+        </li><!-- br-menu-item --> --}}
 
         <li class="br-menu-item">
             <a href="mytasks" class="br-menu-link with-sub    {{ (request()->is('mytasks*')) ? 'active' : '' }}">
@@ -203,44 +203,40 @@
 
               <div class="media-list">
                 <!-- loop starts here -->
+                <a href="#" class="media-list-link">
+                    <div class="media">
+                      <img src="../img/img3.jpg" alt="">
+                      <div class="media-body">
+                        <div>
+                          <p>Donna Seay</p>
+                          <span>2 minutes ago</span>
+                        </div><!-- d-flex -->
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                      </div>
+                    </div><!-- media -->
+                  </a>
 
-                @if (!empty($users))
-                      @foreach($users as $user)
-                      <a href="messages" class="media-list-link">
-                          <li class="user" id="{{ $user->id }}">
-                              {{--will show unread count notification--}}
-                              @if($user->unread)
-                                  <span class="pending">{{ $user->unread }}</span>
-                              @endif
+                  @if (!empty($users))
+                    @foreach($users as $user)
+                    <a href="messages" class="media-list-link">
+                        <div class="media">
+                        <img src="{{ asset('images/'.$user->avatar) }}" alt=""  style="height: 45px;width: 45px; vertical-align: middle">
+                        <div class="media-body">
+                            <div>
+                            <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
+                            @for ($i = 0; $i < 1; $i++)
+                            <span style="font-size: 9px">{{  date('d-m-Y, h:i a', strtotime($messages[$i]->created_at )) }}</span>
+                            </div><!-- d-flex -->
+                                <p>{{ $messages[$i]->message }}</p>
 
-                              <div class="media">
-                                  <div class="media-left">
-                                      <img src="{{ $user->avatar }}" alt="" class="media-object">
-                                  </div>
-                                  <div>
-                                      <p class="name">{{ $user->name }}</p>
-                                  </div><!-- d-flex -->
+                            @endfor
 
-                                      <div>
-                                          <ul>
-                                                  @foreach($messages as $message)
-                                                      @if($user->id == $message->from)
-                                                      <li>
-                                                          <div class="{{ ($message->from == Auth::id()) ? 'sent' : 'received' }}">
-                                                              <p>{{ $message->message }}</p>
-                                                              </div>
-                                                      </li>
-                                                      @endif
-                                                  @endforeach
-                                          </ul>
-                                      </div>
+                        </div>
+                        </div><!-- media -->
+                    </a>
+                    @endforeach
+                  @endif
 
-
-                              </div>
-                          </li>
-                      </a>
-                      @endforeach
-                      @endif
 
                 <div class="dropdown-footer">
                   <a href="messages"><i class="fa fa-angle-down"></i> Show All Messages</a>

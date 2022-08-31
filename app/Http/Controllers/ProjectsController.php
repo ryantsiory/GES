@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Poste;
 use App\Models\Project;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -45,18 +46,21 @@ class ProjectsController extends Controller
     {
 
         $request->validate([
-            'nom' =>  'required',
-            'poste' =>  'required'
-             //['required', 'email']
+            'title' =>  'required',
+            'description' =>  'required',
+            'client' =>'required',
+
         ]);
 
-        $nom =  $request->nom;
-        $poste =  $request->poste;
+        $title =  $request->title;
+        $description =  $request->description;
+        $client_id =  $request->client;
 
 
         User::create([
-            'nom' => $nom,
-            'poste_id' => $poste,
+            'title' => $title,
+            'description' => $description,
+            'client_id' => $client_id,
         ]);
 
         session()->flash('success');
@@ -95,13 +99,15 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     $personnel = Personnel::find($id);
-    //     $postes = Poste::all();
+    public function edit($id)
+    {
+        $project = Project::find($id);
 
-    //     return view('personnels.edit', compact('personnel', 'postes'));
-    // }
+        $clients = Client::all();
+
+
+        return view('projects.edit', compact('project', 'clients'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -110,17 +116,22 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $personnel = Personnel::find($id);
+    public function update(Request $request, $id)
+    {
+        $project = Project::find($id);
 
-    //     $nom =  $request->nom;
-    //     $poste =  $request->poste;
+        $title =  $request->title;
+        $description =  $request->description;
+        $client_id =  $request->client;
 
-    //     $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
+        $project->update([
+            'title' => $title,
+            'description' => $description,
+            'client_id' => $client_id
+        ]);
 
-    //     return redirect()->route('personnels.index');
-    // }
+        return redirect()->route('projects.index');
+    }
 
 
 
@@ -157,9 +168,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     Personnel::find($id)->delete();
-    //     return redirect()->route('personnels.index');
-    // }
+    public function destroy($id)
+    {
+        Project::find($id)->delete();
+        return redirect()->route('projects.index');
+    }
 }

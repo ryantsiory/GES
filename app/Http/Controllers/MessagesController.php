@@ -45,7 +45,7 @@ class MessagesController extends Controller
 
 
 //        return view('home', ['users' => $users]);
-        return view('messages.homeMessages', compact('users', 'messages'));
+        return view('messages.homeMessages');
     }
 
     public function getMessage($user_id)
