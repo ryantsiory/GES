@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 31 août 2022 à 16:42
+-- Généré le : mer. 24 août 2022 à 09:44
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -153,45 +153,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `notification`
---
-
-CREATE TABLE `notification` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `text` text NOT NULL,
-  `seen` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `notification`
---
-
-INSERT INTO `notification` (`id`, `user_id`, `subject`, `text`, `seen`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 4, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(2, 2, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(3, 3, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(4, 2, 'Congé refusé', 'Votre demande de congé a été refusée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(5, 4, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(6, 1, 'Votre demande de congé a été accepté', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(7, 4, 'Congé refusé', 'Votre demande de congé a été refusée', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(8, 2, 'Nouvelle tâche', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(9, 4, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(10, 2, 'Nouvelle tâche', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(11, 3, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(12, 2, 'Nouvelle tâche', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(13, 4, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(14, 1, 'Nouvelle tâche', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
-(15, 4, 'Congé accepté', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
-(16, 2, 'Nouvelle tâche', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `password_resets`
 --
 
@@ -306,7 +267,7 @@ CREATE TABLE `tasks` (
   `user_id` bigint(20) DEFAULT NULL,
   `description` text NOT NULL,
   `date_start` date NOT NULL,
-  `date_end` date NOT NULL,
+  `date_echeance` date NOT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -314,8 +275,8 @@ CREATE TABLE `tasks` (
 -- Déchargement des données de la table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `title`, `status`, `completed`, `project_id`, `user_id`, `description`, `date_start`, `date_end`, `updated_at`) VALUES
-(1, 'Intégration', 0, 60, 1, 5, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', '2022-08-25 05:25:46'),
+INSERT INTO `tasks` (`id`, `title`, `status`, `completed`, `project_id`, `user_id`, `description`, `date_start`, `date_echeance`, `updated_at`) VALUES
+(1, 'Intégration', 0, 60, 1, 2, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', '2022-08-09 21:20:35'),
 (2, 'Base de données', 0, 60, 1, 1, 'Créer MCD de notre application', '2022-08-10', '2022-08-16', '2022-08-23 07:34:26'),
 (3, 'Intégration', 0, 30, 2, 3, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', '2022-08-09 21:20:17'),
 (4, 'Login ', 0, 30, 1, 2, 'Commencer la partie Login et Register', '2022-08-10', '2022-08-16', '2022-08-09 21:21:07'),
@@ -330,7 +291,7 @@ INSERT INTO `tasks` (`id`, `title`, `status`, `completed`, `project_id`, `user_i
 (14, 'Services liste', 0, 0, 6, 2, 'Données des différents service, avec pagination', '2022-08-10', '2022-08-12', '2022-08-09 20:58:18'),
 (15, 'Detail-annonce', 0, 30, 6, 3, 'Page detail-service avec prix', '2022-08-10', '2022-08-16', '2022-08-09 17:53:48'),
 (16, 'Localisation', 0, 100, 6, 1, 'carte de localisation', '2022-08-10', '2022-08-12', '2022-08-09 21:44:27'),
-(17, 'Logout ', 1, 100, 2, 2, 'Commencer la partie Logout', '2022-08-10', '2022-08-16', '2022-08-31 06:05:54');
+(17, 'Logout ', 0, 100, 2, 2, 'Commencer la partie Logout', '2022-08-10', '2022-08-16', '2022-08-09 19:23:25');
 
 -- --------------------------------------------------------
 
@@ -397,12 +358,6 @@ ALTER TABLE `information`
 -- Index pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `notification`
---
-ALTER TABLE `notification`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -484,12 +439,6 @@ ALTER TABLE `information`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT pour la table `notification`
---
-ALTER TABLE `notification`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `personal_access_tokens`
