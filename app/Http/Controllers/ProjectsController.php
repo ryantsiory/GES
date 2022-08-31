@@ -141,6 +141,13 @@ class ProjectsController extends Controller
 
         $project_id= $task->project_id;
 
+        $this->createNotification(
+            "Tâche",
+            "Une nouvelle tâche vous a été assignée par ".auth()->user()->email,
+            $id,
+            $user_id
+);
+
         return redirect('projects/'.$project_id);
     }
 

@@ -27,35 +27,6 @@ class NotificationController extends Controller
     }
 
 
-    public function createNotification(Request $request, $user_executor_id,$users_owner_id)
-    {
-
-            // createNotification(Request $request)
-                $user_executor_id = Auth::guard('api')->user()->id;
-                $user_executor=User::where(['id'=> $user_executor_id])->with('info')->get();
-                $users_owner_id = [];
-
-                if (!empty($users)) {
-                    foreach ($users_owner_id as $user_owner_id){
-                        $dataNotif = [
-                            'subject' => "Une tâche vous a été assignée",
-                            'text' => "Une nouvelle tâche vous a été assignée par "+$user_executor->email,
-                            'user_id' => $user_owner_id,
-                            'seen' => 0,
-                            'object' => null,
-                            'created_at' => now(),
-                            'updated_at'=> now()->addMinutes(30),
-                            'deleted_at' => now()->addDay(30),
-                        ];
-                        $notification = Notification::create($dataNotif);
-                    }
-                }
-
-
-    }
-
-
-
 
 
 

@@ -272,7 +272,7 @@
             <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Notifications</label>
-                <a href="{{ route('notifications.allSeen') }}" onclick="event.preventDefault(); document.getElementById('submit-form').submit();">tout marquer comme lu</a>
+                <a href="{{ route('notifications.allSeen') }}" onclick="event.preventDefault(); document.getElementById('submit-form').submit();">Tout marquer comme lu</a>
               </div><!-- d-flex -->
 
             <form id="submit-form" action="{{ route('notifications.allSeen') }}" method="POST" class="hidden">
@@ -294,7 +294,7 @@
                     <div class="media">
                       <img src="../img/img8.jpg" alt="">
                       <div class="media-body">
-                        <p class="noti-text"><strong>{{ $notification->subject }} </strong>{{ $notification->text }}</p>
+                        <p class="noti-text"><strong>{{ $notification->subject }} - </strong>{{ $notification->text }}</p>
                         <span>{{ $notification->created_at }}</span>
                       </div>
                     </div><!-- media -->

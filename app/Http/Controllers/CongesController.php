@@ -33,9 +33,7 @@ class CongesController extends Controller
 
 
         $conges = Conge::where('status',0)->orderBy('id')->paginate(4);
-        $createNotif = new Controller;
 
-        $createNotif->createNotification();
 
         return view('conges.validate', compact('conges'));
     }
@@ -158,9 +156,18 @@ class CongesController extends Controller
      */
     public function toAccept(Request $request, $id)
     {
+
+
         $conge = Conge::find($id);
 
         $conge->update(['status' => 1, 'answered_at' =>now()]);
+
+        $this->createNotification(
+                                    "Congé",
+                                    "Votre demande de congé à été acceptée par".auth()->user()->email,
+                                    $id,
+                                    $conge->user_id
+                                );
 
         return redirect()->route('conges.index');
     }
@@ -177,6 +184,13 @@ class CongesController extends Controller
         $conge = Conge::find($id);
 
         $conge->update(['status' => -1, 'answered_at' =>now()]);
+
+        $this->createNotification(
+                            "Congé",
+                            "Votre demande de congé à été refusé par ".auth()->user()->email,
+                            $id,
+                            $conge->user_id
+    );
 
         return redirect()->route('conges.index');
     }

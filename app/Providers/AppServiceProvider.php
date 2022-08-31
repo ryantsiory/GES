@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         $user_id = auth()->user()->id;
 
-        $notifications = Notification::where("user_id", $user_id)->get();
+        $notifications = Notification::where("user_id", $user_id)->orderBy('id', 'desc')->get();
 
         $count_notifications = Notification::where("user_id", $user_id)->where("seen", 0)->count();
         $view->with('notifications', $notifications);
