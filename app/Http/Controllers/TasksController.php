@@ -33,7 +33,7 @@ class TasksController extends Controller
                 }
             }
 
-        return view('mytask.index', compact('user', 'tasks'));
+        return view('mytasks.index', compact('user', 'tasks'));
     }
 
     /**
@@ -151,7 +151,7 @@ class TasksController extends Controller
 
         $task->update(['completed' => $completed]);
 
-        return redirect()->route('mytask.index');
+        return redirect()->route('mytasks.index');
     }
 
     /**

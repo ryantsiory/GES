@@ -45,12 +45,12 @@
         </li><!-- br-menu-item -->
 
         <li class="br-menu-item">
-            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+            <a href="mytasks" class="br-menu-link with-sub    {{ (request()->is('mytasks*')) ? 'active' : '' }}">
               <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
               <span class="menu-item-label">MES TÂCHES</span>
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub">
-              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+              <li class="sub-item"><a href="{{ route('mytasks.index') }}"  class="sub-link">Liste tâches</a></li>
             </ul>
           </li>
 
@@ -132,12 +132,12 @@
           </li>
 
           <li class="br-menu-item">
-            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('mytask*')) ? 'active' : '' }}">
+            <a href="mytasks" class="br-menu-link with-sub    {{ (request()->is('mytasks*')) ? 'active' : '' }}">
               <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
               <span class="menu-item-label">MES TÂCHES</span>
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub">
-              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+              <li class="sub-item"><a href="{{ route('mytasks.index') }}"  class="sub-link">Liste tâches</a></li>
             </ul>
           </li>
 
@@ -285,8 +285,12 @@
                 <!-- loop starts here -->
                 @if (!empty($notifications))
                 @foreach ($notifications as $notification)
-                <a href="#" class="media-list-link @if ($notification->seen == 1) read
-                @endif">
+                        @if ($notification->subject == "Congé")
+                        <a href="{{ route('conges.show', $notification->object) }}" class="media-list-link @if ($notification->seen == 1) read @endif">
+                        @endif
+                        @if ($notification->subject == "Tâche")
+                        <a href="{{ route('mytasks') }}" class="media-list-link @if ($notification->seen == 1) read @endif">
+                        @endif
                     <div class="media">
                       <img src="../img/img8.jpg" alt="">
                       <div class="media-body">

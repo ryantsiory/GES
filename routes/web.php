@@ -76,9 +76,8 @@ Route::middleware(['managerOrDirecteur'])->group(function () {
 
 });
 
-Route::put('mytask/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytask.updateTaskCompleted');
-
-Route::resource('mytask', TasksController::class);
+Route::put('mytasks/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytasks.updateTaskCompleted');
+Route::resource('mytasks', TasksController::class);
 
 
 Route::resource('conges', CongesController::class);

@@ -23,7 +23,7 @@ class NotificationController extends Controller
             $user = User::find($user_id);
 
 
-        return view('mytask.index', compact('user'));
+        return view('mytasks.index', compact('user'));
     }
 
 
