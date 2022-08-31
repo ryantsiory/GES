@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Conge;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CongesController extends Controller
 {
@@ -29,8 +30,12 @@ class CongesController extends Controller
     public function toValide()
     {
 
-        $conges = Conge::where('status',0)->orderBy('id')->paginate(4);
 
+
+        $conges = Conge::where('status',0)->orderBy('id')->paginate(4);
+        $createNotif = new Controller;
+
+        $createNotif->createNotification();
 
         return view('conges.validate', compact('conges'));
     }
@@ -195,4 +200,11 @@ class CongesController extends Controller
         Conge::find($id)->delete();
         return redirect()->route('conges.index');
     }
+
+
+
+
+
+
+
 }
