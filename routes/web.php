@@ -68,6 +68,8 @@ Route::middleware(['managerOrDirecteur'])->group(function () {
 
 });
 
+
+Route::put('notifications/all-seen', [NotificationController::class, 'allSeen'])->name('notification.allSeen');
 Route::put('mytask/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytask.updateTaskCompleted');
 Route::resource('mytask', TasksController::class);
 
