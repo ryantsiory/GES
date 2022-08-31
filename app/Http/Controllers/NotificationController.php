@@ -155,15 +155,8 @@ class NotificationController extends Controller
 
     public function allSeen()
     {
-      try {
+        $notif = Notification::where(['seen' => 0])->update(['seen' =>1]);
 
-
-            $notif = Notification::where(['seen' => 0])->update(['seen' =>1]);
-
-          return $this->sendResponse(null,"Success");
-      } catch (\Throwable $e) {
-        return $this->sendError(__('notification.failed'), ['error' => $e->getMessage()], 500);
-      }
     }
 
 }

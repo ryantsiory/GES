@@ -260,15 +260,19 @@
           </div><!-- dropdown -->
           <div class="dropdown ">
             <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-              <i class="icon ion-ios-bell-outline tx-24"></i>
-              <!-- start: if statement -->
-              <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
-              <!-- end: if statement -->
+
+                <i class="icon ion-ios-bell-outline tx-24"></i>
+                <!-- start: if statement -->
+                @if (!empty($count_notifications))
+                <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
+                <!-- end: if statement -->
+                @endif
+
             </a>
             <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Notifications</label>
-                <a href="#">tout marquer comme lu</a>
+                <a href="notifications/all-seen">tout marquer comme lu</a>
               </div><!-- d-flex -->
 
               <div class="media-list">
@@ -309,7 +313,7 @@
             @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role->name}}</span>
+              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role->name}} {{auth::User()->id}}</span>
               <img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-32 rounded-circle" alt="" style="height:45px;">
               <span class="square-10 bg-success"></span>
             </a>
