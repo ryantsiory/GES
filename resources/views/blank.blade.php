@@ -37,20 +37,20 @@
 
       @if(Auth::user()->role->name === 'personnel')
       <ul class="br-sideleft-menu">
-        <li class="br-menu-item">
+        {{-- <li class="br-menu-item">
           <a href="/dashboard" class="br-menu-link   {{ (request()->is('dashboard*')) ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
             <span class="menu-item-label">TABLEAU DE BORD</span>
           </a><!-- br-menu-link -->
-        </li><!-- br-menu-item -->
+        </li><!-- br-menu-item --> --}}
 
         <li class="br-menu-item">
-            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('postes*')) ? 'active' : '' }}">
+            <a href="mytasks" class="br-menu-link with-sub    {{ (request()->is('mytasks*')) ? 'active' : '' }}">
               <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
               <span class="menu-item-label">MES TÂCHES</span>
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub">
-              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+              <li class="sub-item"><a href="{{ route('mytasks.index') }}"  class="sub-link">Liste tâches</a></li>
             </ul>
           </li>
 
@@ -132,12 +132,12 @@
           </li>
 
           <li class="br-menu-item">
-            <a href="mytask" class="br-menu-link with-sub    {{ (request()->is('mytask*')) ? 'active' : '' }}">
+            <a href="mytasks" class="br-menu-link with-sub    {{ (request()->is('mytasks*')) ? 'active' : '' }}">
               <i class="menu-item-icon icon ion-ios-briefcase-outline tx-20"></i>
               <span class="menu-item-label">MES TÂCHES</span>
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub">
-              <li class="sub-item"><a href="{{ route('mytask.index') }}"  class="sub-link">Liste tâches</a></li>
+              <li class="sub-item"><a href="{{ route('mytasks.index') }}"  class="sub-link">Liste tâches</a></li>
             </ul>
           </li>
 
@@ -195,69 +195,58 @@
               <span class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
               <!-- end: if statement -->
             </a>
-            <div class="dropdown-menu dropdown-menu-header">
+            <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Messages</label>
-                <a href="#">+ Add New Message</a>
+                <a href="messages">Envoyer un nouveau Message</a>
               </div><!-- d-flex -->
 
               <div class="media-list">
                 <!-- loop starts here -->
-                <a href="#" class="media-list-link">
-                  <div class="media">
-                    <img src="../img/img3.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Donna Seay</p>
-                        <span>2 minutes ago</span>
-                      </div><!-- d-flex -->
-                      <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <!-- loop ends here -->
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img4.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Samantha Francis</p>
-                        <span>3 hours ago</span>
-                      </div><!-- d-flex -->
-                      <p>My entire soul, like these sweet mornings of spring.</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img7.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Robert Walker</p>
-                        <span>5 hours ago</span>
-                      </div><!-- d-flex -->
-                      <p>I should be incapable of drawing a single stroke at the present moment...</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
-                <a href="#" class="media-list-link read">
-                  <div class="media">
-                    <img src="../img/img5.jpg" alt="">
-                    <div class="media-body">
-                      <div>
-                        <p>Larry Smith</p>
-                        <span>Yesterday</span>
-                      </div><!-- d-flex -->
-                      <p>When, while the lovely valley teems with vapour around me, and the meridian sun strikes...</p>
-                    </div>
-                  </div><!-- media -->
-                </a>
+                {{-- <a href="#" class="media-list-link">
+                    <div class="media">
+                      <img src="../img/img3.jpg" alt="">
+                      <div class="media-body">
+                        <div>
+                          <p>Donna Seay</p>
+                          <span>2 minutes ago</span>
+                        </div><!-- d-flex -->
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                      </div>
+                    </div><!-- media -->
+                  </a> --}}
+
+                  @if (!empty($users))
+                    @foreach($users as $user)
+                    <a href="messages" class="media-list-link">
+                        <div class="media">
+                        <img src="{{ asset('images/'.$user->avatar) }}" alt=""  style="height: 45px;width: 45px; vertical-align: middle">
+                        <div class="media-body">
+                            <div>
+                            <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
+                            @for ($i = 0; $i < 1; $i++)
+                            <span style="font-size: 9px">{{  date('d-m, h:i a', strtotime($messages[$i]->created_at )) }}</span>
+                            </div><!-- d-flex -->
+                                <p>{{ $messages[$i]->message }}</p>
+
+                            @endfor
+
+                        </div>
+                        </div><!-- media -->
+                    </a>
+                    @endforeach
+                  @endif
+
+
                 <div class="dropdown-footer">
-                  <a href="#"><i class="fa fa-angle-down"></i> Show All Messages</a>
+                  <a href="messages"><i class="fa fa-angle-down"></i> Show All Messages</a>
                 </div>
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
+
+
+
           <div class="dropdown ">
             <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
 
@@ -272,7 +261,7 @@
             <div class="dropdown-menu dropdown-menu-header dropdown-notif">
               <div class="dropdown-menu-label">
                 <label>Notifications</label>
-                <a href="{{ route('notifications.allSeen') }}" onclick="event.preventDefault(); document.getElementById('submit-form').submit();">tout marquer comme lu</a>
+                <a href="{{ route('notifications.allSeen') }}" onclick="event.preventDefault(); document.getElementById('submit-form').submit();">Tout marquer comme lu</a>
               </div><!-- d-flex -->
 
             <form id="submit-form" action="{{ route('notifications.allSeen') }}" method="POST" class="hidden">
@@ -285,12 +274,16 @@
                 <!-- loop starts here -->
                 @if (!empty($notifications))
                 @foreach ($notifications as $notification)
-                <a href="#" class="media-list-link @if ($notification->seen == 1) read
-                @endif">
+                        @if ($notification->subject == "Congé")
+                        <a href="{{ route('conges.show', $notification->object) }}" class="media-list-link @if ($notification->seen == 1) read @endif">
+                        @endif
+                        @if ($notification->subject == "Tâche")
+                        <a href="{{ route('mytasks.index') }}" class="media-list-link @if ($notification->seen == 1) read @endif">
+                        @endif
                     <div class="media">
                       <img src="../img/img8.jpg" alt="">
                       <div class="media-body">
-                        <p class="noti-text"><strong>{{ $notification->subject }} </strong>{{ $notification->text }}</p>
+                        <p class="noti-text"><strong>{{ $notification->subject }} - </strong>{{ $notification->text }}</p>
                         <span>{{ $notification->created_at }}</span>
                       </div>
                     </div><!-- media -->

@@ -9,7 +9,7 @@ class Notification extends Model
 
     protected $table = 'notification';
 
-    protected $fillable = ['user_id', 'subject', 'text', 'seen', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['user_id', 'subject', 'text', 'seen', 'object',  'created_at', 'updated_at', 'deleted_at'];
 
     protected $casts = [
         'created_at'    => 'datetime',

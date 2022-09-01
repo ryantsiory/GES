@@ -39,8 +39,13 @@ class MessagesController extends Controller
         where users.id != " . Auth::id() . "
         group by users.id, users.name, users.avatar, users.email");
 
+        $my_id = Auth::id();
+
+        $messages = Message::select('message', 'from', 'to')->where('to', $my_id)->get();
+
+
 //        return view('home', ['users' => $users]);
-        return view('messages.homeMessages', compact('users'));
+        return view('messages.homeMessages');
     }
 
     public function getMessage($user_id)

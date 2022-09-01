@@ -73,17 +73,17 @@ Route::middleware(['managerOrDirecteur'])->group(function () {
     Route::resource('clients', ClientsController::class);
     Route::resource('tasks', TasksController::class);
     Route::resource('postes', PostesController::class);
+    Route::resource('dashboard', DashboardController::class);
 
 });
 
-Route::put('mytask/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytask.updateTaskCompleted');
-Route::resource('mytask', TasksController::class);
+Route::put('mytasks/update-task-completed/{id}', [TasksController::class, 'updateTaskCompleted'])->name('mytasks.updateTaskCompleted');
+Route::resource('mytasks', TasksController::class);
 
 
 Route::resource('conges', CongesController::class);
 
 
-Route::resource('dashboard', DashboardController::class);
 
 Route::resource('messages', MessagesController::class);
 

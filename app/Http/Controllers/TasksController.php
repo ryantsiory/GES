@@ -33,7 +33,7 @@ class TasksController extends Controller
                 }
             }
 
-        return view('mytask.index', compact('user', 'tasks'));
+        return view('mytasks.index', compact('user', 'tasks'));
     }
 
     /**
@@ -65,21 +65,23 @@ class TasksController extends Controller
             'description' => 'required|min:10',
         ]);
 
-        $user_id =  $request->nom;
+        $user_id =  $request->user;
         $project_id =  $request->project;
         $title = $request->title;
         $description =  $request->description;
+        $date_start =  $request->date_start;
+        $date_echeance =  $request->date_echeance;
 
 
         Task::create([
             'user_id' => $user_id,
-            'project' => $project_id,
-            'description' => $description,
+            'project_id' => $project_id,
             'title' => $title,
+            'description' => $description,
             'status' => 0,
             'completed' => 0,
-            'date_start' => null,
-            'date_end' => null,
+            'date_start' => $date_start,
+            'date_echeance' => $date_echeance,
         ]);
 
         session()->flash('success');
@@ -109,10 +111,9 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-    //     $personnel = Personnel::find($id);
-    //     $postes = Poste::all();
+        $task = Task::find($id);
 
-    //     return view('personnels.edit', compact('personnel', 'postes'));
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -124,14 +125,14 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $personnel = Personnel::find($id);
+        $task = Task::find($id);
 
-        // $nom =  $request->nom;
-        // $poste =  $request->poste;
+        $title =  $request->title;
+        $description =  $request->description;
 
-        // $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
+        $task->update(['title' => $title, 'description' => $description]);
 
-        // return redirect()->route('personnels.index');
+        return redirect()->route('projects.show', $task->project_id);
     }
 
 
@@ -151,7 +152,7 @@ class TasksController extends Controller
 
         $task->update(['completed' => $completed]);
 
-        return redirect()->route('mytask.index');
+        return redirect()->route('mytasks.index');
     }
 
     /**
@@ -162,37 +163,9 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        // Personnel::find($id)->delete();
-        // return redirect()->route('personnels.index');
+        Task::find($id)->delete();
+        return redirect()->route('projects.index');
     }
 
 
-
-    //create notif
-    public function createNotification(Request $request)
-    {
-
-            // createNotification(Request $request)
-                $user_executor_id = Auth::guard('api')->user()->id;
-                $user_executor_id=User::where(['id'=> $user_executor_id])->with('info')->get();
-                $users_owner_id = [];
-
-                if (!empty($users)) {
-                    foreach ($users_owner_id as $users_owner){
-                        $dataNotif = [
-                            'subject' => "Une tâche vous a été assignée",
-                            'text' => "Une nouvelle tâche vous a été assignée par "+$user_executor_id->email,
-                            'user_id' => $users_owner_id,
-                            'seen' => 0,
-                            'object' => null,
-                            'created_at' => now(),
-                            'updated_at'=> now()->addMinutes(30),
-                            'deleted_at' => now()->addDay(30),
-                        ];
-                        $notification = Notification::create($dataNotif);
-                    }
-                }
-
-
-    }
 }

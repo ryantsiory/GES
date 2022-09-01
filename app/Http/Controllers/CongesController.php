@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Conge;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CongesController extends Controller
 {
@@ -28,6 +29,8 @@ class CongesController extends Controller
      */
     public function toValide()
     {
+
+
 
         $conges = Conge::where('status',0)->orderBy('id')->paginate(4);
 
@@ -153,9 +156,18 @@ class CongesController extends Controller
      */
     public function toAccept(Request $request, $id)
     {
+
+
         $conge = Conge::find($id);
 
         $conge->update(['status' => 1, 'answered_at' =>now()]);
+
+        $this->createNotification(
+                                    "Congé",
+                                    "Votre demande de congé à été acceptée par".auth()->user()->email,
+                                    $id,
+                                    $conge->user_id
+                                );
 
         return redirect()->route('conges.index');
     }
@@ -172,6 +184,13 @@ class CongesController extends Controller
         $conge = Conge::find($id);
 
         $conge->update(['status' => -1, 'answered_at' =>now()]);
+
+        $this->createNotification(
+                            "Congé",
+                            "Votre demande de congé à été refusé par ".auth()->user()->email,
+                            $id,
+                            $conge->user_id
+    );
 
         return redirect()->route('conges.index');
     }
@@ -195,4 +214,11 @@ class CongesController extends Controller
         Conge::find($id)->delete();
         return redirect()->route('conges.index');
     }
+
+
+
+
+
+
+
 }

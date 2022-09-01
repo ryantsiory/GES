@@ -29,8 +29,6 @@ class HomeController extends Controller
 
         $user = User::find($user_id);
 
-        $notifications = Notification::where("user_id", $user_id)->get();
-
-        return view('blank', compact('user', 'notifications'));
+        return view('blank', compact('user'));
     }
 }

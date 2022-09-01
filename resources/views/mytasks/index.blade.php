@@ -26,7 +26,7 @@
 
                     <div class="row">
                       <div class="col-2">
-                        <form action="{{ route('mytask.updateTaskCompleted', $task->id) }}" method="post">
+                        <form action="{{ route('mytasks.updateTaskCompleted', $task->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <select class="form-control  form-control-sm" name="task_completed">

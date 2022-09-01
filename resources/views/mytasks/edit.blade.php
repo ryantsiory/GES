@@ -11,7 +11,7 @@
       {{-- <p class="br-section-text">A basic form control with disabled and readonly mode.</p> --}}
 
 
-      <form action="{{ route('tasks.update', $task->id) }}" method="post">
+      <form action="{{ route('task.update', $task->id) }}" method="post">
         @csrf
         @method('PUT')
 
@@ -24,7 +24,7 @@
             </div><!-- col -->
         </div><!-- row -->
         <div class="row mt-2 mx-auto">
-            <button type="submit" class="btn btn-success">Mettre à jour la tâche</button>
+            <button type="submit" class="btn btn-success">Mettre à jour le tâche</button>
         </div>
      </form>
     </div>
