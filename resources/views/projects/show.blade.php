@@ -25,13 +25,13 @@
             </div><!-- col -->
         </div><!-- row -->
         <br>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 Tâches :
                 <ul>
                     @foreach ($project->tasks as $task)
                     <li>
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-3">
                                 {{ $task->title }}
                             </div>
                             <div class=" col-3">
@@ -66,6 +66,24 @@
                                     </select>
                                     <button type="submit" class="btn btn-sm">Valider</button>
                                 </form>
+                            </div>
+
+                            <div class=" col-2">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <button><a href="{{ route('mytasks.edit', $task->id) }}" class=""><i class="menu-item-icon icon ion-ios-settings  tx-20"></i></a></button>
+
+                                    </div>
+                                    <div class="col-1 ml-1">
+                                        <form method="post" action="{{ route('mytasks.destroy', $task->id) }}" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class=""><i class="menu-item-icon icon ion-ios-trash  tx-20"></button></i>
+                                        </form>
+                                    </div>
+                                </div>
+
+
                             </div>
 
                         </div>

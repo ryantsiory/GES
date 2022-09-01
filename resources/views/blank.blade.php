@@ -203,7 +203,7 @@
 
               <div class="media-list">
                 <!-- loop starts here -->
-                <a href="#" class="media-list-link">
+                {{-- <a href="#" class="media-list-link">
                     <div class="media">
                       <img src="../img/img3.jpg" alt="">
                       <div class="media-body">
@@ -214,7 +214,7 @@
                         <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
                       </div>
                     </div><!-- media -->
-                  </a>
+                  </a> --}}
 
                   @if (!empty($users))
                     @foreach($users as $user)
@@ -225,7 +225,7 @@
                             <div>
                             <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
                             @for ($i = 0; $i < 1; $i++)
-                            <span style="font-size: 9px">{{  date('d-m-Y, h:i a', strtotime($messages[$i]->created_at )) }}</span>
+                            <span style="font-size: 9px">{{  date('d-m, h:i a', strtotime($messages[$i]->created_at )) }}</span>
                             </div><!-- d-flex -->
                                 <p>{{ $messages[$i]->message }}</p>
 

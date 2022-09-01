@@ -14,12 +14,12 @@
         @csrf
         <div class="row">
             <div class="col-lg-4">
-                <label for="personnel">assigner à </label>
+                <label for="user">assigner à </label>
                 <select class="form-control @error('user') is-invalid @enderror" name="user" >
                     <option value="" default selected disabled>-- --</option>
 
                     @foreach ($users as $user)
-                    <option value="{{ $user->id}}" >{{ $user->name}} {{ $user->lastname}}</option>
+                    <option value="{{ $user->id}}" >{{ $user->name}} @if (!empty($user->lastname)){{ $user->lastname }}@endif</option>
                   @endforeach
                 </select>
                 @error('user')
@@ -30,7 +30,7 @@
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="personnel">Nom du projet</label>
+                <label for="project">Nom du projet</label>
                 <select class="form-control @error('project') is-invalid @enderror" name="project" >
                     <option value="" default selected disabled>--Choisir le projet--</option>
 
@@ -46,7 +46,7 @@
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="motif">Titre </label>
+                <label for="title">Titre </label>
                 <input class="form-control @error('title') is-invalid @enderror"  name="title" placeholder="Entrez le titre" type="text">
                 @error('title')
                     <div class="invalid-feedback">
@@ -57,7 +57,7 @@
             </div><!-- col -->
 
             <div class="col-lg-4">
-                <label for="motif">Description</label> </label>
+                <label for="description">Description</label> </label>
                 <input class="form-control @error('description') is-invalid @enderror"  name="description" placeholder="Entrez la description" type="textarea" rows="3">
                 @error('description')
                     <div class="invalid-feedback">
@@ -67,28 +67,28 @@
 
             </div><!-- col -->
         </div><!-- row -->
-        {{-- <div class="row mt-3">
+        <div class="row mt-3">
             <div class="col-lg-4">
-                <label for="depart_date">Date départ</label>
-                <input class="form-control @error('depart_date') is-invalid @enderror"  name="depart_date" placeholder="Date départ" type="date">
-                @error('depart_date')
+                <label for="date_start">Date début</label>
+                <input class="form-control @error('date_start') is-invalid @enderror"  name="date_start" placeholder="Date début" type="date">
+                @error('date_start')
                     <div class="invalid-feedback">
-                        {{ $errors->first('depart_date') }}
+                        {{ $errors->first('date_start') }}
                     </div>
                 @enderror
 
             </div><!-- col -->
             <div class="col-lg-4">
-                <label for="retour_date">Retour départ</label>
-                <input class="form-control @error('retour_date') is-invalid @enderror"  name="retour_date" placeholder="Retour départ" type="date">
-                @error('retour_date')
+                <label for="date_echeance">Date fin</label>
+                <input class="form-control @error('date_echeance') is-invalid @enderror"  name="date_echeance" placeholder="Date écheante" type="date">
+                @error('date_echeance')
                     <div class="invalid-feedback">
-                        {{ $errors->first('retour_date') }}
+                        {{ $errors->first('date_echeance') }}
                     </div>
                 @enderror
 
             </div><!-- col -->
-        </div><!-- row --> --}}
+        </div><!-- row -->
         <div class="row mt-2 mx-auto">
             <button type="submit" class="btn btn-success">Créer tâche</button>
         </div>

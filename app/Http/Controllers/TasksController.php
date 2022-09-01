@@ -65,21 +65,23 @@ class TasksController extends Controller
             'description' => 'required|min:10',
         ]);
 
-        $user_id =  $request->nom;
+        $user_id =  $request->user;
         $project_id =  $request->project;
         $title = $request->title;
         $description =  $request->description;
+        $date_start =  $request->date_start;
+        $date_echeance =  $request->date_echeance;
 
 
         Task::create([
             'user_id' => $user_id,
-            'project' => $project_id,
-            'description' => $description,
+            'project_id' => $project_id,
             'title' => $title,
+            'description' => $description,
             'status' => 0,
             'completed' => 0,
-            'date_start' => null,
-            'date_end' => null,
+            'date_start' => $date_start,
+            'date_echeance' => $date_echeance,
         ]);
 
         session()->flash('success');
@@ -109,10 +111,9 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-    //     $personnel = Personnel::find($id);
-    //     $postes = Poste::all();
+        $task = Task::find($id);
 
-    //     return view('personnels.edit', compact('personnel', 'postes'));
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -124,14 +125,14 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $personnel = Personnel::find($id);
+        $task = Task::find($id);
 
-        // $nom =  $request->nom;
-        // $poste =  $request->poste;
+        $title =  $request->title;
+        $description =  $request->description;
 
-        // $personnel->update(['nom' => $nom, 'poste_id' => $poste]);
+        $task->update(['title' => $title, 'description' => $description]);
 
-        // return redirect()->route('personnels.index');
+        return redirect()->route('projects.show', $task->project_id);
     }
 
 
@@ -162,8 +163,8 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        // Personnel::find($id)->delete();
-        // return redirect()->route('personnels.index');
+        Task::find($id)->delete();
+        return redirect()->route('projects.index');
     }
 
 
