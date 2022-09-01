@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
         $my_id = Auth::id();
 
-        $messages = Message::select('message', 'from', 'to')->where('to', $my_id)->get();
+        $messagesNav = Message::select('message', 'from', 'to')->where('to', $my_id)->get();
 
 
 
@@ -61,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
         $view->with('count_notifications', $count_notifications);
 
         $view->with('users', $users);
-        $view->with('messages', $messages);
+        $view->with('messagesNav', $messagesNav);
         }
         else
         {
