@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themepixels.me/demo/bracketplus1.4/app/template/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Sep 2021 12:46:55 GMT -->
+<!-- Mirrored from themepixels.me/demo/bracketplus1.4/app/template/blank.html by HTTrack Website Copier/3.x [XR&CO2014], Thu, 02 Sep 2021 12:46:55 GMT -->
 <head>
     <link rel="icon" href="{{ url('css/css/faviconGes.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('css/style^m.css') }}">
@@ -225,9 +225,9 @@
                             <div>
                             <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
                             @for ($i = 0; $i < 1; $i++)
-                            <span style="font-size: 9px">{{  date('d-m, h:i a', strtotime($messages[$i]->created_at )) }}</span>
+                            <span style="font-size: 9px">{{  date('d-m, h:i a', strtotime($messagesNav[$i]->created_at )) }}</span>
                             </div><!-- d-flex -->
-                                <p>{{ $messages[$i]->message }}</p>
+                                <p>{{ $messagesNav[$i]->message }}</p>
 
                             @endfor
 
