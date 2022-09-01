@@ -15,6 +15,8 @@ use App\Models\Information;
 use App\Models\Role;
 use App\Models\Notification;
 
+use App\Models\Message;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -85,5 +87,9 @@ class User extends Authenticatable
 
     public function notifications(){
         return $this->hasMany(Notification::class);
+    }
+
+    public function messages(){
+        return $this->hasMany(Message::class, 'to', 'to');
     }
 }

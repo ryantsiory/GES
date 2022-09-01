@@ -218,7 +218,7 @@
 
                   @if (!empty($users))
                     @foreach($users as $user)
-                    <a href="messages" class="media-list-link">
+                    <a href="{{ route('message', $user->id) }}" class="media-list-link">
                         <div class="media">
                         <img src="{{ asset('images/'.$user->avatar) }}" alt=""  style="height: 45px;width: 45px; vertical-align: middle">
                         <div class="media-body">
