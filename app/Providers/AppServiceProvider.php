@@ -37,7 +37,9 @@ class AppServiceProvider extends ServiceProvider
 // if (auth()->user()){
     view()->composer('*',function($view) {
 
-        $user_id = auth()->user()->id;
+        if(Auth::user() != null)
+        {
+            $user_id = auth()->user()->id;
         $notifications = Notification::where("user_id", $user_id)->orderBy('id', 'desc')->get();
         $count_notifications = Notification::where("user_id", $user_id)->where("seen", 0)->count();
 
@@ -60,6 +62,13 @@ class AppServiceProvider extends ServiceProvider
 
         $view->with('users', $users);
         $view->with('messages', $messages);
+        }
+        else
+        {
+
+        }
+
+
     });
 
 // }
