@@ -218,8 +218,11 @@
 
                   @if (!empty($users))
                     @foreach($users as $user)
-                    <a href="{{ route('message', $user->id) }}" class="media-list-link">
+                    <a href="{{ route('messages.index') }}" class="media-list-link">
                         <div class="media">
+                            @if($user->unread)
+                            <span class="pendingNav">{{ $user->unread }}</span>
+                        @endif
                         <img src="{{ asset('images/'.$user->avatar) }}" alt=""  style="height: 45px;width: 45px; vertical-align: middle">
                         <div class="media-body">
                             <div>

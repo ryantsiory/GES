@@ -89,6 +89,17 @@
             color: #ffffff;
             font-size: 12px;
         }
+        .pendingNav {
+            background: #46c1ff;
+            margin: 0;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            padding-left: 5px;
+            color: #ffffff;
+            font-size: 12px;
+        }
 
         .media-left {
             margin: 0 10px;
