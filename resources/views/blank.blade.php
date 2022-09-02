@@ -226,12 +226,21 @@
                         <img src="{{ asset('images/'.$user->avatar) }}" alt=""  style="height: 45px;width: 45px; vertical-align: middle">
                         <div class="media-body">
                             <div>
-                            <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
-                            @for ($i = 0; $i < 1; $i++)
-                            <span style="font-size: 9px">{{  date('d-m, h:i a', strtotime($messagesNav[$i]->created_at )) }}</span>
-                            </div><!-- d-flex -->
-                                <p>{{ $messagesNav[$i]->message }}</p>
 
+                            <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
+
+                            </div><!-- d-flex -->
+                            @for ($i =0 ; $i <1 ; $i++)
+                            @foreach ($messagesNav as $message)
+
+                            @if ($message->from == $user->id)
+
+                                    <p>{{ $message->message }}</p>
+
+
+
+                                @endif
+                            @endforeach
                             @endfor
 
                         </div>

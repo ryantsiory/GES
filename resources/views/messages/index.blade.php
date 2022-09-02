@@ -1,5 +1,20 @@
+<div class="br-chat-header">
+    <div class="br-img-user"><img src="../img/img2.jpg" alt=""></div>
+    <div class="chat-name">
+      <h6>Reynante Labares</h6>
+      <small>Last seen: 2 minutes ago</small>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link"><i class="icon ion-android-more-vertical"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-telephone-outline"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-videocam-outline"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-trash-outline"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-information-outline"></i></a>
+    </nav>
+  </div><!-- br-msg-header -->
 
 <div class="message-wrapper">
+
     <ul class="messages">
         @foreach($messages as $message)
             <li class="message clearfix">
@@ -13,7 +28,16 @@
     </ul>
 </div>
 
-<div class="input-text">
-    <input type="text" name="message" class="submit">
-</div>
+<div class="br-chat-footer input-text">
+    <nav class="nav">
+      <a href="#" class="nav-link"><i class="icon ion-ios-camera-outline"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-mic-outline"></i></a>
+    </nav>
+    <div><input type="text" name="message" class=""></div>
+    <nav class="nav">
+      <a href="#" class="nav-link"><i class="icon ion-happy-outline tx-22"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-game-controller-b-outline"></i></a>
+      <a href="#" class="nav-link"><i class="icon ion-ios-gear-outline"></i></a>
+    </nav>
+  </div><!-- br-chat-footer -->
 
