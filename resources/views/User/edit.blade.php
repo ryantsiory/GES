@@ -72,7 +72,7 @@
                         <div class="col-4 ">
                             <div class="form-group mb-3">
                                 <label for="">Adresse</label>
-                                <input type="text" name="adresse" value="{{$user->info?->adresse}}" class="form-control @error('adresse') is-invalid @enderror">
+                                <input type="text" name="adresse" value="@if (!empty($user->info->adresse)){{$user->info->adresse}}@endif" class="form-control @error('adresse') is-invalid @enderror">
                                 @error('adresse')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
@@ -80,7 +80,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="">Téléphone</label>
-                                <input type="text" name="telephone" value="{{$user->info?->telephone}}" class="form-control @error('telephone') is-invalid @enderror">
+                                <input type="text" name="telephone" value="@if (!empty($user->info->telephone)){{$user->info->telephone}}@endif" class="form-control @error('telephone') is-invalid @enderror">
                                 @error('telephone')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
@@ -88,7 +88,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="">Date de naissance</label>
-                                <input type="date" name="date_de_naissance" value="{{$user->info?->date_de_naissance}}" class="form-control @error('date_de_naissance') is-invalid @enderror">
+                                <input type="date" name="date_de_naissance" value="@if (!empty($user->info->date_de_naissance)){{$user->info->date_de_naissance}}@endif" class="form-control @error('date_de_naissance') is-invalid @enderror">
                                 @error('date_de_naissance')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror

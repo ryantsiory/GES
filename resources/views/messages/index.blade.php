@@ -5,11 +5,7 @@
       <small>Last seen: 2 minutes ago</small>
     </div>
     <nav class="nav">
-      <a href="#" class="nav-link"><i class="icon ion-android-more-vertical"></i></a>
-      <a href="#" class="nav-link"><i class="icon ion-ios-telephone-outline"></i></a>
-      <a href="#" class="nav-link"><i class="icon ion-ios-videocam-outline"></i></a>
-      <a href="#" class="nav-link"><i class="icon ion-ios-trash-outline"></i></a>
-      <a href="#" class="nav-link"><i class="icon ion-ios-information-outline"></i></a>
+
     </nav>
   </div><!-- br-msg-header -->
 
@@ -33,11 +29,7 @@
       <a href="#" class="nav-link"><i class="icon ion-ios-camera-outline"></i></a>
       <a href="#" class="nav-link"><i class="icon ion-ios-mic-outline"></i></a>
     </nav>
-    <div><input type="text" name="message" class=""></div>
-    <nav class="nav">
-      <a href="#" class="nav-link"><i class="icon ion-happy-outline tx-22"></i></a>
-      <a href="#" class="nav-link"><i class="icon ion-ios-game-controller-b-outline"></i></a>
-      <a href="#" class="nav-link"><i class="icon ion-ios-gear-outline"></i></a>
-    </nav>
+    <div class="pb-3"><input type="text" name="message" class=""></div>
+
   </div><!-- br-chat-footer -->
 

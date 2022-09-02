@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 24 août 2022 à 09:44
+-- Généré le : ven. 02 sep. 2022 à 10:39
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `ges_0`
+-- Base de données : `v2ges`
 --
 
 -- --------------------------------------------------------
@@ -128,6 +128,46 @@ INSERT INTO `information` (`id`, `user_id`, `adresse`, `telephone`, `date_de_nai
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `from` bigint(20) NOT NULL,
+  `to` bigint(20) NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_read` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `messages`
+--
+
+INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, 'hello', 1, '2022-08-23 15:06:42', '2022-08-24 15:11:20'),
+(2, 4, 1, 'how are you', 1, '2022-08-24 15:08:25', '2022-08-24 15:11:20'),
+(3, 1, 2, 'hello Syvio, it\'s Ryan', 1, '2022-08-24 15:11:42', '2022-09-02 05:22:50'),
+(4, 2, 1, 'hello ryan it\'s syvio', 0, '2022-08-24 15:16:56', '2022-08-24 15:16:56'),
+(5, 2, 1, 'Hello', 0, '2022-08-24 15:41:37', '2022-08-24 15:41:37'),
+(6, 2, 4, 'Coucou toi', 1, '2022-08-24 15:42:02', '2022-09-02 05:14:49'),
+(7, 4, 2, 'Salut Syvio!', 1, '2022-08-24 15:44:59', '2022-09-02 05:14:08'),
+(8, 2, 4, 'Hello Nancya', 1, '2022-08-23 06:48:45', '2022-09-02 05:14:49'),
+(9, 2, 4, 'coucou', 1, '2022-08-25 06:50:01', '2022-09-02 05:14:49'),
+(10, 2, 4, 'Salut, comment ça va?', 1, '2022-08-31 19:10:02', '2022-09-02 05:14:49'),
+(11, 4, 2, 'Oui ça va bien et toi?', 1, '2022-08-31 19:10:57', '2022-09-02 05:14:08'),
+(12, 2, 3, 'Salut Tsanta!', 0, '2022-08-31 19:25:54', '2022-08-31 19:25:54'),
+(13, 5, 2, 'Finaritra oh', 1, '2022-09-01 16:19:31', '2022-09-02 05:27:41'),
+(14, 2, 5, 'ina vaovao anao?', 0, '2022-09-01 16:20:33', '2022-09-01 16:20:33'),
+(15, 2, 1, 'Fitia elle est toute petite xD elle me gronde toujours, mais elle est très gentille avec moi...ca c\'est ma jumelle', 0, '2022-09-01 16:37:06', '2022-09-01 16:37:06'),
+(16, 4, 2, 'Navita devoir nga elah?', 1, '2022-09-01 16:40:37', '2022-09-02 05:14:08'),
+(17, 2, 1, 'Bonjour manao react zao zay', 0, '2022-09-02 02:56:26', '2022-09-02 02:56:26'),
+(18, 2, 4, 'tena sarotra ty ka', 1, '2022-09-02 03:34:40', '2022-09-02 05:14:49');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `migrations`
 --
 
@@ -149,6 +189,52 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_06_18_065345_create_clients_table', 1),
 (6, '2022_06_18_112440_create_postes_table', 2),
 (7, '2022_06_18_113027_create_personnels_table', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `object` varchar(255) DEFAULT NULL,
+  `text` text NOT NULL,
+  `seen` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `notification`
+--
+
+INSERT INTO `notification` (`id`, `user_id`, `subject`, `object`, `text`, `seen`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 4, 'Congé', '1', 'Votre demande de congé a été accepté', 1, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
+(2, 2, 'Congé', '6', 'Votre demande de congé a été accepté', 1, '2022-08-25 09:54:29', '2022-08-31 19:11:12', '2022-08-25 09:54:29'),
+(3, 3, 'Congé', '11', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
+(4, 2, 'Congé', '9', 'Votre demande de congé a été refusée', 1, '2022-08-25 09:54:29', '2022-08-31 19:11:12', '2022-08-25 09:54:29'),
+(5, 4, 'Congé', '3', 'Votre demande de congé a été accepté', 0, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
+(6, 2, 'Tâche', '4', 'Une nouvelle tâche vous a été assignée', 1, '2022-08-25 09:54:29', '2022-08-31 18:36:11', '2022-08-25 09:54:29'),
+(7, 4, 'Congé', '7', 'Votre demande de congé a été refusée', 1, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
+(8, 1, 'Tâche', '2', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-31 18:36:11', '2022-08-25 09:54:29'),
+(9, 2, 'Congé', '9', 'Votre demande de congé a été accepté', 1, '2022-08-25 08:54:29', '2022-08-31 19:11:12', '2022-08-25 08:54:29'),
+(10, 1, 'Tâche', '8', 'Une nouvelle tâche vous a été assignée', 1, '2022-08-25 09:54:29', '2022-08-31 18:36:11', '2022-08-25 09:54:29'),
+(11, 3, 'Congé', '11', 'Votre demande de congé a été accepté', 1, '2022-08-25 08:54:29', '2022-08-31 18:36:11', '2022-08-25 08:54:29'),
+(12, 1, 'Tâche', '16', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-31 18:36:11', '2022-08-25 09:54:29'),
+(13, 4, 'Congé', '7', 'Votre demande de congé a été accepté', 1, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
+(14, 2, 'Tâche', '6', 'Une nouvelle tâche vous a été assignée', 1, '2022-08-25 09:54:29', '2022-08-31 19:11:12', '2022-08-25 09:54:29'),
+(15, 4, 'Congé', '1', 'Votre demande de congé a été accepté', 1, '2022-08-25 08:54:29', '2022-08-25 08:54:29', '2022-08-25 08:54:29'),
+(16, 3, 'Tâche', '10', 'Une nouvelle tâche vous a été assignée', 0, '2022-08-25 09:54:29', '2022-08-25 09:54:29', '2022-08-25 09:54:29'),
+(17, 2, 'Congé', '9', 'Votre demande de congé à été acceptée', 0, '2022-08-31 20:56:52', '2022-08-31 21:26:52', '2022-09-30 20:56:52'),
+(18, 2, 'Congé', '6', 'Votre demande de congé à été refusé par fnancya@ges.com', 0, '2022-08-31 21:09:22', '2022-08-31 21:39:22', '2022-09-30 21:09:22'),
+(19, 4, 'Congé', '9', 'Votre demande de congé à été refusé par fnancya@ges.com', 0, '2022-08-31 21:10:50', '2022-08-31 21:40:50', '2022-09-30 21:10:50'),
+(20, 4, 'Congé', '1', 'Votre demande de congé à été acceptée parfnancya@ges.com', 0, '2022-08-31 21:11:52', '2022-08-31 21:41:52', '2022-09-30 21:11:52'),
+(21, 4, 'Tâche', '9', 'Une nouvelle tâche vous a été assignée par fnancya@ges.com', 0, '2022-08-31 21:16:17', '2022-08-31 21:46:17', '2022-09-30 21:16:17'),
+(22, 2, 'Tâche', '9', 'Une nouvelle tâche vous a été assignée par fnancya@ges.com', 0, '2022-08-31 21:16:24', '2022-08-31 21:46:24', '2022-09-30 21:16:24');
 
 -- --------------------------------------------------------
 
@@ -217,20 +303,22 @@ CREATE TABLE `projects` (
   `title` varchar(500) NOT NULL,
   `description` text DEFAULT NULL,
   `client_id` bigint(20) DEFAULT NULL,
-  `date_echeance` date DEFAULT NULL
+  `date_echeance` date DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `projects`
 --
 
-INSERT INTO `projects` (`id`, `status`, `title`, `description`, `client_id`, `date_echeance`) VALUES
-(1, 0, 'M\'sera', 'E-commerce\nProject Angular+Laravel et MySQL : ', 15, '2022-09-30'),
-(2, 0, 'Proxizone', 'React + Symfony et MySQL : gestion banque', 8, '2022-10-31'),
-(3, 0, 'MyCanal', 'Project Symfony+React et MongoDB: télévision et chaines en ligne', 16, '2022-09-30'),
-(4, 0, 'Finance', 'Finance site\nReact + Symfony et MySQL', 15, '2022-10-31'),
-(5, 0, 'Gestion Carburant', 'Project Symfony+React et MongoDB: gestion carburant pour madagascar', 13, '2022-09-30'),
-(6, 0, 'Site web Radisson', 'Site web Radisson Blue\r\nReact + Symfony et MySQL', 2, '2022-10-31');
+INSERT INTO `projects` (`id`, `status`, `title`, `description`, `client_id`, `date_echeance`, `created_at`, `updated_at`) VALUES
+(1, 0, 'M\'sera 2.0', 'E-commerceProject Angular+Laravel et MySQL :', 15, '2022-09-30', NULL, '2022-08-31 22:59:57'),
+(2, 0, 'Proxizone', 'React + Symfony et MySQL : gestion banque', 8, '2022-10-31', NULL, NULL),
+(3, 0, 'MyCanal', 'Project Symfony+React et MongoDB: télévision et chaines en ligne', 16, '2022-09-30', NULL, NULL),
+(4, 0, 'Finance', 'Finance site\nReact + Symfony et MySQL', 15, '2022-10-31', NULL, NULL),
+(5, 0, 'Gestion Carburant', 'Project Symfony+React et MongoDB: gestion carburant pour madagascar', 13, '2022-09-30', NULL, NULL),
+(6, 0, 'Site web Radisson', 'Site web Radisson Blue\r\nReact + Symfony et MySQL', 2, '2022-10-31', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -268,6 +356,7 @@ CREATE TABLE `tasks` (
   `description` text NOT NULL,
   `date_start` date NOT NULL,
   `date_echeance` date NOT NULL,
+  `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -275,23 +364,23 @@ CREATE TABLE `tasks` (
 -- Déchargement des données de la table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `title`, `status`, `completed`, `project_id`, `user_id`, `description`, `date_start`, `date_echeance`, `updated_at`) VALUES
-(1, 'Intégration', 0, 60, 1, 2, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', '2022-08-09 21:20:35'),
-(2, 'Base de données', 0, 60, 1, 1, 'Créer MCD de notre application', '2022-08-10', '2022-08-16', '2022-08-23 07:34:26'),
-(3, 'Intégration', 0, 30, 2, 3, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', '2022-08-09 21:20:17'),
-(4, 'Login ', 0, 30, 1, 2, 'Commencer la partie Login et Register', '2022-08-10', '2022-08-16', '2022-08-09 21:21:07'),
-(6, 'Annonces liste', 0, 0, 1, 2, 'Get all announces, with pagination', '2022-08-10', '2022-08-12', '2022-08-09 20:58:18'),
-(7, 'Detail-annonce', 0, 30, 1, 3, 'Page detail-announce with seller', '2022-08-10', '2022-08-16', '2022-08-09 17:53:48'),
-(8, 'Update image annonces', 0, 30, 1, 1, 'Function update announce\'s images', '2022-08-10', '2022-08-12', '2022-08-23 07:34:33'),
-(9, 'Logout ', 0, 60, 1, 4, 'Commencer la partie Logout', '2022-08-10', '2022-08-16', '2022-08-24 05:39:19'),
-(10, 'Intégration page d\'accueil', 0, 60, 6, 3, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', '2022-08-09 21:20:35'),
-(11, 'Base de données de Radisson', 0, 30, 6, 3, 'Créer MCD de notre site', '2022-08-10', '2022-08-16', '2022-08-09 17:53:48'),
-(12, 'Importer photos de l\'hôtel', 0, 30, 6, 3, 'Prendre et importer toutes les photos nécessaires de l\'hôtel', '2022-08-10', '2022-08-12', '2022-08-09 21:20:17'),
-(13, 'Login ', 0, 0, 6, 3, 'Commencer la partie Login et Register', '2022-08-10', '2022-08-16', '2022-08-09 21:42:52'),
-(14, 'Services liste', 0, 0, 6, 2, 'Données des différents service, avec pagination', '2022-08-10', '2022-08-12', '2022-08-09 20:58:18'),
-(15, 'Detail-annonce', 0, 30, 6, 3, 'Page detail-service avec prix', '2022-08-10', '2022-08-16', '2022-08-09 17:53:48'),
-(16, 'Localisation', 0, 100, 6, 1, 'carte de localisation', '2022-08-10', '2022-08-12', '2022-08-09 21:44:27'),
-(17, 'Logout ', 0, 100, 2, 2, 'Commencer la partie Logout', '2022-08-10', '2022-08-16', '2022-08-09 19:23:25');
+INSERT INTO `tasks` (`id`, `title`, `status`, `completed`, `project_id`, `user_id`, `description`, `date_start`, `date_echeance`, `created_at`, `updated_at`) VALUES
+(1, 'Intégration de la maquette html', 0, 60, 1, 2, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', NULL, '2022-09-01 05:39:58'),
+(2, 'Base de données', 0, 60, 1, 1, 'Créer MCD de notre application', '2022-08-10', '2022-08-16', NULL, '2022-08-23 07:34:26'),
+(3, 'Intégration', 0, 30, 2, 3, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', NULL, '2022-08-09 21:20:17'),
+(6, 'Page Annonces liste', 0, 0, 1, 2, 'Get all announces, with pagination', '2022-08-10', '2022-08-12', NULL, '2022-09-01 05:37:29'),
+(7, 'Detail-annonce', 0, 30, 1, 3, 'Page detail-announce with seller', '2022-08-10', '2022-08-16', NULL, '2022-08-09 17:53:48'),
+(8, 'Update image annonces', 0, 30, 1, 1, 'Function update announce\'s images', '2022-08-10', '2022-08-12', NULL, '2022-08-23 07:34:33'),
+(9, 'Logout ', 0, 60, 1, 4, 'Commencer la partie Logout', '2022-08-10', '2022-08-16', NULL, '2022-08-24 05:39:19'),
+(10, 'Intégration page d\'accueil', 0, 60, 6, 3, 'Commencer l\'intégration des pages d\'accueil et login register sur Angular en utilisant Bootstrap', '2022-08-10', '2022-08-12', NULL, '2022-08-09 21:20:35'),
+(11, 'Base de données de Radisson', 0, 30, 6, 3, 'Créer MCD de notre site', '2022-08-10', '2022-08-16', NULL, '2022-08-09 17:53:48'),
+(12, 'Importer photos de l\'hôtel', 0, 30, 6, 3, 'Prendre et importer toutes les photos nécessaires de l\'hôtel', '2022-08-10', '2022-08-12', NULL, '2022-08-09 21:20:17'),
+(13, 'Login ', 0, 0, 6, 3, 'Commencer la partie Login et Register', '2022-08-10', '2022-08-16', NULL, '2022-08-09 21:42:52'),
+(14, 'Services liste', 0, 0, 6, 2, 'Données des différents service, avec pagination', '2022-08-10', '2022-08-12', NULL, '2022-08-09 20:58:18'),
+(15, 'Detail-annonce', 0, 30, 6, 3, 'Page detail-service avec prix', '2022-08-10', '2022-08-16', NULL, '2022-08-09 17:53:48'),
+(16, 'Localisation', 0, 100, 6, 1, 'carte de localisation', '2022-08-10', '2022-08-12', NULL, '2022-08-09 21:44:27'),
+(17, 'Logout ', 1, 100, 2, 2, 'Commencer la partie Logout', '2022-08-10', '2022-08-16', NULL, '2022-08-31 21:55:37'),
+(18, 'Lien par chaine', 0, 0, 3, 5, 'définir les liens par chaîne', '2022-09-01', '2022-09-02', '2022-09-01 05:25:26', '2022-09-01 05:25:26');
 
 -- --------------------------------------------------------
 
@@ -319,7 +408,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `lastname`, `email`, `email_verified_at`, `avatar`, `poste_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Ryan', 'Andriamanantoanina', 'ryan.tsiory@gmail.com', NULL, '1660071017.jpg', 1, '$2y$10$rVDqZ//6A1dRFd2fauOvWOccHVVLW7yvLL8NuInkdD7sOzjCVIo6a', NULL, '2022-08-09 03:34:26', '2022-08-23 05:46:58'),
+(1, 2, 'Ryan', 'Andriamanantoanina', 'ryan.tsiory@gmail.com', NULL, '1660071017.jpg', 1, '$2y$10$rVDqZ//6A1dRFd2fauOvWOccHVVLW7yvLL8NuInkdD7sOzjCVIo6a', NULL, '2022-08-09 03:34:26', '2022-08-23 05:46:58'),
 (2, 3, 'Syvio Radafy', 'Kevin', 'syvio@ges.com', NULL, '1659784331.jpg', 2, '$2y$10$rVDqZ//6A1dRFd2fauOvWOccHVVLW7yvLL8NuInkdD7sOzjCVIo6a', NULL, '2022-08-09 12:27:44', '2022-08-09 12:27:44'),
 (3, 3, 'Tsanta Rakotonjanahary', 'Fitia', 'tsanta@ges.com', NULL, '1659804874.jpg', 3, '$2y$10$5gjQwygjiPqwpVLJdiYNGu3J8wEQDCbTA4nupcYAZCgl83qnFCzGO', NULL, '2022-08-09 12:27:44', '2022-08-09 12:27:44'),
 (4, 2, 'Faniry', 'Nancya', 'fnancya@ges.com', NULL, 'default-avatar-profile.png', 4, '$2y$10$rVDqZ//6A1dRFd2fauOvWOccHVVLW7yvLL8NuInkdD7sOzjCVIo6a', NULL, '2022-08-23 03:32:48', '2022-08-23 03:32:48'),
@@ -355,9 +444,21 @@ ALTER TABLE `information`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `notification`
+--
+ALTER TABLE `notification`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -435,10 +536,22 @@ ALTER TABLE `information`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT pour la table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `personal_access_tokens`
@@ -468,7 +581,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT pour la table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `users`

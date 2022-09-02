@@ -220,7 +220,7 @@
                   @for ($i = 0; $i <1 ; $i++)
                     @foreach($users as $user)
                     <a href="{{ route('messages.index') }}" class="media-list-link">
-                        <div class="media" style="overflow: hidden; height: 65px;">
+                        <div class="media" style="overflow: hidden; height: 62px;">
                             @if($user->unread)
                             <span class="pendingNav">{{ $user->unread }}</span>
                         @endif
@@ -319,7 +319,7 @@
                 </a> --}}
 
                 <div class="dropdown-footer">
-                  <a href="#"><i class="fa fa-angle-down"></i> Show All Notifications</a>
+
                 </div>
               </div><!-- media-list -->
             </div><!-- dropdown-menu -->
@@ -328,7 +328,7 @@
             @if (Auth::user())
           <div class="dropdown">
             <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">{{auth::User()->name}} {{auth::User()->role->name}} {{auth::User()->id}}</span>
+              <span class="logged-name hidden-md-down">{{auth::User()->name}} @if(auth::User()->lastaname)  {{auth::User()->lastaname}}@endif</span>
               <img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-32 rounded-circle" alt="" style="height:45px;">
               <span class="square-10 bg-success"></span>
             </a>
@@ -339,12 +339,13 @@
                         <a href="#"><img src="{{ asset('images/'.auth::user()->avatar) }}" class="wd-80 rounded-circle" alt=""></a>
                         <h6 class="logged-fullname">{{auth::User()->name}} {{auth::User()->lastname}}</h6>
                         <p>{{auth::User()->email}}</p>
+                        <p>{{auth::User()->role->name}}</p>
                     </div>
 
               <hr>
               <ul class="list-unstyled user-profile-nav">
                 <li><a href="{{ url('edit-user/'.auth::User()->id) }}"><i class="icon ion-ios-person"></i> Edit Profile</a></li>
-                <li><a href="#"><i class="icon ion-ios-gear"></i> Settings</a></li>
+
                 <li><form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-secondary btn-block text-light">
