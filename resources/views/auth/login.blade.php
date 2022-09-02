@@ -31,7 +31,7 @@
                 <input id="email" type="text"
                        class="form-control @error('email') is-invalid @enderror"
                        name="email" value="{{ old('email') }}"
-                       placeholder="Enter your username">
+                       placeholder="Entrer votre email">
                 @error('email')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -39,7 +39,7 @@
             <div class="form-group">
                 <input id="password" type="password"
                        class="form-control @error('password') is-invalid @enderror"
-                       name="password" placeholder="Enter your password">
+                       name="password" placeholder="entrer votre mot de passe">
 
                 @error('password')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
