@@ -217,9 +217,10 @@
                   </a> --}}
 
                   @if (!empty($users))
+                  @for ($i = 0; $i <1 ; $i++)
                     @foreach($users as $user)
                     <a href="{{ route('messages.index') }}" class="media-list-link">
-                        <div class="media">
+                        <div class="media" style="overflow: hidden; height: 65px;">
                             @if($user->unread)
                             <span class="pendingNav">{{ $user->unread }}</span>
                         @endif
@@ -230,23 +231,25 @@
                             <p>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</p>
 
                             </div><!-- d-flex -->
-                            @for ($i =0 ; $i <1 ; $i++)
-                            @foreach ($messagesNav as $message)
-
-                            @if ($message->from == $user->id)
-
-                                    <p>{{ $message->message }}</p>
+                                @for ($i =0 ; $i <count($messagesNav) ; $i++)
 
 
 
-                                @endif
-                            @endforeach
-                            @endfor
 
+                                    @if ($messagesNav[$i]->to == $user->id)
+
+                                        <p> Vous : {{ $messagesNav[$i]->message }}</p>
+                                    @elseif  ($messagesNav[$i]->from == $user->id)
+
+                                        <p>{{ $messagesNav[$i]->message }}</p>
+                                    @endif
+                                @endfor
                         </div>
                         </div><!-- media -->
                     </a>
                     @endforeach
+
+                    @endfor
                   @endif
 
 

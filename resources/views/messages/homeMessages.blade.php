@@ -12,69 +12,41 @@
     <div class="br-chatpanel-left">
       <nav class="nav">
         <a href="#" data-toggle="tab" class="nav-link active">Recent Chat</a>
-        <a href="#" data-toggle="tab" class="nav-link">Groups</a>
-        <a href="#" data-toggle="tab" class="nav-link">Calls</a>
+
       </nav>
 
       <div class="br-active-contacts">
-        <label class="br-sidebar-label">Active Contacts</label>
-        <div class="br-chat-contacts ps ps--active-x">
-          <div>
-            <div class="br-img-user online"><img src="../img/img7.jpg" alt=""></div>
-            <small>Raymart</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img3.jpg" alt=""></div>
-            <small>Adrian</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img4.jpg" alt=""></div>
-            <small>John</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img5.jpg" alt=""></div>
-            <small>Daniel</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img6.jpg" alt=""></div>
-            <small>Katherine</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img8.jpg" alt=""></div>
-            <small>Junrisk</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img9.jpg" alt=""></div>
-            <small>George</small>
-          </div>
-          <div>
-            <div class="br-img-user online"><img src="../img/img10.jpg" alt=""></div>
-            <small>Maryjane</small>
-          </div>
-          <div>
-            <div class="chat-contacts-more">20+</div>
-            <small>More</small>
-          </div>
-        <div class="ps__rail-x" style="width: 269px; left: 0px; top: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 169px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div><!-- br-active-contacts -->
+
       </div><!-- br-active-contacts -->
 
       <div class="br-chatlist ps ps--active-y">
 
         <div class="user-wrapper">
             @foreach($users as $user)
-        <div class="media new user" id="{{ $user->id }}" >
-          <div class="br-img-user online" >
-            <img src="../img/img9.jpg" alt="">
+        <div class="media new user" id="{{ $user->id }}" style="height: 58px;            overflow: hidden;        }">
+            <img src={{ asset('/images/'.$user->avatar) }} style="height:40px; width:40px; border-radius:50%" alt="Image" >
             @if($user->unread)
             <span class="msg-count">{{ $user->unread }}</span>
             @endif
-          </div>
+
           <div class="media-body">
             <div class="media-contact-name">
               <span>{{ $user->name }} @if (!empty($user->lastname)){{ $user->lastname }}@endif</span>
               <span>2 hours</span>
             </div>
-            <p>Nam quam nunc, blandit vel aecenas et ante tincid</p>
+            @for ($i =0 ; $i <count($messagesNav) ; $i++)
+
+
+
+
+            @if ($messagesNav[$i]->to == $user->id)
+
+                <p> vous : {{ $messagesNav[$i]->message }}</p>
+            @elseif  ($messagesNav[$i]->from == $user->id)
+
+                <p>{{ $messagesNav[$i]->message }}</p>
+            @endif
+        @endfor
           </div><!-- media-body -->
         </div><!-- media -->
 

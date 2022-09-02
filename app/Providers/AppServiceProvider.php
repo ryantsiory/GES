@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
         $my_id = Auth::id();
 
-        $messagesNav = Message::select('message', 'from', 'to')->where('to', $my_id)->get();
+        $messagesNav = Message::select('message', 'from', 'to')->where('to', $my_id)->orWhere('from', $my_id)->orderBy('created_at', 'desc')->get();
 
 
 

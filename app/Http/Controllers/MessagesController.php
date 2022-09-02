@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\User;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,9 @@ class MessagesController extends Controller
             $query->where('from', $my_id)->where('to', $user_id);
         })->get();
 
-        return view('messages.index', compact('messages'));
+        $userF = User::find($user_id);
+
+        return view('messages.index', compact('messages', 'userF'));
     }
 
     /**

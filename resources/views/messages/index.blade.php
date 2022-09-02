@@ -1,7 +1,7 @@
 <div class="br-chat-header">
-    <div class="br-img-user"><img src="../img/img2.jpg" alt=""></div>
+    <img src={{ asset('/images/'.$userF->avatar) }} style="height:40px; width:40px; border-radius:50%" alt="Image" alt="">
     <div class="chat-name">
-      <h6>Reynante Labares</h6>
+      <h6>{{ $userF->name }}</h6>
       <small>Last seen: 2 minutes ago</small>
     </div>
     <nav class="nav">
